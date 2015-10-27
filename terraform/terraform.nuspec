@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>0.6.3</version>
+    <version>0.6.6</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,18 +22,23 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 0.6.3 (August 11, 2015)
+## 0.6.6 (October 23, 2015)
+
+FEATURES:
+
+  * New interpolation functions: `cidrhost`, `cidrnetmask` and `cidrsubnet` [GH-3127]
+
+IMPROVEMENTS:
+
+  * "forces new resource" now highlighted in plan output [GH-3136]
 
 BUG FIXES:
 
-  * core: Skip all descendents after error, not just children; helps prevent confusing
-      additional errors/crashes after initial failure [GH-2963]
-  * core: fix deadlock possibility when both a module and a dependent resource are
-      removed in the same run [GH-2968]
-  * provider/aws: Fix issue with authenticating when using IAM profiles [GH-2959]
+  * helper/schema: Better error message for assigning list/map to string [GH-3009]
+  * remote/state/atlas: Additional remote state conflict handling for semantically neutral state changes [GH-3603]
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.6.3/CHANGELOG.md).
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.6.5/CHANGELOG.md).
     </releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <tags>terraform</tags>
