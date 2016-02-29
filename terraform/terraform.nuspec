@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>0.6.11</version>
+    <version>0.6.12</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,39 +22,90 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 0.6.11 (February 1, 2016)
+## 0.6.12 (February 24, 2016)
 
 BACKWARDS INCOMPATIBILITIES / NOTES:
 
-  * The `max_size`, `min_size` and `desired_capacity` attributes on `aws_autoscaling_schedule` resources now default to 0
+  * The `publicly_accessible` attribute on `aws_redshift_cluster` resources now defaults to true
 
 FEATURES:
 
-  * **New provider: `powerdns` - PowerDNS REST API** [GH-4885]
-  * **New builtin function:** `trimspace` for trimming whitespaces [GH-4910]
-  * **New builtin function:** `base64sha256` for base64 encoding raw sha256 sum of a given string [GH-4899]
-  * **New resource:** `openstack_lb_member_v1` [GH-4359]
+  * **New command:** `validate` to perform syntax validation ([#3783](https://github.com/hashicorp/terraform/issues/3783))
+  * **New provider:** `datadog` ([#5251](https://github.com/hashicorp/terraform/issues/5251))
+  * **New interpolation function:** `md5` ([#5267](https://github.com/hashicorp/terraform/issues/5267))
+  * **New interpolation function:** `signum` ([#4854](https://github.com/hashicorp/terraform/issues/4854))
+  * **New resource:** `aws_cloudwatch_event_rule` ([#4986](https://github.com/hashicorp/terraform/issues/4986))
+  * **New resource:** `aws_cloudwatch_event_target` ([#4986](https://github.com/hashicorp/terraform/issues/4986))
+  * **New resource:** `aws_lambda_permission` ([#4826](https://github.com/hashicorp/terraform/issues/4826))
+  * **New resource:** `azurerm_dns_a_record` ([#5013](https://github.com/hashicorp/terraform/issues/5013))
+  * **New resource:** `azurerm_dns_aaaa_record` ([#5013](https://github.com/hashicorp/terraform/issues/5013))
+  * **New resource:** `azurerm_dns_cname_record` ([#5013](https://github.com/hashicorp/terraform/issues/5013))
+  * **New resource:** `azurerm_dns_mx_record` ([#5041](https://github.com/hashicorp/terraform/issues/5041))
+  * **New resource:** `azurerm_dns_ns_record` ([#5041](https://github.com/hashicorp/terraform/issues/5041))
+  * **New resource:** `azurerm_dns_srv_record` ([#5041](https://github.com/hashicorp/terraform/issues/5041))
+  * **New resource:** `azurerm_dns_txt_record` ([#5041](https://github.com/hashicorp/terraform/issues/5041))
+  * **New resource:** `azurerm_dns_zone` ([#4979](https://github.com/hashicorp/terraform/issues/4979))
+  * **New resource:** `azurerm_search_service` ([#5203](https://github.com/hashicorp/terraform/issues/5203))
+  * **New resource:** `azurerm_sql_database` ([#5003](https://github.com/hashicorp/terraform/issues/5003))
+  * **New resource:** `azurerm_sql_firewall_rule` ([#5057](https://github.com/hashicorp/terraform/issues/5057))
+  * **New resource:** `azurerm_sql_server` ([#4991](https://github.com/hashicorp/terraform/issues/4991))
+  * **New resource:** `google_compute_subnetwork` ([#5130](https://github.com/hashicorp/terraform/issues/5130))
 
 IMPROVEMENTS:
 
-  * provider/template: Remove unnecessary mime-type validation from `template_cloudinit_config` resources [GH-4873]
-  * provider/template: Correct spelling of "Boundary" in the part separator of rendered `template_cloudinit_config` resources [GH-4873]
-  * provider/aws: Provide a better message if no AWS creds are found [GH-4869]
-  * provider/openstack: Ability to specify per-network Floating IPs [GH-4812]
+  * core: Backend names are now down cased during `init` in the same manner as `remote config` ([#5012](https://github.com/hashicorp/terraform/issues/5012))
+  * core: Upgrade resource name validation warning to an error as planned ([#5272](https://github.com/hashicorp/terraform/issues/5272))
+  * core: output "diffs didn't match" error details ([#5276](https://github.com/hashicorp/terraform/issues/5276))
+  * provider/aws: Add `is_multi_region_trail` option to CloudTrail ([#4939](https://github.com/hashicorp/terraform/issues/4939))
+  * provider/aws: Add support for HTTP(S) endpoints that auto confirm SNS subscription ([#4711](https://github.com/hashicorp/terraform/issues/4711))
+  * provider/aws: Add support for Tags to CloudTrail ([#5135](https://github.com/hashicorp/terraform/issues/5135))
+  * provider/aws: Add support for Tags to ElasticSearch ([#4973](https://github.com/hashicorp/terraform/issues/4973))
+  * provider/aws: Add support for deployment configuration to `aws_ecs_service` ([#5220](https://github.com/hashicorp/terraform/issues/5220))
+  * provider/aws: Add support for log validation + KMS encryption to `aws_cloudtrail` ([#5051](https://github.com/hashicorp/terraform/issues/5051))
+  * provider/aws: Allow name-prefix and auto-generated names for IAM Server Cert ([#5178](https://github.com/hashicorp/terraform/issues/5178))
+  * provider/aws: Expose additional VPN Connection attributes ([#5032](https://github.com/hashicorp/terraform/issues/5032))
+  * provider/aws: Return an error if no matching route is found for an AWS Route ([#5155](https://github.com/hashicorp/terraform/issues/5155))
+  * provider/aws: Support custom endpoints for AWS EC2 ELB and IAM ([#5114](https://github.com/hashicorp/terraform/issues/5114))
+  * provider/aws: The `cluster_type` on `aws_redshift_cluster` resources is now computed ([#5238](https://github.com/hashicorp/terraform/issues/5238))
+  * provider/aws: `aws_lambda_function` resources now support VPC configuration ([#5149](https://github.com/hashicorp/terraform/issues/5149))
+  * provider/aws: Add support for Enhanced Monitoring to RDS Instances ([#4945](https://github.com/hashicorp/terraform/issues/4945))
+  * provider/aws: Improve vpc cidr_block err message ([#5255](https://github.com/hashicorp/terraform/issues/5255))
+  * provider/aws: Implement Retention Period for `aws_kinesis_stream` ([#5223](https://github.com/hashicorp/terraform/issues/5223))
+  * provider/aws: Enable `stream_arm` output for DynamoDB Table when streams are enabled ([#5271](https://github.com/hashicorp/terraform/issues/5271))
+  * provider/digitalocean: `digitalocean_record` resources now export a computed `fqdn` attribute ([#5071](https://github.com/hashicorp/terraform/issues/5071))
+  * provider/google: Add assigned IP Address to CloudSQL Instance `google_sql_database_instance` ([#5245](https://github.com/hashicorp/terraform/issues/5245))
+  * provider/openstack: Add support for Distributed Routers ([#4878](https://github.com/hashicorp/terraform/issues/4878))
+  * provider/openstack: Add support for optional cacert_file parameter ([#5106](https://github.com/hashicorp/terraform/issues/5106))
 
 BUG FIXES:
 
-  * provider/aws: `aws_autoscale_schedule` 0 values [GH-4693]
-  * provider/aws: Fix regression with VPCs and ClassicLink for regions that do not support it [GH-4879]
-  * provider/aws: Change VPC ClassicLink to be computed [GH-4933]
-  * provider/aws: Fix SNS Topic Refresh to ensure deleted topics are removed from state [GH-4891]
-  * provider/aws: Refactor Route53 record to fix regression in deleting records created in previous versions of Terraform [GH-4892]
-  * provider/azurerm: Fix panic if no creds supplied [GH-4902]
-  * provider/openstack: Changing the port resource to mark the ip_address as optional [GH-4850]
-  * provider/docker: Catch potential custom network errors in docker [GH-4918]
+  * core: Fix bug detecting deeply nested module orphans ([#5022](https://github.com/hashicorp/terraform/issues/5022))
+  * core: Fix bug where `ignore_changes` could produce "diffs didn't match during apply" errors ([#4965](https://github.com/hashicorp/terraform/issues/4965))
+  * core: Fix race condition when handling tainted resource destroys ([#5026](https://github.com/hashicorp/terraform/issues/5026))
+  * core: Improve handling of Provisioners in the graph, fixing "Provisioner already initialized" errors ([#4877](https://github.com/hashicorp/terraform/issues/4877))
+  * core: Skip `create_before_destroy` processing during a `terraform destroy`, solving several issues preventing `destroy`
+          from working properly with CBD resources ([#5096](https://github.com/hashicorp/terraform/issues/5096))
+  * core: Error instead of panic on self var in wrong scope ([#5273](https://github.com/hashicorp/terraform/issues/5273))
+  * provider/aws: Fix Copy of Tags to DB Instance when created from Snapshot ([#5197](https://github.com/hashicorp/terraform/issues/5197))
+  * provider/aws: Fix DynamoDB Table Refresh to ensure deleted tables are removed from state ([#4943](https://github.com/hashicorp/terraform/issues/4943))
+  * provider/aws: Fix ElasticSearch `domain_name` validation ([#4973](https://github.com/hashicorp/terraform/issues/4973))
+  * provider/aws: Fix issue applying security group changes in EC2 Classic RDS for aws_db_instance ([#4969](https://github.com/hashicorp/terraform/issues/4969))
+  * provider/aws: Fix reading auto scaling group availability zones ([#5044](https://github.com/hashicorp/terraform/issues/5044))
+  * provider/aws: Fix reading auto scaling group load balancers ([#5045](https://github.com/hashicorp/terraform/issues/5045))
+  * provider/aws: Fix `aws_redshift_cluster` to allow `publicly_accessible` to be false ([#5262](https://github.com/hashicorp/terraform/issues/5262))
+  * provider/aws: Wait longer for internet gateways to detach ([#5120](https://github.com/hashicorp/terraform/issues/5120))
+  * provider/aws: Fix issue reading auto scaling group termination policies ([#5101](https://github.com/hashicorp/terraform/issues/5101))
+  * provider/cloudflare: `ttl` no longer shows a change on each plan on `cloudflare_record` resources ([#5042](https://github.com/hashicorp/terraform/issues/5042))
+  * provider/docker: Fix the default docker_host value ([#5088](https://github.com/hashicorp/terraform/issues/5088))
+  * provider/google: Fix backend service max_utilization attribute ([#5075](https://github.com/hashicorp/terraform/issues/5075))
+  * provider/google: Fix reading of `google_compute_vpn_gateway` without an explicit ([#5125](https://github.com/hashicorp/terraform/issues/5125))
+  * provider/google: Fix crash when setting `ack_deadline_seconds` on `google_pubsub_subscription` ([#5110](https://github.com/hashicorp/terraform/issues/5110))
+  * provider/openstack: Fix crash when `access_network` was not defined in instances ([#4966](https://github.com/hashicorp/terraform/issues/4966))
+  * provider/powerdns: Fix refresh of `powerdns_record` no longer fails if the record name contains a `-` ([#5228](https://github.com/hashicorp/terraform/issues/5228))
+  * provider/vcd: Wait for DHCP assignment when creating `vcd_vapp` resources with no static IP assignment ([#5195](https://github.com/hashicorp/terraform/issues/5195))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.6.11/CHANGELOG.md).
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.6.12/CHANGELOG.md).
     </releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <tags>terraform</tags>
