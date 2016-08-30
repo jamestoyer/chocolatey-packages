@@ -69,6 +69,10 @@ BUG FIXES:
 For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.7.2/CHANGELOG.md).
     </releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
+    <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
+    <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
+    <projectSourceUrl>https://github.com/hashicorp/terraform</projectSourceUrl>
+    <packageSourceUrl>https://github.com/jamestoyer/chocolatey-packages</packageSourceUrl>
     <tags>terraform</tags>
     <copyright>HashiCorp 2015-2016</copyright>
     <licenseUrl>https://github.com/hashicorp/terraform/blob/master/LICENSE</licenseUrl>
