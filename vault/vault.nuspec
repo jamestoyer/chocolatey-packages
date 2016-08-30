@@ -216,7 +216,7 @@ For more information on previous releases, check out the changelog on [GitHub](h
     <licenseUrl>https://github.com/hashicorp/vault/blob/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <!-- Important note about https://cdn.rawgit.com: Files are cached permanently after the first request. Use commit URLs when updating the icon. -->
-    
+    <iconUrl>https://cdn.rawgit.com/jamestoyer/chocolatey-packages/vault-0.6.1/vault/icons/vault.png</iconUrl>
     <!--<dependencies>
       <dependency id="" version="" />
     </dependencies>-->
