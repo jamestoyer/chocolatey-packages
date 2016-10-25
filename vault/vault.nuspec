@@ -95,7 +95,7 @@ For more information on previous releases, check out the changelog on [GitHub](h
     <bugTrackerUrl>https://github.com/hashicorp/vault/issues</bugTrackerUrl>
     <projectSourceUrl>https://github.com/hashicorp/vault</projectSourceUrl>
     <packageSourceUrl>https://github.com/jamestoyer/chocolatey-packages</packageSourceUrl>
-    <tags>vault</tags>
+    <tags>vault, hashicorp</tags>
     <copyright>HashiCorp 2015-2016</copyright>
     <licenseUrl>https://github.com/hashicorp/vault/blob/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
