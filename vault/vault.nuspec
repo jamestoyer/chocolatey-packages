@@ -95,12 +95,12 @@ For more information on previous releases, check out the changelog on [GitHub](h
     <bugTrackerUrl>https://github.com/hashicorp/vault/issues</bugTrackerUrl>
     <projectSourceUrl>https://github.com/hashicorp/vault</projectSourceUrl>
     <packageSourceUrl>https://github.com/jamestoyer/chocolatey-packages</packageSourceUrl>
-    <tags>vault</tags>
+    <tags>vault hashicorp</tags>
     <copyright>HashiCorp 2015-2016</copyright>
     <licenseUrl>https://github.com/hashicorp/vault/blob/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <!-- Important note about https://cdn.rawgit.com: Files are cached permanently after the first request. Use commit URLs when updating the icon. -->
-    <iconUrl>https://cdn.rawgit.com/jamestoyer/chocolatey-packages/vault-0.6.1/vault/icons/vault.png</iconUrl>
+    <iconUrl>https://cdn.rawgit.com/jamestoyer/chocolatey-packages/72ac58396679c27ed1a812a97909a24cf3068deb/vault/icons/vault.png</iconUrl>
     <!--<dependencies>
       <dependency id="" version="" />
     </dependencies>-->
