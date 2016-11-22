@@ -28,11 +28,7 @@ FEATURES:
 
 * **New Resource:** `azurerm_eventhub` ([#9889](https://github.com/hashicorp/terraform/issues/9889))
 * **New Resource:** `azurerm_virtual_machine_extension` ([#9962](https://github.com/hashicorp/terraform/issues/9962))
-* **Experimental new plan graph:** `terraform plan` is getting a new graph
-creation process for 0.8. This is now available behind a flag `-Xnew-apply`
-(on any command). This will become the default in 0.8. There may still be
-bugs. ([#9973](https://github.com/hashicorp/terraform/issues/9973))
-
+* **Experimental new plan graph:** `terraform plan` is getting a new graph creation process for 0.8. This is now available behind a flag `-Xnew-apply` (on any command). This will become the default in 0.8. There may still be bugs. ([#9973](https://github.com/hashicorp/terraform/issues/9973))
 IMPROVEMENTS:
 
 * provider/aws: Add support for Service Access Security Group in `aws_emr_cluster` ([#9600](https://github.com/hashicorp/terraform/issues/9600))
