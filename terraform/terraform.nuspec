@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>0.7.11</version>
+    <version>0.7.12</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,37 +22,36 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 0.7.11 (November 15, 2016)
+## 0.7.12 (November 22, 2016)
+
+BACKWARDS INCOMPATIBILITIES / NOTES:
+
+* provider/cloudstack: `cloudstack_port_forward` has now deprecated `network_id` ([#10204](https://github.com/hashicorp/terraform/issues/10204))
 
 FEATURES:
 
+* *New Data Source:* `aws_alb_listener` ([#10181](https://github.com/hashicorp/terraform/issues/10181))
+* *New Resource:* `github_label` ([#10213](https://github.com/hashicorp/terraform/issues/10213))
+
 IMPROVEMENTS:
 
-* provider/aws: Expose RDS DB Instance HostedZoneId attribute ([#10000](https://github.com/hashicorp/terraform/issues/10000))
-* provider/aws: Ignore AWS internal tags ([#7454](https://github.com/hashicorp/terraform/issues/7454))
-* provider/aws: Exposed aws_iam_role create_date attribute ([#10091](https://github.com/hashicorp/terraform/issues/10091))
-* provider/aws: Added aws_api_gateway_api_key created_date and last_updated_date attributes ([#9530](https://github.com/hashicorp/terraform/issues/9530))
-* provider/aws: Added aws_api_gateway_rest_api created_date attribute ([#9532](https://github.com/hashicorp/terraform/issues/9532))
-* provider/aws: Exposed aws_api_gateway_deployment.created_date attribute ([#9534](https://github.com/hashicorp/terraform/issues/9534))
-* provider/aws: Added `retry_duraction` to `redshift_configuration` in `kinesis_firehose_delivery_stream` ([#10113](https://github.com/hashicorp/terraform/issues/10113))
-* provider/azurerm: allow updating load balancer sub-resources ([#10016](https://github.com/hashicorp/terraform/issues/10016))
-* provider/openstack: Instance `user_data` will now detect if input is already Base64-encode ([#9966](https://github.com/hashicorp/terraform/issues/9966))
+* core: Experimental feature failures are less verbose. ([#10276](https://github.com/hashicorp/terraform/issues/10276))
+* provider/aws: Add name_prefix to aws_iam_policy ([#10178](https://github.com/hashicorp/terraform/issues/10178))
+* provider/aws: Add ability to select aws_prefix_list data source by name ([#10248](https://github.com/hashicorp/terraform/issues/10248))
+* provider/aws Return service CIDR blocks from aws_vpc_endpoint resource ([#10254](https://github.com/hashicorp/terraform/issues/10254))
+* provider/aws: Added `environment` configuration for AWS Lambda Functions ([#10275](https://github.com/hashicorp/terraform/issues/10275))
 
 BUG FIXES:
 
-* core: Fix diff mismatch error on "Destroy: true to false" scenarios. ([#10139](https://github.com/hashicorp/terraform/issues/10139))
-* core: New destroy graph `-target` includes dependencies. ([#10036](https://github.com/hashicorp/terraform/issues/10036))
-* core: New destroy graph creates proper edges through module outputs ([#10068](https://github.com/hashicorp/terraform/issues/10068))
-* core: Fix shadow error when using uuid() ([#10106](https://github.com/hashicorp/terraform/issues/10106))
-* core: Fix an issue where applies with data sources could hang ([#10134](https://github.com/hashicorp/terraform/issues/10134))
-* core: Fix plan operation diff mismatch for computed keys in slices ([#10118](https://github.com/hashicorp/terraform/issues/10118))
-* provider/aws: fix the validation of aws_redshift_cluster database_name ([#10019](https://github.com/hashicorp/terraform/issues/10019))
-* provider/aws: Fix panic in aws_acm_certificate datasource ([#10051](https://github.com/hashicorp/terraform/issues/10051))
-* provider/aws: increase aws_lambda_function timeout ([#10116](https://github.com/hashicorp/terraform/issues/10116))
-* provider/aws: Fixed ES buffering_interval option in `kinesis_firehose_delivery_stream` ([#10112](https://github.com/hashicorp/terraform/issues/10112))
+* core: Fix potential crashing race condition on state write ([#10277](https://github.com/hashicorp/terraform/issues/10277))
+* core: Data sources in modules lose their `data.` prefix when moved within the state ([#9996](https://github.com/hashicorp/terraform/issues/9996))
+* provider/aws: Fixed issue with `enable_dns_support` on creation in `aws_vpc` ([#10171](https://github.com/hashicorp/terraform/issues/10171))
+* provider/aws: Add CertificateNotFound retry waiter to aws_alb_listener ([#10180](https://github.com/hashicorp/terraform/issues/10180))
+* provider/aws: Remove IAM user's MFA devices with `force_destroy` ([#10262](https://github.com/hashicorp/terraform/issues/10262))
+* provider/scaleway: improve volume attachment ([#10084](https://github.com/hashicorp/terraform/issues/10084))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.7.11/CHANGELOG.md).
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.7.12/CHANGELOG.md).
     </releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
