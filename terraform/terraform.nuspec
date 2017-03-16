@@ -27,7 +27,7 @@ For more information, see the [introduction section](http://www.terraform.io/int
 BACKWARDS INCOMPATIBILITIES / NOTES:
 
 * provider/aws: `aws_codebuild_project` renamed `timeout` to `build_timeout` ([#12503](https://github.com/hashicorp/terraform/issues/12503))
-* provider/azurem: `azurerm_virtual_machine` and `azurerm_virtual_machine_scale_set` now store has of custom_data not all custom_data ([#12214](https://github.com/hashicorp/terraform/issues/12214))
+* provider/azurem: `azurerm_virtual_machine` and `azurerm_virtual_machine_scale_set` now store has of `custom_data` not all `custom_data` ([#12214](https://github.com/hashicorp/terraform/issues/12214))
 * provider/azurerm: `scale_sets` `os_profile_master_password` now marked as sensitive
 * provider/azurerm: `sql_server` `administrator_login_password` now marked as sensitive
 * provider/dnsimple: Provider has been upgraded to APIv2 therefore, you will need to use the APIv2 auth token
