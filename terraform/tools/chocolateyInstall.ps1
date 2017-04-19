@@ -1,7 +1,7 @@
-﻿$checksum = 'c42f6b4499ac2372c11710a001bd4935e1ee6bd83b7bfe2f728b849d52441610'
-$checksum64 = '17cccc1dec8a0d8a8684a1533b1ce200202bb7176f78fcb1ca9d82d4ead53f03'
-$url = 'https://releases.hashicorp.com/terraform/0.9.2/terraform_0.9.2_windows_386.zip'
-$url64bit = 'https://releases.hashicorp.com/terraform/0.9.2/terraform_0.9.2_windows_amd64.zip'
+﻿$checksum = '2af313c55c72fa10c1536dfb62895bc8a9351c383ceb24cd6f4565737d03bc83'
+$checksum64 = '27a67d3127d762a95024b354a96f36650c340e837566bd296c7ec3ecc15be94a'
+$url = 'https://releases.hashicorp.com/terraform/0.9.3/terraform_0.9.3_windows_386.zip'
+$url64bit = 'https://releases.hashicorp.com/terraform/0.9.3/terraform_0.9.3_windows_amd64.zip'
 $unzipLocation = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 
 if ([System.IO.Directory]::Exists("$env:ChocolateyInstall\lib\terraform")) {
