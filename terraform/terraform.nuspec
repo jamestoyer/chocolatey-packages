@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>0.10.0-beta1</version>
+    <version>0.10.0-rc1</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,32 +22,22 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 0.10.0-beta1 (June 22, 2017)
-
-BACKWARDS INCOMPATIBILITIES / NOTES:
-
-* Terraform providers are no longer distributed as part of the main Terraform distribution. Instead, they are installed automatically as part of running `terraform init`. It is therefore now mandatory to run `terraform init` before any other operations that use provider plugins, to ensure that the required plugins are installed and properly initialized.
-* The `terraform env` family of commands have been renamed to `terraform workspace`, in response to feedback that the previous naming was confusing due to collisions with other concepts of the same name. The commands still work the same as they did before, and the `env` subcommand is still supported as an alias for backward compatibility. The `env` subcommand will be removed altogether in a future release, so it's recommended to update any automation or wrapper scripts that use these commands.
-* The `terraform init` subcommand no longer takes a SOURCE argument to copy to the current directory. The behavior has been changed to match that of `plan` and `apply`, so that a configuration can be provided as an argument on the commandline while initializing the current directory. If a module needs to be copied into the current directory before initialization, it will have to be done manually.
-* The `-target` option available on several Terraform subcommands has changed behavior and **now matches potentially more resources**. In particular, given an option `-target=module.foo`, resources in any descendent modules of `foo` will also be targeted, where before this was not true. After upgrading, be sure to look carefully at the set of changes proposed by `terraform plan` when using `-target` to ensure that the target is being interpreted as expected. Note that the `-target` argument is offered for exceptional circumstances only and is not intended for routine use.
-
-IMPROVEMENTS:
-
-* Providers no longer in the main Terraform distribution; installed automatically by init instead ([#15208](https://github.com/hashicorp/terraform/issues/15208))
-* cli: `terraform env` command renamed to `terraform workspace` ([#14952](https://github.com/hashicorp/terraform/issues/14952))
-* cli: `terraform init` command now has `-upgrade` option to download the latest versions (within specified constraints) of modules and provider plugins.
-* cli: The `-target` option to various Terraform operation can now target resources in descendent modules. ([#15314](https://github.com/hashicorp/terraform/issues/15314))
-* cli: Minor updates to `terraform plan` output: use standard resource address syntax, more visually-distinct `-/+` actions, and more ([#15362](https://github.com/hashicorp/terraform/issues/15362))
-* config: New interpolation function `contains`, to find if a given string exists in a list of strings. ([#15322](https://github.com/hashicorp/terraform/issues/15322))
+## 0.10.0-rc1 (July 19, 2017)
 
 BUG FIXES:
 
-* config: Interpolation function `cidrhost` was not correctly calcluating host addresses under IPv6 CIDR prefixes ([#15321](https://github.com/hashicorp/terraform/issues/15321))
-* provisioner/chef: Prevent a panic while trying to read the connection info ([#15271](https://github.com/hashicorp/terraform/issues/15271))
-* provisioner/file: Refactor the provisioner validation function to prevent false positives ([#15273](https://github.com/hashicorp/terraform/issues/15273))
+* Don't show a message about the path to the state file if the state is remote ([#15435](https://github.com/hashicorp/terraform/issues/15435))
+* Fix crash when terraform graph is run with no configuration ([#15588](https://github.com/hashicorp/terraform/issues/15588))
+* Handle correctly the .exe suffix on locally-compiled provider plugins on Windows systems. ([#15587](https://github.com/hashicorp/terraform/issues/15587))
+
+INTERNAL CHANGES:
+
+* helper/schema: Actively disallow reserved field names in schema ([#15522](https://github.com/hashicorp/terraform/issues/15522))
+* helper/schema: Force field names to be alphanum lowercase + underscores [(#15562](https://github.com/hashicorp/terraform/issues/15562))
+
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.10.0-beta1/CHANGELOG.md).
+For more information on previous releases, check out the changelog on [GitHub]((https://github.com/hashicorp/terraform/blob/v0.10.0-rc1/CHANGELOG.md).
     </releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
