@@ -1,6 +1,6 @@
-$checksum = '8B82283E5CBAD072B0F1436041A662AB5A9BCA83845CD246A9A9081B542A299F'
-$checksum64 = 'A762B329798B872F44DF3B5DB33122469A3CF1AD28C1915FEE17605EC8245508'
-$version = '0.11.4'
+$checksum = '47f6b634c78c27ae0f765817cc80a4411f91bdf7f4e593f8d83abcb58290a710'
+$checksum64 = '0c16be99bae3b252875ff58749adc7d4d32e25d2fe3d858d0090018f3b82d7aa'
+$version = '0.11.5'
 $url = "https://releases.hashicorp.com/terraform/$($version)/terraform_$($version)_windows_386.zip"
 $url64bit = "https://releases.hashicorp.com/terraform/$($version)/terraform_$($version)_windows_amd64.zip"
 $unzipLocation = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
