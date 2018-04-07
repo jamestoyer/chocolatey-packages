@@ -1,6 +1,6 @@
-﻿$checksum = '0f175e7c90de03cb022a82116c9bb60d542cac4d8bfb0e30c9b0eeccc2343083'
-$checksum64 = '4d0b517907f708eae43b85f96ea5a6c92842a7350aaa20a88600d9e2589a1afb'
-$version = '0.9.4'
+﻿$checksum = '1d22b82bb2ec2378061f6b45e6280bd3915754acead7ff912644508249d40a2a'
+$checksum64 = '50a25a66836e45e890dcf197d510e0e6ff44fc6e1e41a34746e6fd184a9be6df'
+$version = '0.9.5'
 $url = "https://releases.hashicorp.com/vault/$($version)/vault_$($version)_windows_386.zip"
 $url64bit = "https://releases.hashicorp.com/vault/$($version)/vault_$($version)_windows_amd64.zip"
 
