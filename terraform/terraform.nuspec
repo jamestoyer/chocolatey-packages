@@ -39,6 +39,9 @@ BUG FIXES:
 PROVIDER SDK CHANGES (not user-facing):
 
 * helper/schema: Attribute value is no longer included in error message when `ConflictsWith` keys are used together. ([#17738](https://github.com/hashicorp/terraform/issues/17738))
+
+## Previous Releases
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.11.6/CHANGELOG.md).
     </releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
