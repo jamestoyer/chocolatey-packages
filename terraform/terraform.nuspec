@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>0.11.6</version>
+    <version>0.11.7</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,26 +22,19 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-# 0.11.6 (April 5, 2018)
+## 0.11.7 (April 10, 2018)
 
 BUG FIXES:
 
-* cli: Don't allow -target without arguments ([#16360](https://github.com/hashicorp/terraform/issues/16360))
-* cli: Fix strange formatting of list and map values in the `terraform console` command ([#17714](https://github.com/hashicorp/terraform/issues/17714))
-* core: Don't evaluate unused outputs during a full destroy operation ([#17768](https://github.com/hashicorp/terraform/issues/17768))
-* core: Fix local and output evaluation when they reference a resource being scaled down to 0 ([#17765](https://github.com/hashicorp/terraform/issues/17765))
-* connection/ssh: Retry on authentication failures when the remote service is available before it is completely configured ([#17744](https://github.com/hashicorp/terraform/issues/17744))
-* connection/winrm: Get execution errors from winrm commands ([#17788](https://github.com/hashicorp/terraform/issues/17788))
-* connection/winrm: Support NTLM authentication ([#17748](https://github.com/hashicorp/terraform/issues/17748))
-* provisioner/chef: Fix regression causing connection to be prematurely closed ([#17609](https://github.com/hashicorp/terraform/pull/17609))
-* provisioner/habitat: Set channel and builder URL during install, and enable service before start ([#17403](https://github.com/hashicorp/terraform/issues/17403)) ([#17781](https://github.com/hashicorp/terraform/issues/17781))
+* core: Fix handling of interpolated counts when applying a destroy plan ([#17824](https://github.com/hashicorp/terraform/issues/17824))
 
 PROVIDER SDK CHANGES (not user-facing):
 
-* helper/schema: Attribute value is no longer included in error message when `ConflictsWith` keys are used together. ([#17738](https://github.com/hashicorp/terraform/issues/17738))
+* helper/schema: Invoking `ForceNew` on a key being removed from config during diff customization now correctly exposes that key as being removed in the updated diff. This prevents diff mismatches under certain circumstances. ([#17811](https://github.com/hashicorp/terraform/issues/17811))
+* helper/schema: Invoking `ForceNew` during diff customization on its own no longer writes any new data to the diff. This prevents writing of new nil to zero value diffs for sub-fields of complex lists and sets where a diff did not exist before. ([#17811](https://github.com/hashicorp/terraform/issues/17811))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.11.6/CHANGELOG.md).
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.11.7/CHANGELOG.md).
     </releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
