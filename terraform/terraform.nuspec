@@ -59,7 +59,7 @@ BUG FIXES:
 * core: Make sure the state is locked before it is used when `(un)tainting` ([#18894](https://github.com/hashicorp/terraform/issues/18894))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/master/CHANGELOG.md).
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.11.9/CHANGELOG.md).
     </releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
