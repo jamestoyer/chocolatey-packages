@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>0.12.0-alpha3</version>
+    <version>0.12.0-alpha4</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,6 +22,10 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
+## 0.12.0-alpha4 (December 7, 2018)
+NOTES:
+No changes to terraform; this release is only necessary to fix an incorrect version of the aws provider bundled in alpha3
+
 ## 0.12.0-alpha3 (December 6, 2018)
 
 BACKWARDS INCOMPATIBILITIES / NOTES:
@@ -65,7 +69,7 @@ BUG FIXES:
 * backend/remote: Fix issues with uploaded configs that contain symlinks ([#19520](https://github.com/hashicorp/terraform/issues/19520))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.12.0-alpha3/CHANGELOG.md).
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.12.0-alpha4/CHANGELOG.md).
     </releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
