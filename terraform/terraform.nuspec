@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>0.11.11</version>
+    <version>0.11.12</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,20 +22,26 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 0.11.11 (December 14, 2018)
+## 0.11.12 (March 8, 2019)
 
 IMPROVEMENTS:
 
-* backend/remote: Return detailed version (in)compatibility information ([#19659](https://github.com/hashicorp/terraform/issues/19659))
-* core: Enhance service discovery error handling and messaging ([#19589](https://github.com/hashicorp/terraform/issues/19589))
-* core: Add support to retrieve version constraints to service discovery ([#19647](https://github.com/hashicorp/terraform/issues/19647))
+* The `filemd5`, `filesha1`, etc functions from Terraform v0.12 are backported primarily to allow writing
+  modules that can work in both Terraform 0.11 and 0.12, since the `sha1(file("..."))` pattern in 0.12
+  works only for files containing valid UTF-8 text; `sha1file("...")` must be used instead.  Both
+  forms are equivalent in Terraform 0.11.
+* backend/remote: Retry calls when the remote backend responds with a server error ([#20589](https://github.com/hashicorp/terraform/issues/20589))
+* backend/remote: Check for external updates while waiting for user input ([#20622](https://github.com/hashicorp/terraform/issues/20622))
 
 BUG FIXES:
 
-* backend/remote: Fix symlink issues and Windows support when uploading configurations ([#19573](https://github.com/hashicorp/terraform/issues/19573))
+* backend/remote: Fix "token too long" errors when streaming remote operation logs ([#20241](https://github.com/hashicorp/terraform/issues/20241))
+* backend/remote: Use the `can-queue-apply` permission to detect if apply is allowed ([#20462](https://github.com/hashicorp/terraform/issues/20462))
+* backend/remote: Exit with 1 when a remote run is canceled ([#20482](https://github.com/hashicorp/terraform/issues/20482))
+* core: Use slashes in the module manifest to prevent Windows/Linux compatibility issues ([#20246](https://github.com/hashicorp/terraform/issues/20246))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.11.11/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.11.12/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
