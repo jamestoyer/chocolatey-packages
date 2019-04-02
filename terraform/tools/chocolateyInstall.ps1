@@ -3,8 +3,8 @@
 # DO NOT CHANGE THESE MANUALLY. USE update.ps1
 $url        = 'https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_windows_386.zip'
 $url64      = 'https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_windows_amd64.zip'
-$checksum   = '6d042c2292fbb7e7995059e9a218c861c5d6ceca2e3ca54b4a53c7cc31512430'
-$checksum64 = '343b32b76a9698176890388b2a29592a2c5ddaade4434da1f566f0257bf51480'
+$checksum   = 'e4a68ef9728925a0ed8a5485a46af31da5593c884ff3c7d90597c18edeccae0d'
+$checksum64 = 'b758f90ffe713217eee42c6f00c5fe47958f7286935b67508055af217a33d120'
 
 $unzipLocation = Split-Path -Parent $MyInvocation.MyCommand.Definition
 
