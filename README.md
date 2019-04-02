@@ -1,2 +1,2 @@
 # chocolatey-packages
-Chocolatey installer for Hashicorp Vault
+My Chocolatey packages repo
