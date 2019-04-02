@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>0.12.0-alpha4</version>
+    <version>0.12.0-beta1</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,54 +22,79 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 0.12.0-alpha4 (December 7, 2018)
-NOTES:
-No changes to terraform; this release is only necessary to fix an incorrect version of the aws provider bundled in alpha3
+## 0.12.0-beta1 (Feb 28, 2019)
 
-## 0.12.0-alpha3 (December 6, 2018)
+Please see [the announcement post](https://www.hashicorp.com/blog/announcing-terraform-0-1-2-beta1) for details on how to use this release.
 
 BACKWARDS INCOMPATIBILITIES / NOTES:
-* command: Remove `-module-depth` flag from plan, apply, and show. This flag was not widely used and the various updates and improvements to cli output should remove the need for this flag. ([#19267](https://github.com/hashicorp/terraform/issues/19267))
-* plugins: The protobuf/grpc package name for the provider protocol was changed from `proto` to `tfplugin5` in preparation for future protocol versioning. This means that plugin binaries built for alpha1 and alpha2 are no longer compatible and will need to be rebuilt. ([#19393](https://github.com/hashicorp/terraform/issues/19393))
+
+* backend/s3: `workspace_key_prefix` can no longer be defined with leading or trailing slashes. Users should verify the state paths in s3 if they need to change this in case there are extra slashes in the keys ([#20432](https://github.com/hashicorp/terraform/issues/20432))
+* config: `path.module` and `path.root` now return paths with forward slashes on all operating systems, including Windows. This avoids the need to write constructed paths differently for Windows vs. other operating systems, but any existing constructed paths containing backslashes for Windows must now be rewritten to use forward slashes, like `"${path.module}/foo/bar"`. ([#19708](https://github.com/hashicorp/terraform/issues/19708))
+* config: `path.module` and `path.root` are now relative to the current working directory, rather than absolute as before. This avoids including a host-specific absolute path prefix on constructed paths, but may show as a diff after upgrade in situations where a constructed path is included in a resource attribute value. ([#19708](https://github.com/hashicorp/terraform/issues/19708))
+* tools/terraform-bundle: use the `terraform-bundle` of the same tag as the targeted terraform binary version. This avoids adding complexity to resolve protocol versions across different terraform versions. ([#20030](https://github.com/hashicorp/terraform/issues/20030))
 
 IMPROVEMENTS:
 
-* dependencies: upgrading to v21.3.0 of `github.com/Azure/azure-sdk-for-go` ([#19414](https://github.com/hashicorp/terraform/issues/19414))
-* dependencies: upgrading to v10.15.4 of `github.com/Azure/go-autorest` ([#19414](https://github.com/hashicorp/terraform/issues/19414))
-* backend/azurerm: Fixing a bug where locks couldn't be unlocked ([#19441](https://github.com/hashicorp/terraform/issues/19441))
-* backend/azurerm: Support for authenticating via Managed Service Identity ([#19433](https://github.com/hashicorp/terraform/issues/19433))
-* backend/azurerm: Support for authenticating using a SAS Token ([#19440](https://github.com/hashicorp/terraform/issues/19440))
-* backend/azurerm: Support for custom Resource Manager Endpoints ([#19460](https://github.com/hashicorp/terraform/issues/19460))
-* backend/azurerm: Using the proxy from the environment when set ([#19414](https://github.com/hashicorp/terraform/issues/19414))
-* backend/azurerm: Deprecating the `arm_` prefix for keys used in the backend configuration ([#19448](https://github.com/hashicorp/terraform/issues/19448))
-* command/state: Update and enable the `state show` command ([#19200](https://github.com/hashicorp/terraform/issues/19200))
-* command/state: Lock the state when pushing a new state using `state push` ([#19411](https://github.com/hashicorp/terraform/issues/19411))
-* backend/remote: Implement the remote enhanced backend ([#19299](https://github.com/hashicorp/terraform/issues/19299))
-* backend/remote: Support remote state only usage by dynamically falling back to the local backend ([#19378](https://github.com/hashicorp/terraform/issues/19378))
-* backend/remote: Also show Sentinel policy output when there are no changes ([#19403](https://github.com/hashicorp/terraform/issues/19403))
-* backend/remote: Add support for the `console`, `graph` and `import` commands ([#19464](https://github.com/hashicorp/terraform/issues/19464))
-* backend/remote: Use the new force-unlock API ([#19520](https://github.com/hashicorp/terraform/issues/19520))
-* plugin/discovery: Use signing keys from the Terraform Registry when downloading providers. ([#19389](https://github.com/hashicorp/terraform/issues/19389))
-* plugin/discovery: Use default `-` namespace alias when fetching available providers from Terraform Registry. ([#19494](https://github.com/hashicorp/terraform/issues/19494))
+* communicator/ssh: Add SSH certificate authentication ([#18896](https://github.com/hashicorp/terraform/issues/18896))
+* communicator/ssh: Enable ssh keepalive messages for long running commands ([#20437](https://github.com/hashicorp/terraform/issues/20437))
+* config: New set-theory functions `sethaselement`, `setunion`, `setintersection`, and `setproduct` for working with set values.
+* config: New type conversion functions `tostring`, `tonumber`, `tobool`, `tolist`, `toset`, and `tomap`. Explicit conversions are rarely required but occasionally useful; use these functions only when necessary.
+* plugins: Plugin RPC connection is now authenticated ([#19629](https://github.com/hashicorp/terraform/issues/19629))
+* backend/azurerm: Support for authenticating using the Azure CLI ([#19465](https://github.com/hashicorp/terraform/issues/19465))
+* backend/remote: Return detailed version (in)compatibility information ([#19659](https://github.com/hashicorp/terraform/issues/19659))
+* backend/remote: Log early to indicate remote execution started ([#19941](https://github.com/hashicorp/terraform/issues/19941))
+* backend/remote: Make sure the correct error is shown when having version incompatibilities ([#20086](https://github.com/hashicorp/terraform/issues/20086))
+* backend/remote: Fix "token too long" errors when streaming remote operation logs ([#20242](https://github.com/hashicorp/terraform/issues/20242))
+* backend/remote: Use the `state.v2` service when using remote state only ([#20379](https://github.com/hashicorp/terraform/issues/20379))
+* backend/remote: Use the `can-queue-apply` permission to detect if apply is allowed ([#20460](https://github.com/hashicorp/terraform/issues/20460))
+* backend/s3: Fix missing workspace entries when using `workspace_key_prefix` with trailing slashes ([#20432](https://github.com/hashicorp/terraform/issues/20432))
+* backend/s3: Support DynamoDB, IAM, and STS endpoint configurations ([#19571](https://github.com/hashicorp/terraform/issues/19571))
+* backend/s3: Support for the new AWS region `eu-north-1` ([#19651](https://github.com/hashicorp/terraform/issues/19651))
+* backend/s3: Enhance retry logic and provide `max_retries` configuration to retry attempts ([#19951](https://github.com/hashicorp/terraform/issues/19951))
+* backend/s3: Enhance S3 `NoSuchBucket` error to include additional information ([#19951](https://github.com/hashicorp/terraform/issues/19951))
+* backend/s3: Remove unused EC2 platform and AWS Account ID lookup, and deprecate equivalent `skip_get_ec2_platforms` and `skip_requesting_account_id` arguments ([#20374](https://github.com/hashicorp/terraform/issues/20374))
+* backend/swift: Add support for locking and workspaces ([#20211](https://github.com/hashicorp/terraform/issues/20211))
+* core: Enhance service discovery error handling and messaging ([#19589](https://github.com/hashicorp/terraform/issues/19589))
+* core: Add support to retrieve version constraints to service discovery ([#19647](https://github.com/hashicorp/terraform/issues/19647))
+* core: Validate provisioner connection blocks, and mark host field as required ([#19707](https://github.com/hashicorp/terraform/issues/19707))
+* command/format: Ignore removal of empty strings ([#19990](https://github.com/hashicorp/terraform/issues/19990))
+* command/format: Reduce whitespaces in empty fields ([#19995](https://github.com/hashicorp/terraform/issues/19995))
+* command/format: Render null in dark gray ([#19616](https://github.com/hashicorp/terraform/issues/19616))
+* command/init: Add provider protocol compatibility UI err msg during registry discovery ([#19976](https://github.com/hashicorp/terraform/issues/19976))
+* command/providers schema: Add command to export schemas for all currently-configured providers ([#20446](https://github.com/hashicorp/terraform/issues/20446))
+* command/show: Add support for machine readable output via a `-json` argument to `terraform show` ([#19687](https://github.com/hashicorp/terraform/issues/19687))
+* command/state: Use locking when updating states ([#19939](https://github.com/hashicorp/terraform/issues/19939))
+* provisioner/salt: Default values for `remote_state_tree` and `remote_pillar_roots` ([#17151](https://github.com/hashicorp/terraform/issues/17151))
 
 BUG FIXES:
 
-* command/format: Fix rendering of attribute-agnostic diagnostics ([#19453](https://github.com/hashicorp/terraform/issues/19453))
-* core: Fix inconsistent plans when replacing instances. ([#19233](https://github.com/hashicorp/terraform/issues/19233))
-* core: Correct handling of unknown values in module outputs during planning and final resolution of them during apply. ([#19237](https://github.com/hashicorp/terraform/issues/19237))
-* core: Correct handling of wildcard dependencies when upgrading states ([#19374](https://github.com/hashicorp/terraform/issues/19374))
-* core: Fix missing validation of references to non-existing child modules, which was previously resulting in a panic. ([#19487](https://github.com/hashicorp/terraform/issues/19487))
-* helper/schema: Don't re-apply schema StateFuncs during apply ([#19536](https://github.com/hashicorp/terraform/issues/19536))
-* helper/schema: Allow providers to continue setting and empty string to a default bool value ([#19521](https://github.com/hashicorp/terraform/issues/19521))
-* helper/schema: Prevent the insertion of empty diff values when converting legacy diffs ([#19253](https://github.com/hashicorp/terraform/issues/19253))
-* helper/schema: Fix timeout parsing during Provider.Diff (plan) ([#19286](https://github.com/hashicorp/terraform/issues/19286))
-* helper/schema: Provider arguments set from environment variables now work correctly again, after regressing in the prior 0.12 alphas. ([#19478](https://github.com/hashicorp/terraform/issues/19478))
-* helper/schema: For schema attributes that have `Elem` as a nested `schema.Resource`, setting `Optional: true` now forces `MinItems` to be zero, thus mimicking a previously-undocumented behavior that some providers were relying on. ([#19478](https://github.com/hashicorp/terraform/issues/19478))
-* helper/schema: Always propagate NewComputed for previously zero value primitive type attributes ([#19548](https://github.com/hashicorp/terraform/issues/19548))
-* backend/remote: Fix issues with uploaded configs that contain symlinks ([#19520](https://github.com/hashicorp/terraform/issues/19520))
+* config: Detect and reject self-referencing local values ([#19706](https://github.com/hashicorp/terraform/issues/19706))
+* config: Accept and ignore UTF-8 byte-order mark for configuration files ([#19715](https://github.com/hashicorp/terraform/issues/19715))
+* config: More helpful error message for a situation that may arise on upgrade from Terraform 0.11 or earlier ([#19727](https://github.com/hashicorp/terraform/issues/19727))
+* config: Backends configured with `-backend-config` are correctly applied and stored along with default values ([#20480](https://github.com/hashicorp/terraform/issues/20480))
+* connection/winrm: Set the correct default port when HTTPS is used ([#19540](https://github.com/hashicorp/terraform/issues/19540))
+* plugins: GRPC plugins shutdown correctly when Close is called ([#19629](https://github.com/hashicorp/terraform/issues/19629))
+* backend/local: Avoid rendering data sources on destroy ([#19613](https://github.com/hashicorp/terraform/issues/19613))
+* backend/local: Fix incorrect destroy/update count on apply ([#19610](https://github.com/hashicorp/terraform/issues/19610))
+* backend/local: Render CBD replacement (+/-) correctly ([#19642](https://github.com/hashicorp/terraform/issues/19642))
+* backend/remote: Exit with 1 when a remote run is canceled ([#20481](https://github.com/hashicorp/terraform/issues/20481))
+* command/format: Fix rendering of nested blocks during update ([#19611](https://github.com/hashicorp/terraform/issues/19611))
+* command/format: Fix rendering of force-new updates ([#19609](https://github.com/hashicorp/terraform/issues/19609))
+* command/format: Fix rendering of nested (JSON) object ([#20071](https://github.com/hashicorp/terraform/issues/20071))
+* command/format: Fix rendering of unknown elements in set/map/list ([#20067](https://github.com/hashicorp/terraform/issues/20067))
+* command/init: Fix plugin installer using wrong protocol causing incompatiable API version with plugin ([#19221](https://github.com/hashicorp/terraform/issues/19221))
+* command/providers: Support `-no-color` argument to `terraform providers`, which was previously incorrectly returning an error ([#19671](https://github.com/hashicorp/terraform/issues/19671))
+* helper/schema: Fix setting a set in a list ([#19552](https://github.com/hashicorp/terraform/issues/19552))
+* states/statemgr: Avoid HTML escaping when printing LockInfo ([#20005](https://github.com/hashicorp/terraform/issues/20005))
+* core: Correct errors when referencing a resource containing count without an index ([#19674](https://github.com/hashicorp/terraform/issues/19674))
+* core: Fix occasional invalid provider errors when scaling down a counted datasource ([#19676](https://github.com/hashicorp/terraform/issues/19676))
+* core: Fix crash when applying a stored plan containing destroys ([#19726](https://github.com/hashicorp/terraform/issues/19726))
+
+NEW FEATURES:
+* backend/pg: Support for using Postgresql for remote state storage ([#19070](https://github.com/hashicorp/terraform/issues/19070))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.12.0-alpha4/CHANGELOG.md).
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.12.0-beta1/CHANGELOG.md).
     </releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
@@ -77,7 +102,7 @@ For more information on previous releases, check out the changelog on [GitHub](h
     <projectSourceUrl>https://github.com/hashicorp/terraform</projectSourceUrl>
     <packageSourceUrl>https://github.com/jamestoyer/chocolatey-packages</packageSourceUrl>
     <tags>terraform hashicorp</tags>
-    <copyright>HashiCorp 2015-2018</copyright>
+    <copyright>HashiCorp 2015-2019</copyright>
     <licenseUrl>https://github.com/hashicorp/terraform/blob/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <!-- Important note about https://cdn.rawgit.com: Files are cached permanently after the first request. Use commit URLs when updating the icon. -->
