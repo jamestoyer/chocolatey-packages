@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>0.11.14</version>
+    <version>0.12.0</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,33 +22,22 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 0.11.14 (May 16, 2019)
+## 0.12.0 (May 22, 2019)
 
-NEW FEATURES:
+---
 
-* `terraform 0.12checklist` command detects and reports on some preparation steps that will make a subsequent Terraform 0.12 upgrade smoother. ([#21241](https://github.com/hashicorp/terraform/issues/21241))
+This is the aggregated summary of changes compared to v0.11.14. If you'd like to see the incremental changelog through each of the v0.12.0 prereleases, please refer to [the v0.12.0-rc1 changelog](https://github.com/hashicorp/terraform/blob/v0.12.0-rc1/CHANGELOG.md).
 
-IMPROVEMENTS:
+---
 
-* provider/terraform: The `terraform_remote_state` data source is now able to read outputs from a state snapshot created by Terraform 0.12, to provide more flexibility when upgrading individual configurations to Terraform 0.12 in a decomposed environment. ([#21226](https://github.com/hashicorp/terraform/issues/21226))
-* backend/s3: Support DynamoDB, IAM, and STS endpoint configurations ([#20659](https://github.com/hashicorp/terraform/issues/20659))
-* backend/s3: Support for AWS regions `eu-north-1` and `us-gov-east-1` ([#20659](https://github.com/hashicorp/terraform/issues/20659))
-* backend/s3: Enhance retry logic and provide `max_retries` configuration for retry attempts ([#20659](https://github.com/hashicorp/terraform/issues/20659))
-* backend/s3: Enhance S3 `NoSuchBucket` error to include additional information ([#20659](https://github.com/hashicorp/terraform/issues/20659))
-* backend/s3: Remove unused EC2 platform and AWS Account ID lookup, and deprecate equivalent `skip_get_ec2_platforms` and `skip_requesting_account_id` arguments ([#20659](https://github.com/hashicorp/terraform/issues/20659))
-* backend/remote: Do not unlock a workspace after a failed state upload ([#21148](https://github.com/hashicorp/terraform/issues/21148))
+The focus of v0.12.0 was on improvements to the Terraform language made in response to all of the feedback and experience gathered on prior versions. We hope that these language improvements will help to make configurations for more complex situations more readable, and improve the usability of re-usable modules.
 
-BUG FIXES:
+However, an overhaul of this kind inevitably means that 100% compatibility is not possible. The updated language is designed to be broadly compatible with the 0.11 language as documented, but some of the improvements required a slightly stricter parser and language model in order to resolve ambiguity or to give better feedback in error messages.
 
-* backend/remote: Ensure variables are loaded correctly when using `terraform console` ([#20858](https://github.com/hashicorp/terraform/issues/20858))
-* backend/remote: Make sure workspaces are correctly uploaded ([#20953](https://github.com/hashicorp/terraform/issues/20953))
-* backend/remote: Fix panic when loading cached configuration with 0.12 backend schema ([#21199](https://github.com/hashicorp/terraform/issues/21199))
-* core: Fix a potential crash when loading module manifests with Windows paths ([#20812](https://github.com/hashicorp/terraform/issues/20812))
-* core: Make sure UIInput keeps working after being canceled ([#21140](https://github.com/hashicorp/terraform/issues/21140))
-* core: Always try to select a workspace after initialization ([#21230](https://github.com/hashicorp/terraform/issues/21230))
+If you are upgrading to v0.12.0, we strongly recommend reading [the upgrade guide](https://www.terraform.io/upgrade-guides/0-12.html) to learn the recommended upgrade process, which includes a tool to automatically upgrade many improved language constructs and to indicate situations where human intuition is required to complete the upgrade.
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.11.14/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.12.0/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
