@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>0.12.0</version>
+    <version>0.12.1</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,29 +22,26 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 0.12.0 (May 22, 2019)
+## 0.12.1 (June 3, 2019)
 
----
+BUG FIXES:
 
-This is the aggregated summary of changes compared to v0.11.14. If you'd like to see the incremental changelog through each of the v0.12.0 prereleases, please refer to [the v0.12.0-rc1 changelog](https://github.com/hashicorp/terraform/blob/v0.12.0-rc1/CHANGELOG.md).
-
----
-
-The focus of v0.12.0 was on improvements to the Terraform language made in response to all of the feedback and experience gathered on prior versions. We hope that these language improvements will help to make configurations for more complex situations more readable, and improve the usability of re-usable modules.
-
-However, an overhaul of this kind inevitably means that 100% compatibility is not possible. The updated language is designed to be broadly compatible with the 0.11 language as documented, but some of the improvements required a slightly stricter parser and language model in order to resolve ambiguity or to give better feedback in error messages.
-
-If you are upgrading to v0.12.0, we strongly recommend reading [the upgrade guide](https://www.terraform.io/upgrade-guides/0-12.html) to learn the recommended upgrade process, which includes a tool to automatically upgrade many improved language constructs and to indicate situations where human intuition is required to complete the upgrade.
+* core: Always try to select a workspace after initialization ([#21234](https://github.com/hashicorp/terraform/issues/21234))
+* command/show: fix inconsistent json output causing a panic [[#21541](https://github.com/hashicorp/terraform/issues/21541)] 
+* config: `distinct` function no longer panics when given an empty list ([#21538](https://github.com/hashicorp/terraform/issues/21538))
+* config: Don't panic when a `version` constraint is added to a module that was previously initialized without one ([#21542](https://github.com/hashicorp/terraform/issues/21542))
+* config: `matchkeys` function argument type checking will no longer fail incorrectly during validation ([#21576](https://github.com/hashicorp/terraform/issues/21576))
+* backend/local: Don't panic if an instance in the state only has deposed instances, and no current instance ([#21575](https://github.com/hashicorp/terraform/issues/21575))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.12.0/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.12.1/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
     <projectSourceUrl>https://github.com/hashicorp/terraform</projectSourceUrl>
     <packageSourceUrl>https://github.com/jamestoyer/chocolatey-packages</packageSourceUrl>
     <tags>terraform hashicorp</tags>
-    <copyright>HashiCorp 2015-2018</copyright>
+    <copyright>HashiCorp 2015-2019</copyright>
     <licenseUrl>https://github.com/hashicorp/terraform/blob/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <!-- Important note about https://cdn.rawgit.com: Files are cached permanently after the first request. Use commit URLs when updating the icon. -->
