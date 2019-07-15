@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>0.12.3</version>
+    <version>0.12.4</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,24 +22,25 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 0.12.3 (June 24, 2019)
+## 0.12.4 (July 11, 2019)
 
-ENHANCEMENTS:
+NEW FEATURES: 
 
-* config: add GCS source support for modules ([#21254](https://github.com/hashicorp/terraform/issues/21254))
-* command/format: Reduce extra whitespaces &amp; new lines ([#21334](https://github.com/hashicorp/terraform/issues/21334))
-* backend/s3: Support for chaining assume IAM role from AWS shared configuration files ([#21815](https://github.com/hashicorp/terraform/issues/21815))
+* lang/funcs: new `abspath` function returns the absolute path to a given file ([#21409](https://github.com/hashicorp/terraform/issues/21409))
+* backend/swift: support for user configured state object names in swift containers ([#17465](https://github.com/hashicorp/terraform/issues/17465))
 
 BUG FIXES:
 
-* configs: Can now use references like `tags["foo"]` in `ignore_changes` to ignore in-place updates to specific keys in a map ([#21788](https://github.com/hashicorp/terraform/issues/21788))
-* configs: Fix panic on missing value for `version` attribute in `provider` blocks. ([#21825](https://github.com/hashicorp/terraform/issues/21825))
-* lang/funcs: Fix `merge` panic on null values. Now will give an error if null used ([#21695](https://github.com/hashicorp/terraform/issues/21695))
-* backend/remote: Fix "Conflict" error if the first state snapshot written after a Terraform CLI upgrade has the same content as the prior state. ([#21811](https://github.com/hashicorp/terraform/issues/21811))
-* backend/s3: Fix AWS shared configuration file credential source not assuming a role with environment and ECS credentials ([#21815](https://github.com/hashicorp/terraform/issues/21815))
+* core: Prevent crash when a resource has no current valid instance ([#21979](https://github.com/hashicorp/terraform/issues/21979))
+* plugin/sdk: Prevent empty strings from being replaced with default values ([#21806](https://github.com/hashicorp/terraform/issues/21806))
+* plugin/sdk: Ensure resource timeouts are not lost when there is an empty plan ([#21814](https://github.com/hashicorp/terraform/issues/21814))
+* plugin/sdk: Don't add null elements to diagnostic paths when validating config ([#21884](https://github.com/hashicorp/terraform/issues/21884))
+* lang/funcs: Add missing map of bool support for `lookup` ([#21863](https://github.com/hashicorp/terraform/issues/21863))
+* config: Fix issue with downloading BitBucket modules from deprecated V1 API by updating go-getter dependency ([#21948](https://github.com/hashicorp/terraform/issues/21948))
+* config: Fix conditionals to evaluate to the correct type when using null ([#21957](https://github.com/hashicorp/terraform/issues/21957))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.12.3/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.12.4/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
