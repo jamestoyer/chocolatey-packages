@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>0.12.24</version>
+    <version>0.12.25</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,20 +22,23 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 0.12.24 (March 19, 2020)
+## 0.12.25 (May 13, 2020)
 
 NOTES:
 
-* cli: Windows executable signing.
+* backend/s3: Region validation now automatically supports the new `af-south-1` (Africa (Cape Town)) region. For AWS operations to work in the new region, the region must be explicitly enabled as outlined in the [AWS Documentation](https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-enable). When the region is not enabled, the Terraform S3 Backend will return errors during credential validation (e.g. `error validating provider credentials: error calling sts:GetCallerIdentity: InvalidClientTokenId: The security token included in the request is invalid`). ([#24744](https://github.com/hashicorp/terraform/issues/24744))
 
-Our Windows 32-bit and 64-bit executables for this version and up will be signed with a HashiCorp cert. Windows users will no longer see a warning about an "unknown publisher" when running our software.
+ENHANCEMENTS:
+
+* backend/s3: Support automatic region validation for `af-south-1` ([#24744](https://github.com/hashicorp/terraform/issues/24744))
+* backend/remote: Add support for force push to remote backend ([#24884](https://github.com/hashicorp/terraform/issues/24884))
 
 BUG FIXES:
-* command/login: Fix bug when using terraform login on Windows ([#24397](https://github.com/hashicorp/terraform/issues/24397))
-* registry: Fix panic when server is unreachable ([#24411](https://github.com/hashicorp/terraform/issues/24411))
+* core: Destroy provisioners should not evaluate for_each expressions ([#24163](https://github.com/hashicorp/terraform/issues/24163))
+* core: Fix races in GetVariableValue ([#24599](https://github.com/hashicorp/terraform/issues/24599))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.12.24/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.12.25/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
