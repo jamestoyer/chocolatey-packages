@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>0.12.26</version>
+    <version>0.12.27</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,15 +22,14 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 0.12.26 (May 27, 2020)
+## 0.12.27 (June 24, 2020)
 
-ENHANCEMENTS:
+BUG FIXES:
 
-* backend/remote: Can now accept `-target` options when creating a plan using _remote operations_, if supported by the target server. (Server-side support for this in Terraform Cloud and Terraform Enterprise will follow in forthcoming releases of each.) ([#24834](https://github.com/hashicorp/terraform/issues/24834))
-* cli: A special new lifecycle mode for provider plugins where they are assumed to be controlled by an external process outside of Terraform. This is for automated provider plugin testing only, and is not an end-user feature. ([#24674](https://github.com/hashicorp/terraform/issues/24674))
+* backend/remote: fix panic when there's a connection error to the remote backend ([#25341](https://github.com/hashicorp/terraform/issues/25341))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.12.26/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.12.27/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
