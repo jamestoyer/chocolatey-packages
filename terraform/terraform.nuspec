@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>0.13.0-beta3</version>
+    <version>0.13.0-rc1</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,36 +22,19 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 0.13.0-beta3 (July 01, 2020)
+## 0.13.0-rc1 (July 22, 2020)
 
 BUG FIXES:
 
-* backend/azurerm: support for snapshotting the blob used for remote state storage prior to change ([#24069](https://github.com/hashicorp/terraform/issues/24069))
-* backend/remote: Prevent panic when there's a connection error ([#25341](https://github.com/hashicorp/terraform/issues/25341))
-* command: Fix bug with global -v/-version/--version flags introduced in 0.13.0beta2 ([#25277](https://github.com/hashicorp/terraform/issues/25277))
-* command: Fix command test fixture modify-in-place bugs, which could cause state leak between tests ([#25299](https://github.com/hashicorp/terraform/issues/25299))
-* command: Preserve more comments when rerunning 0.13upgrade ([#25381](https://github.com/hashicorp/terraform/issues/25381))
-* command/console: enable use of impure functions in console (for example, bcrypt()) ([#25442](https://github.com/hashicorp/terraform/issues/25442))
-* command/import: Fix -allow-missing-config option ([#25352](https://github.com/hashicorp/terraform/issues/25352))
-* command/init: return an error with invalid -backend-config files ([#25411](https://github.com/hashicorp/terraform/issues/25411))
-* communicator/winrm: Inlcude any user-configured timeout for winrm connection ([#25350](https://github.com/hashicorp/terraform/issues/25350))
-* config: Add missing validation to prevent provider configuration within modules using depends_on ([#25345](https://github.com/hashicorp/terraform/issues/25345))
-* configs: Fix nested provider requirements bug introduced in 0.13.0beta2 ([#25334](https://github.com/hashicorp/terraform/issues/25334))
-* configs: Fix panic when required_providers blocks have non-string attribute values ([#25369](https://github.com/hashicorp/terraform/issues/25369))
-* configs: Fix panic for invalid resource provider ([#25408](https://github.com/hashicorp/terraform/issues/25408))
-* core: Hide empty plans for misbehaving data sources ([#25302](https://github.com/hashicorp/terraform/issues/25302))
-* provider/terraform: Don't change non-computed attribute, which result in a perpetual diff ([#25297](https://github.com/hashicorp/terraform/issues/25297))
-* terraform: Relax import-specific provider configuration constraints, to permit any values that can be evaluated statically ([#25420](https://github.com/hashicorp/terraform/issues/25420))
-* vendor: The merge function will no longer panic if all given maps are empty ([#25303](https://github.com/hashicorp/terraform/issues/25303))
-* vendor: The various set-manipulation functions, like setunion, will no longer panic if given an unknown set value ([#25318](https://github.com/hashicorp/terraform/issues/25318))
-
-BREAKING CHANGES:
-
-command/state: exit code 1 if state rm is called on a resource that does not exist ([#22300](https://github.com/hashicorp/terraform/issues/22300))
-command/login: Require "yes" to confirm, no longer accepting "y" ([#25379](https://github.com/hashicorp/terraform/issues/25379))
+* command/init: Fix confusing error message for locally-installed providers with invalid package structure ([#25504](https://github.com/hashicorp/terraform/issues/25504))
+* core: Prevent outputs from being evaluated during destroy ([#25500](https://github.com/hashicorp/terraform/issues/25500))
+* core: Fix the pruning of temporary values from the root module which will fail to evaluate during destroy ([#25543](https://github.com/hashicorp/terraform/issues/25543))
+* core: Don't create redundant dependency edges between objects in different instances of the same module. ([#25599](https://github.com/hashicorp/terraform/issues/25599))
+* core: Prevent quadratic memory usage with large numbers of instances by not storing the complete resource state in each instance ([#25544](https://github.com/hashicorp/terraform/issues/25544))
+* core: Fix errors and remove cycles when a provider configuration references resources during a full destroy, and fix empty evaluation results when using self references in a destroy provisioner. ([#25681](https://github.com/hashicorp/terraform/issues/25681))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.13.0-beta3/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.13.0-rc1/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
