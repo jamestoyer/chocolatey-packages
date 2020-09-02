@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>0.13.1</version>
+    <version>0.13.2</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,34 +22,26 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 0.13.1 (August 26, 2020)
+## 0.13.2 (September 02, 2020)
+
+NEW FEATURES:
+
+* **Network-based Mirrors for [Provider Installation](https://www.terraform.io/docs/commands/cli-config.html#provider-installation)**: As an addition to the existing capability of "mirroring" providers into the local filesystem, a network mirror allows publishing copies of providers on an HTTP server and using that as an alternative source for provider packages, for situations where directly accessing the origin registries is impossible or undesirable. ([#25999](https://github.com/hashicorp/terraform/issues/25999))
 
 ENHANCEMENTS:
 
-* config: `cidrsubnet` and `cidrhost` now support address extensions of more than 32 bits ([#25517](https://github.com/hashicorp/terraform/issues/25517))
-* cli: The directories that Terraform searches by default for provider plugins can now be symlinks to directories elsewhere. (This applies only to the top-level directory, not to nested directories inside it.) ([#25692](https://github.com/hashicorp/terraform/issues/25692))
-* backend/s3: simplified mock handling and assume role testing ([#25903](https://github.com/hashicorp/terraform/issues/25903))
-* backend/s3: support for appending data to the User-Agent request header with the TF_APPEND_USER_AGENT environment variable ([#25903](https://github.com/hashicorp/terraform/issues/25903))
+* backend/http: add support for configuration by environment variable. ([#25439](https://github.com/hashicorp/terraform/issues/25439))
+* command: Add support for provider redirects to `0.13upgrade`. If a provider in the Terraform Registry has moved to a new namespace, the `0.13upgrade` subcommand now detects this and follows the redirect where possible. ([#26061](https://github.com/hashicorp/terraform/issues/26061))
+* command: Improve `init` error diagnostics when encountering what appears to be an in-house provider required by a pre-0.13 state file. Terraform will now display suggested `terraform state replace-provider` commands which will fix this specific problem. ([#26066](https://github.com/hashicorp/terraform/issues/26066))
 
 BUG FIXES:
-* config: Override files containing `module` blocks can now override the special `providers` argument. ([#25496](https://github.com/hashicorp/terraform/issues/25496))
-* cli: The state lock will now be unlocked consistently across both the local and remote backends in the `terraform console` and `terraform import` commands. [[#25454](https://github.com/hashicorp/terraform/issues/25454)] 
-* cli: The `-target` option to `terraform plan` and `terraform apply` now correctly handles addresses containing module instance indexes. ([#25760](https://github.com/hashicorp/terraform/issues/25760))
-* cli: `terraform state mv` can now move the last resource from a module without panicking. ([#25523](https://github.com/hashicorp/terraform/issues/25523))
-* cli: If the output of `terraform version` contains an outdated version notice, this is now printed after the version number and not before. ([#25811](https://github.com/hashicorp/terraform/issues/25811))
-* command: Prevent creation of workspaces with invalid names via the `TF_WORKSPACE` environment variable, and allow any existing invalid workspaces to be deleted. ([#25262](https://github.com/hashicorp/terraform/issues/25262))
-* command: Fix error when multiple `-no-color` flags are set on the command line. ([#25847](https://github.com/hashicorp/terraform/issues/25847))
-* command: Fix backend config override validation, allowing the use of `-backend-config` override files with the enhanced remote backend. ([#25960](https://github.com/hashicorp/terraform/issues/25960))
-* core: State snapshots now use a consistent ordering for resources that have the same name across different modules. Previously the ordering was undefined. ([#25498](https://github.com/hashicorp/terraform/issues/25498))
-* core: A `dynamic` block producing an unknown number of blocks will no longer incorrectly produce the error "Provider produced inconsistent final plan" when the block type is backed by a set of objects. ([#25662](https://github.com/hashicorp/terraform/issues/25662))
-* core: Terraform will now silently drop attributes that appear in the state but are not present in the corresponding resource type schema, on the assumption that those attributes existed in a previous version of the provider and have now been removed. ([#25779](https://github.com/hashicorp/terraform/issues/25779))
-* core: The state upgrade logic for handling unqualified provider addresses from Terraform v0.11 and earlier will no longer panic when it encounters references to the built-in `terraform` provider. ([#25861](https://github.com/hashicorp/terraform/issues/25861))
-* internal: Clean up provider package download temporary files after installing. ([#25990](https://github.com/hashicorp/terraform/issues/25990))
-* terraform: Evaluate module call arguments for `terraform import` even if defaults are given for input variables ([#25890](https://github.com/hashicorp/terraform/issues/25890))
-* terraform: Fix misleading Terraform `required_version` constraint diagnostics when multiple `required_version` settings exist in a single module ([#25898](https://github.com/hashicorp/terraform/issues/25898))
+
+* command: Warn instead of error when the `output` subcommand with no arguments results in no outputs. This aligns the UI to match the 0 exit code in this situation, which is notable but not necessarily an error. ([#26036](https://github.com/hashicorp/terraform/issues/26036))
+* terraform: Fix crashing bug when reading data sources during plan with blocks backed by objects, not collections ([#26028](https://github.com/hashicorp/terraform/issues/26028))
+* terraform: Fix bug where variables values were asked for twice on the command line and provider input values were asked for but not saved ([#26063](https://github.com/hashicorp/terraform/issues/26063))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub]( https://github.com/hashicorp/terraform/blob/v0.13.1/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.13.2/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
