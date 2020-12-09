@@ -1,0 +1,30 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Validate
+
+on:
+  pull_request:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  terraform:
+    runs-on: windows-latest
+    
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Choco pack
+        uses: crazy-max/ghaction-chocolatey@v1
+        with:
+          args: pack .\terraform\terraform.nuspec
+
+      - name: Choco install
+        uses: crazy-max/ghaction-chocolatey@v1
+        with:
+          args: install -source . -force terraform
+        
+      - name: Terraform Version
+        run: terraform -version
