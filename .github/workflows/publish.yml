@@ -4,8 +4,6 @@ on:
   push:
     branches: [ master ]
 
-  workflow_dispatch:
-
 jobs:
   build-terraform:
     runs-on: windows-latest
@@ -62,5 +60,5 @@ jobs:
       - name: Publish (noop)
         uses: crazy-max/ghaction-chocolatey@v1
         with:
-          args: push --noop
+          args: push
       
