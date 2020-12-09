@@ -1,6 +1,3 @@
-
-# This is a basic workflow to help you get started with Actions
-
 name: Publish
 
 on:
@@ -48,6 +45,11 @@ jobs:
         with:
           name: terraform
           path: ${{ github.workspace }}
+         
+      - name: Choco install
+        uses: crazy-max/ghaction-chocolatey@v1
+        with:
+          args: install -source . -force terraform
        
       - name: Terraform Version
         run: terraform -version
