@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>0.13.0-rc1</version>
+    <version>0.13.5</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,26 +22,22 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 0.13.0-rc1 (July 22, 2020)
+## 0.13.5 (October 21, 2020)
 
 BUG FIXES:
-
-* command/init: Fix confusing error message for locally-installed providers with invalid package structure ([#25504](https://github.com/hashicorp/terraform/issues/25504))
-* core: Prevent outputs from being evaluated during destroy ([#25500](https://github.com/hashicorp/terraform/issues/25500))
-* core: Fix the pruning of temporary values from the root module which will fail to evaluate during destroy ([#25543](https://github.com/hashicorp/terraform/issues/25543))
-* core: Don't create redundant dependency edges between objects in different instances of the same module. ([#25599](https://github.com/hashicorp/terraform/issues/25599))
-* core: Prevent quadratic memory usage with large numbers of instances by not storing the complete resource state in each instance ([#25544](https://github.com/hashicorp/terraform/issues/25544))
-* core: Fix errors and remove cycles when a provider configuration references resources during a full destroy, and fix empty evaluation results when using self references in a destroy provisioner. ([#25681](https://github.com/hashicorp/terraform/issues/25681))
+* terraform: fix issue where the provider configuration was not properly attached to the configured provider source address by localname ([#26567](https://github.com/hashicorp/terraform/issues/26567))
+* core: fix a performance issue when a resource contains a very large and deeply nested schema ([#26577](https://github.com/hashicorp/terraform/issues/26577))
+* backend/azurerm: fix an issue when using the metadata host to lookup environments ([#26463](https://github.com/hashicorp/terraform/issues/26463))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.13.0-rc1/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.13.5/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
     <projectSourceUrl>https://github.com/hashicorp/terraform</projectSourceUrl>
     <packageSourceUrl>https://github.com/jamestoyer/chocolatey-packages</packageSourceUrl>
     <tags>terraform hashicorp</tags>
-    <copyright>HashiCorp 2015-2020</copyright>
+    <copyright>HashiCorp 2015-2019</copyright>
     <licenseUrl>https://github.com/hashicorp/terraform/blob/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <!-- Important note about https://cdn.rawgit.com: Files are cached permanently after the first request. Use commit URLs when updating the icon. -->
