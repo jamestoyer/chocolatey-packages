@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>0.14.4</version>
+    <version>0.14.5</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,22 +22,21 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 0.14.4 (January 06, 2021)
+## 0.14.5 (January 20, 2021)
 
-UPGRADE NOTES:
+ENHANCEMENTS:
 
-* This release disables the remote Terraform version check feature for plan and apply operations. This fixes an issue with using custom Terraform version bundles in Terraform Enterprise. ([#27319](https://github.com/hashicorp/terraform/issues/27319))
+* backend/pg: The Postgres backend now supports the "scram-sha-256" authentication method. ([#26886](https://github.com/hashicorp/terraform/issues/26886))
 
 BUG FIXES:
 
-* backend/remote: Disable remote Terraform workspace version check when the remote workspace is in local operations mode ([[#27407](https://github.com/hashicorp/terraform/issues/27407)])
-* core: Fix panic when using `sensitive` values as arguments to data sources ([[#27335](https://github.com/hashicorp/terraform/issues/27335)])
-* core: Fix panic when using `sensitive` values as `count` arguments on validate ([[#27410](https://github.com/hashicorp/terraform/issues/27410)])
-* core: Fix panic when passing `sensitive` values to module input variables which have custom variable validation ([[#27412](https://github.com/hashicorp/terraform/issues/27412)])
-* dependencies: Upgrade HCL to v2.8.2, fixing several bugs with `sensitive` values ([[#27420](https://github.com/hashicorp/terraform/issues/27420)])
+* cli: Fix formatting of long integers in outputs and console ([#27479](https://github.com/hashicorp/terraform/issues/27479))
+* cli: Fix redundant check of remote workspace version for local operations ([#27498](https://github.com/hashicorp/terraform/pull/27498))
+* cli: Fix missing check of remote workspace version for state migration ([#27556](https://github.com/hashicorp/terraform/issues/27556))
+* cli: Fix world-writable permissions on dependency lock file ([#27205](https://github.com/hashicorp/terraform/issues/27205))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.14.4/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.14.5/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
