@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>0.14.6</version>
+    <version>0.14.7</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,24 +22,21 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 0.14.6 (February 04, 2021)
+## 0.14.7 (February 17, 2021)
 
 ENHANCEMENTS:
 
-* backend/s3: Add support for AWS Single-Sign On (SSO) cached credentials ([#27620](https://github.com/hashicorp/terraform/issues/27620))
+* cli: Emit an "already installed" event when a provider is found already installed ([#27722](https://github.com/hashicorp/terraform/issues/27722))
+* provisioner/remote-exec: Can now run in a mode that expects the remote system to be running Windows and excuting commands using the Windows command interpreter, rather than a Unix-style shell. Specify the `target_platform` as `"windows"` in the `connection` block. ([#26865](https://github.com/hashicorp/terraform/issues/26865))
 
 BUG FIXES:
 
-* cli: Rerunning `init` will reuse installed providers rather than fetching the provider again ([#27582](https://github.com/hashicorp/terraform/issues/27582))
-* config: Fix panic when applying a config using sensitive values in some block sets ([#27635](https://github.com/hashicorp/terraform/issues/27635))
-* core: Fix "Invalid planned change" error when planning tainted resource which no longer exists ([#27563](https://github.com/hashicorp/terraform/issues/27563))
-* core: Fix panic when refreshing data source which contains sensitive values ([#27567](https://github.com/hashicorp/terraform/issues/27567))
-* core: Fix init with broken link in plugin_cache_dir ([#27447](https://github.com/hashicorp/terraform/issues/27447))
-* core: Prevent evaluation of removed data source instances during plan ([#27621](https://github.com/hashicorp/terraform/issues/27621))
-* core: Don't plan changes for outputs that remain null ([#27512](https://github.com/hashicorp/terraform/issues/27512))
+* cli: Fix `show -json` not outputting the full module tree when some child modules have no resources ([#27352](https://github.com/hashicorp/terraform/issues/27352))
+* cli: Fix excessively slow rendering of very large multi-line string outputs ([#27746](https://github.com/hashicorp/terraform/issues/27746))
+* cli: Fix missing provider requirements in JSON plan when specified using `required_providers` instead of provider config ([#27697](https://github.com/hashicorp/terraform/issues/27697))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.14.6/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.14.7/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>

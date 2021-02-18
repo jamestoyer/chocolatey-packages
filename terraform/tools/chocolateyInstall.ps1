@@ -1,10 +1,10 @@
 ﻿$ErrorActionPreference = 'Stop'
 
 # DO NOT CHANGE THESE MANUALLY. USE update.ps1
-$url = 'https://releases.hashicorp.com/terraform/0.14.6/terraform_0.14.6_windows_386.zip'
-$url64 = 'https://releases.hashicorp.com/terraform/0.14.6/terraform_0.14.6_windows_amd64.zip'
-$checksum = 'c6d450ea3ffc53030d325d6c4d1db4b9194c0fb8b3094251b05a5a9ca0948d8c'
-$checksum64 = '8f9984006386d32fb5220d012dbeb9c6e654a6fa1476775114b97b343ec4fa4a'
+$url = 'https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_windows_386.zip'
+$url64 = 'https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_windows_amd64.zip'
+$checksum = 'd7e0c139803e74edc94ae2e60f125456db557908554089d0df684982ef461526'
+$checksum64 = '1cc49c7522d3a6a583ad627aea2d2b4fb182312f4f97d70d445e2345e4a4f4d4'
 
 $unzipLocation = Split-Path -Parent $MyInvocation.MyCommand.Definition
 

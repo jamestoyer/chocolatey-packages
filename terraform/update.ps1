@@ -85,9 +85,9 @@ function global:au_GetLatest {
   $terraformCheckpoint = Invoke-RestMethod -Uri $checkpointUrl
   Write-Verbose (ConvertTo-Json $terraformCheckpoint)
   $currentDownloadUrl = $terraformCheckpoint.current_download_url
-  $terraformBuilds = Invoke-RestMethod -Uri "$($currentDownloadUrl)index.json"
+  $terraformBuilds = Invoke-RestMethod -Uri "$($currentDownloadUrl)/index.json"
   Write-Verbose (ConvertTo-Json $terraformBuilds)
-  $shasums = Get-Shasums "$($currentDownloadUrl)$($terraformBuilds.shasums)"
+  $shasums = Get-Shasums "$($currentDownloadUrl)/$($terraformBuilds.shasums)"
   Write-Verbose (ConvertTo-Json $shasums)
 
   $build32 = Get-TerraformBuild $terraformBuilds.builds 'windows' '386'
