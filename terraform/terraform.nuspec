@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>0.14.7</version>
+    <version>0.14.8</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,21 +22,21 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 0.14.7 (February 17, 2021)
-
-ENHANCEMENTS:
-
-* cli: Emit an "already installed" event when a provider is found already installed ([#27722](https://github.com/hashicorp/terraform/issues/27722))
-* provisioner/remote-exec: Can now run in a mode that expects the remote system to be running Windows and excuting commands using the Windows command interpreter, rather than a Unix-style shell. Specify the `target_platform` as `"windows"` in the `connection` block. ([#26865](https://github.com/hashicorp/terraform/issues/26865))
+## 0.14.8 (March 10, 2021)
 
 BUG FIXES:
 
-* cli: Fix `show -json` not outputting the full module tree when some child modules have no resources ([#27352](https://github.com/hashicorp/terraform/issues/27352))
-* cli: Fix excessively slow rendering of very large multi-line string outputs ([#27746](https://github.com/hashicorp/terraform/issues/27746))
-* cli: Fix missing provider requirements in JSON plan when specified using `required_providers` instead of provider config ([#27697](https://github.com/hashicorp/terraform/issues/27697))
+* config: Update HCL package to fix panics when indexing using sensitive values ([#28034](https://github.com/hashicorp/terraform/issues/28034))
+* core: Fix error when using sensitive values in provisioner configuration ([#27819](https://github.com/hashicorp/terraform/issues/27819))
+* core: Fix empty diags not getting associated with source ([#28029](https://github.com/hashicorp/terraform/issues/28029))
+* backend/remote: Fix non-functional `-lock-timeout` argument when using the remote backend with local operations ([#27845](https://github.com/hashicorp/terraform/issues/27845))
+
+ENHANCEMENTS:
+
+* config: Terraform now does text processing using the rules and tables defined for Unicode 13. Previous versions were using Unicode 12 rules ([#28034](https://github.com/hashicorp/terraform/issues/28034))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.14.7/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.14.8/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
