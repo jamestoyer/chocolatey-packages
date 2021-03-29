@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!-- Do not remove this test for UTF-8: if ??? doesn?t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
@@ -22,21 +22,14 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 0.14.8 (March 10, 2021)
+## 0.14.9 (March 24, 2021)
 
 BUG FIXES:
 
-* config: Update HCL package to fix panics when indexing using sensitive values ([#28034](https://github.com/hashicorp/terraform/issues/28034))
-* core: Fix error when using sensitive values in provisioner configuration ([#27819](https://github.com/hashicorp/terraform/issues/27819))
-* core: Fix empty diags not getting associated with source ([#28029](https://github.com/hashicorp/terraform/issues/28029))
-* backend/remote: Fix non-functional `-lock-timeout` argument when using the remote backend with local operations ([#27845](https://github.com/hashicorp/terraform/issues/27845))
-
-ENHANCEMENTS:
-
-* config: Terraform now does text processing using the rules and tables defined for Unicode 13. Previous versions were using Unicode 12 rules ([#28034](https://github.com/hashicorp/terraform/issues/28034))
-
+* backend/remote: Fix error when migrating existing state to a new workspace on Terraform Cloud/Enterprise. ([#28093](https://github.com/hashicorp/terraform/issues/28093))
+      
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.14.8/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.14.9/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
