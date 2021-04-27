@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>0.12.30</version>
+    <version>0.12.31</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,14 +22,14 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 0.12.30 (January 06, 2021)
+## 0.12.31 (April 26, 2021)
 
-UPGRADE NOTES:
+ENHANCEMENTS:
 
-* The builtin provider's `terraform_remote_state` data source no longer enforces Terraform version checks on the remote state file. This allows Terraform 0.12.30 to access remote state from future Terraform versions, up until a future incompatible state file version upgrade is required. ([#26692](https://github.com/hashicorp/terraform/issues/26692))
+* cli: Update the HashiCorp public key ([#28499](https://github.com/hashicorp/terraform/issues/28499))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.12.30/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.12.31/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
