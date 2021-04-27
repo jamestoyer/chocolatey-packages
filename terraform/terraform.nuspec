@@ -22,33 +22,16 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 0.11.14 (May 16, 2019)
-
-NEW FEATURES:
-
-* `terraform 0.12checklist` command detects and reports on some preparation steps that will make a subsequent Terraform 0.12 upgrade smoother. ([#21241](https://github.com/hashicorp/terraform/issues/21241))
+## 0.11.15 (April 26, 2021)
 
 IMPROVEMENTS:
 
-* provider/terraform: The `terraform_remote_state` data source is now able to read outputs from a state snapshot created by Terraform 0.12, to provide more flexibility when upgrading individual configurations to Terraform 0.12 in a decomposed environment. ([#21226](https://github.com/hashicorp/terraform/issues/21226))
-* backend/s3: Support DynamoDB, IAM, and STS endpoint configurations ([#20659](https://github.com/hashicorp/terraform/issues/20659))
-* backend/s3: Support for AWS regions `eu-north-1` and `us-gov-east-1` ([#20659](https://github.com/hashicorp/terraform/issues/20659))
-* backend/s3: Enhance retry logic and provide `max_retries` configuration for retry attempts ([#20659](https://github.com/hashicorp/terraform/issues/20659))
-* backend/s3: Enhance S3 `NoSuchBucket` error to include additional information ([#20659](https://github.com/hashicorp/terraform/issues/20659))
-* backend/s3: Remove unused EC2 platform and AWS Account ID lookup, and deprecate equivalent `skip_get_ec2_platforms` and `skip_requesting_account_id` arguments ([#20659](https://github.com/hashicorp/terraform/issues/20659))
-* backend/remote: Do not unlock a workspace after a failed state upload ([#21148](https://github.com/hashicorp/terraform/issues/21148))
-
-BUG FIXES:
-
-* backend/remote: Ensure variables are loaded correctly when using `terraform console` ([#20858](https://github.com/hashicorp/terraform/issues/20858))
-* backend/remote: Make sure workspaces are correctly uploaded ([#20953](https://github.com/hashicorp/terraform/issues/20953))
-* backend/remote: Fix panic when loading cached configuration with 0.12 backend schema ([#21199](https://github.com/hashicorp/terraform/issues/21199))
-* core: Fix a potential crash when loading module manifests with Windows paths ([#20812](https://github.com/hashicorp/terraform/issues/20812))
-* core: Make sure UIInput keeps working after being canceled ([#21140](https://github.com/hashicorp/terraform/issues/21140))
-* core: Always try to select a workspace after initialization ([#21230](https://github.com/hashicorp/terraform/issues/21230))
+* cli: Update the HashiCorp Public Key ([#28498](https://github.com/hashicorp/terraform/issues/28498))
+* backend/http: New options for retries on outgoing requests. ([#19702](https://github.com/hashicorp/terraform/issues/19702))
+* communicator/ssh: Keepalive support ([#20437](https://github.com/hashicorp/terraform/issues/20437))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.11.14/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.11.15/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
