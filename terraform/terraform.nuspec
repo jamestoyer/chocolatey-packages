@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>0.15.1</version>
+    <version>0.15.2</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,33 +22,25 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 0.15.1 (April 26, 2021)
+## 0.15.2 (May 05, 2021)
 
 ENHANCEMENTS:
 
-* config: Various Terraform language functions now have more precise inference rules for propagating the "sensitive" characteristic values.
- 
-    The affected functions are `chunklist`, `concat`, `flatten`, `keys`, `length`, `lookup`, `merge`, `setproduct`, `tolist`, `tomap`, `values`, and `zipmap`. The details are a little different for each of these but the general idea is to, as far as possible, preserve the sensitive characteristic on individual element or attribute values in result structures rather than always conservatively applying sensitivity to the whole result.
-    
-    The primary benefit of these improvements is that you can now use these functions as part of constructing maps for `for_each` in situations where the input collection is never sensitive but some of the elements/attributes inside might be. ([#28446](https://github.com/hashicorp/terraform/issues/28446)] [[#28460](https://github.com/hashicorp/terraform/issues/28460))
-* cli: Update the HashiCorp public key ([#28505](https://github.com/hashicorp/terraform/issues/28505))
-* cli: Diagnostic messages can now be annotated with resource and provider addresses. ([#28275](https://github.com/hashicorp/terraform/issues/28275))
-* cli: `terraform login` now has a new user experience for successful log-ins to Terraform Cloud and Terraform Enterprise. ([#28487](https://github.com/hashicorp/terraform/issues/28487))
-* core: Minor graph performance optimizations. ([#28329](https://github.com/hashicorp/terraform/issues/28329))
+* `terraform plan` and `terraform apply`: Both now support a new planning option `-replace=...` which takes the address of a resource instance already tracked in the state and forces Terraform to upgrade either an update or no-op plan for that instance into a "replace" (either destroy-then-create or create-then-destroy depending on configuration), to allow replacing a degraded object with a new object of the same configuration in a single action and preview the effect of that before applying it.
+* `terraform apply`: Now has a `-destroy` option for symmetry with `terraform plan -destroy`, which makes `terraform destroy` effectively an alias for `terraform apply -destroy`. This change is only for consistency between `terraform plan` and `terraform apply`; there are no current plans to deprecate `terraform destroy`. ([#28489](https://github.com/hashicorp/terraform/issues/28489))
+* core: Update HCL to allow better planning of dynamic blocks ([#28424](https://github.com/hashicorp/terraform/issues/28424))
+* core: Unmark values when planning data sources ([#28539](https://github.com/hashicorp/terraform/issues/28539))
 
 BUG FIXES:
 
-* config: Fix validation error when passing providers from a non-default namespace into modules. ([#28414](https://github.com/hashicorp/terraform/issues/28414))
-* cli: Fix missing colors and extraneous resource summary for plan/apply with the remote backend. ([#28409](https://github.com/hashicorp/terraform/issues/28409))
-* cli: Diagnostics messages will only indicate that a referenced value is sensitive if that value is _directly_ sensitive, as opposed to being a complex-typed value that _contains_ a sensitive value. ([#28442](https://github.com/hashicorp/terraform/issues/28442))
-* core: Don't trigger data source reads from changes in sibling module instances. ([#28267](https://github.com/hashicorp/terraform/issues/28267))
-* core: Restore saved dependencies when a resource destroy operation fails. ([#28317](https://github.com/hashicorp/terraform/issues/28317))
-* core: Fix crash when setting sensitive attributes to a sensitive value. ([#28383](https://github.com/hashicorp/terraform/issues/28383))
-* core: Loosen output value sensitivity requirement for non-root modules. This means that modules which may receive sensitive values as input variables no longer need to mark all related outputs as sensitive. The requirement for root modules to specify the `sensitive` attribute for sensitive values remains, with an extended diagnostic message to explain why. ([#28472](https://github.com/hashicorp/terraform/issues/28472))
-* provisioner: Fix panic with unexpected null values in provisioner configuration ([#28457](https://github.com/hashicorp/terraform/issues/28457))
+* command/format: Fix various issues with nested-type attribute formatting ([#28600](https://github.com/hashicorp/terraform/issues/28600))
+* core: Fix JSON plan output to add sensitivity data for provider-specified sensitive attribute values ([#28523](https://github.com/hashicorp/terraform/issues/28523))
+* cli: Fix missing "forces replacement" UI for attribute changes which are marked as sensitive by the provider ([#28583](https://github.com/hashicorp/terraform/issues/28583))
+* cli: Fix crash when rendering diagnostic caused by missing trailing quote ([#28598](https://github.com/hashicorp/terraform/issues/28598))
+* functions: Fix crash when calling `setproduct` with one or more empty collections ([#28607](https://github.com/hashicorp/terraform/issues/28607))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.15.1/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v0.15.2/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
