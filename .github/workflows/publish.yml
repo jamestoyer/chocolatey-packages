@@ -9,7 +9,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.3.4
 
       - name: Choco pack
         uses: crazy-max/ghaction-chocolatey@v1.4.2
@@ -36,7 +36,7 @@ jobs:
     needs: build-terraform
       
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.3.4
 
       - name: Restore Choco package
         uses: actions/download-artifact@v2
