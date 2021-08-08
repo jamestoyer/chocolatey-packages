@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,24 +22,16 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.0.3 (July 21, 2021)
+## 1.0.4 (August 04, 2021)
 
-ENHANCEMENTS
-
-* `terraform plan`: The JSON logs (`-json` option) will now include `resource_drift`, showing changes detected outside of Terraform during the refresh step. ([#29072](https://github.com/hashicorp/terraform/issues/29072))
-* core: The automatic provider installer will now accept providers that are recorded in their registry as using provider protocol version 6. ([#29153](https://github.com/hashicorp/terraform/issues/29153))
-* backend/etcdv3: New argument `max_request_bytes` allows larger requests and for the client, to match the server request limit. ([#28078](https://github.com/hashicorp/terraform/issues/28078))
 
 BUG FIXES:
 
-* `terraform plan`: Will no longer panic when trying to render null maps. ([#29207](https://github.com/hashicorp/terraform/issues/29207))
-* backend/pg: Prevent the creation of multiple workspaces with the same name. ([#29157](https://github.com/hashicorp/terraform/issues/29157))
-* backend/oss: STS auth is now supported. ([#29167](https://github.com/hashicorp/terraform/issues/29167))
-* config: Dynamic blocks with unknown for_each values were not being validated. Ensure block attributes are valid even when the block is unknown ([#29208](https://github.com/hashicorp/terraform/issues/29208))
-* config: Unknown values in string templates could lose sensitivity, causing the planned change to be inaccurate ([#29208](https://github.com/hashicorp/terraform/issues/29208))
+* backend/consul: Fix a bug where the state value may be too large for consul to accept ([#28838](https://github.com/hashicorp/terraform/issues/28838))
+* cli: Fixed a crashing bug with some edge-cases when reporting syntax errors that happen to be reported at the position of a newline. ([#29048](https://github.com/hashicorp/terraform/issues/29048))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.0.3/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.0.4/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
