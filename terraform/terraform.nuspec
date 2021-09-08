@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,21 +22,20 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.0.5 (August 18, 2021)
+## 1.0.6 (September 03, 2021)
+
+ENHANCEMENTS:
+
+* backend/s3: Improve SSO handling and add new endpoints in the AWS SDK ([#29017](https://github.com/hashicorp/terraform/issues/29017))
 
 BUG FIXES:
 
-* json-output: Add an output change summary message as part of the `terraform plan -json` structured logs, bringing this format into parity with the human-readable UI. ([#29312](https://github.com/hashicorp/terraform/issues/29312))
-* core: Handle null nested single attribute values ([#29411](https://github.com/hashicorp/terraform/issues/29411))
-* cli: Fix crash when planning a diff between null and empty sets in nested attributes ([#29398](https://github.com/hashicorp/terraform/issues/29398))
-* cli: Fix crash when planning a new resource containing a set of nested object attributes ([#29398](https://github.com/hashicorp/terraform/issues/29398))
-* cli: Fix crash when displaying a resource diff where a possibly identifying attribute is sensitive ([#29397](https://github.com/hashicorp/terraform/issues/29397))
-* cli: Fix crash when a diff with unknown nested map attributes ([#29410](https://github.com/hashicorp/terraform/issues/29410))
-* config: Fix handling of dynamically types arguments in `formatlist`, ensuring the correct resulting type. ([#29408](https://github.com/hashicorp/terraform/issues/29408))
-* config: Floating point operations like `floor` and `ceil` can no longer mutate their arguments. ([#29408](https://github.com/hashicorp/terraform/issues/29408))
+* cli: Suppress confirmation prompt when initializing with the `-force-copy` flag and migrating state between multiple workspaces. ([#29438](https://github.com/hashicorp/terraform/issues/29438))
+* cli: Update tencentcount dependency versions to fix errors when building from source ([#29445](https://github.com/hashicorp/terraform/issues/29445))
+* core: Fix panic while handling computed attributes within nested objects, and improve plan validation for unknown values ([#29482](https://github.com/hashicorp/terraform/issues/29482))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.0.5/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.0.6/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
