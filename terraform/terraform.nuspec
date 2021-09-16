@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.0.6</version>
+    <version>1.0.7</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,20 +22,16 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.0.6 (September 03, 2021)
-
-ENHANCEMENTS:
-
-* backend/s3: Improve SSO handling and add new endpoints in the AWS SDK ([#29017](https://github.com/hashicorp/terraform/issues/29017))
+## 1.0.7 (September 15, 2021)
 
 BUG FIXES:
 
-* cli: Suppress confirmation prompt when initializing with the `-force-copy` flag and migrating state between multiple workspaces. ([#29438](https://github.com/hashicorp/terraform/issues/29438))
-* cli: Update tencentcount dependency versions to fix errors when building from source ([#29445](https://github.com/hashicorp/terraform/issues/29445))
-* core: Fix panic while handling computed attributes within nested objects, and improve plan validation for unknown values ([#29482](https://github.com/hashicorp/terraform/issues/29482))
+* core: Remove check for computed attributes which is no longer valid with optional structural attributes ([#29563](https://github.com/hashicorp/terraform/issues/29563))
+* core: Prevent object types with optional attributes from being instantiated as concrete values, which can lead to failures in type comparison ([#29559](https://github.com/hashicorp/terraform/issues/29559))
+* core: Empty containers in the configuration were not planned correctly when used with optional structural attributes ([#29580](https://github.com/hashicorp/terraform/issues/29580))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.0.6/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.0.7/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
