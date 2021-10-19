@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.0.8</version>
+    <version>1.0.9</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,15 +22,16 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.0.8 (September 29, 2021)
+## 1.0.9 (October 13, 2021)
 
 BUG FIXES:
 
-* cli: Check `required_version` as early as possibly during `init` so that version incompatibility can be reported before errors about new syntax ([#29665](https://github.com/hashicorp/terraform/issues/29665))
-* core: Don't plan to remove orphaned resource instances in refresh-only plans ([#29640](https://github.com/hashicorp/terraform/issues/29640))
+* core: Fix panic when planning new resources with nested object attributes ([#29701](https://github.com/hashicorp/terraform/issues/29701))
+* core: Do not refresh deposed instances when the provider is not configured during destroy ([#29720](https://github.com/hashicorp/terraform/issues/29720))
+* core: Prevent panic when encountering a missing change when destroying a resource ([#29734](https://github.com/hashicorp/terraform/issues/29734))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.0.8/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.0.9/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
