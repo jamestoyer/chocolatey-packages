@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.0.10</version>
+    <version>1.0.11</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,17 +22,19 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.0.10 (October 28, 2021)
+## 1.0.11 (November 10, 2021)
+
+ENHANCEMENTS:
+
+* backend/oss: Added support for `sts_endpoint` ([#29841](https://github.com/hashicorp/terraform/issues/29841))
 
 BUG FIXES:
 
-* backend/oss: Fix panic when there's an error looking up OSS endpoints ([#29784](https://github.com/hashicorp/terraform/issues/29784))
-* backend/remote: Fix version check when migrating state ([#29793](https://github.com/hashicorp/terraform/issues/29793))
-* cli: Restore `-lock` and `-lock-timeout` flags for the `init` command, which were removed in 0.15.0 ([#29773](https://github.com/hashicorp/terraform/issues/29773))
-* cli: Fix bug where `terraform init -input=false` would hang waiting for user input to choose a workspace ([#29805](https://github.com/hashicorp/terraform/issues/29805))
+* config: Fixed a bug in which `ignore_changes = all` would not work in override files ([#29849](https://github.com/hashicorp/terraform/issues/29849))
+* config: Numbers are now compared for equality based on their protocol representation, eliminating unexpected changes due to small precision errors ([#29864](https://github.com/hashicorp/terraform/issues/29864))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.0.10/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.0.11/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
