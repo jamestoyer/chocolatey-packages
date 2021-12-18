@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,15 +22,19 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.1.1 (December 15, 2021)
+## 1.1.2 (December 17, 2021)
+
+**If you are using Terraform CLI v1.1.0 or v1.1.1, please upgrade to this new version as soon as possible.**
+
+Terraform CLI v1.1.0 and v1.1.1 both have a bug where a failure to construct the apply-time graph can cause Terraform to incorrectly report success and save an empty state, effectively "forgetting" all existing infrastructure. Although configurations that already worked on previous releases should not encounter this problem, it's possible that incorrect _future_ configuration changes would trigger this behavior during the apply step.
 
 BUG FIXES:
 
-* core: Fix crash with orphaned module instance due to changed `count` or `for_each` value ([#30151](https://github.com/hashicorp/terraform/issues/30151))
-* core: Fix regression where some expressions failed during validation when referencing resources expanded with `count` or `for_each` ([#30171](https://github.com/hashicorp/terraform/issues/30171))
+* config: Fix panic when using `-target` in combination with `moved` blocks within modules ([#30189](https://github.com/hashicorp/terraform/issues/30189))
+* core: Fix condition which could lead to an empty state being written when there is a failure building the apply graph ([#30199](https://github.com/hashicorp/terraform/issues/30199))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://releases.hashicorp.com/terraform/1.1.1).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.1.2/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
