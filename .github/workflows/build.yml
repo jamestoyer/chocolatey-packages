@@ -4,14 +4,16 @@ name: Build
 
 on:
   pull_request:
-    branches: [ master ]
+    branches:
+      - master
+      - develop
 
   workflow_dispatch:
 
 jobs:
   terraform:
     runs-on: windows-latest
-    
+
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2.3.4
@@ -25,6 +27,6 @@ jobs:
         uses: crazy-max/ghaction-chocolatey@v1.5.0
         with:
           args: install -source . -force terraform
-        
+
       - name: Terraform Version
         run: terraform -version
