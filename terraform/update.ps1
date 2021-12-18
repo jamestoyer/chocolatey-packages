@@ -84,7 +84,8 @@ function Get-TerraformBuild($builds, $os, $arch) {
 function global:au_GetLatest {
   $terraformCheckpoint = Invoke-RestMethod -Uri $checkpointUrl
   Write-Verbose (ConvertTo-Json $terraformCheckpoint)
-  $currentDownloadUrl = $terraformCheckpoint.current_download_url
+  # $currentDownloadUrl = $terraformCheckpoint.current_download_url
+  $currentDownloadUrl = "https://releases.hashicorp.com/terraform/1.1.1"
   $terraformBuilds = Invoke-RestMethod -Uri "$($currentDownloadUrl)/index.json"
   Write-Verbose (ConvertTo-Json $terraformBuilds)
   $shasums = Get-Shasums "$($currentDownloadUrl)/$($terraformBuilds.shasums)"
@@ -96,12 +97,12 @@ function global:au_GetLatest {
   Write-Verbose (ConvertTo-Json $build64)
 
   return @{
-    Version      = $terraformCheckpoint.current_version
+    Version      = "1.1.1"
     URL32        = $build32.url
     URL64        = $build64.url
     Checksum32   = $shasums[$build32.filename]
     Checksum64   = $shasums[$build64.filename]
-    ChangelogUrl = $terraformCheckpoint.current_changelog_url
+    ChangelogUrl = "https://releases.hashicorp.com/terraform/1.1.1"
   }
 }
 
