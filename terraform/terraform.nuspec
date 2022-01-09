@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.1.2</version>
+    <version>1.1.3</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,19 +22,20 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.1.2 (December 17, 2021)
-
-**If you are using Terraform CLI v1.1.0 or v1.1.1, please upgrade to this new version as soon as possible.**
-
-Terraform CLI v1.1.0 and v1.1.1 both have a bug where a failure to construct the apply-time graph can cause Terraform to incorrectly report success and save an empty state, effectively "forgetting" all existing infrastructure. Although configurations that already worked on previous releases should not encounter this problem, it's possible that incorrect _future_ configuration changes would trigger this behavior during the apply step.
+## 1.1.3 (January 06, 2022)
 
 BUG FIXES:
 
-* config: Fix panic when using `-target` in combination with `moved` blocks within modules ([#30189](https://github.com/hashicorp/terraform/issues/30189))
-* core: Fix condition which could lead to an empty state being written when there is a failure building the apply graph ([#30199](https://github.com/hashicorp/terraform/issues/30199))
+* `terraform init`: Will now remove from [the dependency lock file](https://www.terraform.io/language/files/dependency-lock) entries for providers not used in the current configuration. Previously it would leave formerly-used providers behind in the lock file, leading to "missing or corrupted provider plugins" errors when other commands verified the consistency of the installed plugins against the locked plugins. ([#30192](https://github.com/hashicorp/terraform/issues/30192))
+* config: Fix panic when encountering an invalid provider block within a module ([#30095](https://github.com/hashicorp/terraform/issues/30095))
+* config: Fix cycle error when the index of a module containing move statements is changed ([#30232](https://github.com/hashicorp/terraform/issues/30232))
+* config: Fix inconsistent ordering with nested move operations ([#30253](https://github.com/hashicorp/terraform/issues/30253))
+* config: Fix `moved` block refactoring to include nested modules ([#30233](https://github.com/hashicorp/terraform/issues/30233))
+* functions: Redact sensitive values from function call error messages ([#30067](https://github.com/hashicorp/terraform/issues/30067))
+* `terraform show`: Disable plan state lineage checks, ensuring that we can show plan files which were generated against non-default state files ([#30205](https://github.com/hashicorp/terraform/issues/30205))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.1.2/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.1.3/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
