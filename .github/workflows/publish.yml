@@ -28,7 +28,7 @@ jobs:
         run: terraform -version
 
       - name: Save Choco package
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: terraform
           path: "${{ github.workspace }}/*.nupkg"
