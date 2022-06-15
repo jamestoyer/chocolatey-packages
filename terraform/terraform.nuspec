@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.2.2</version>
+    <version>1.2.3</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,20 +22,29 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.2.2 (June 01, 2022)
+## 1.2.3 (June 15, 2022)
 
-ENHANCEMENTS:
+UPGRADE NOTES:
 
-* Invalid `-var` arguments with spaces between the name and value now have an improved error message ([#30985](https://github.com/hashicorp/terraform/issues/30985))
+* The following remote state backends are now marked as deprecated, and are
+  planned to be removed in a future Terraform release. These backends have
+  been unmaintained since before Terraform v1.0, and may contain known bugs,
+  outdated packages, or security vulnerabilities.
+  - artifactory
+  - etcd
+  - etcdv3
+  - manta
+  - swift
 
 BUG FIXES:
 
-* Terraform now hides invalid input values for sensitive root module variables when generating error diagnostics ([#30552](https://github.com/hashicorp/terraform/issues/30552))
-* Fixed crash on CLI autocomplete ([#31160](https://github.com/hashicorp/terraform/issues/31160))
-* The "Configuration contains unknown values" error message now includes attribute paths ([#3111](https://github.com/hashicorp/terraform/issues/3111))
+* Missing check for error diagnostics in GetProviderSchema could result in panic ([#31184](https://github.com/hashicorp/terraform/issues/31184))
+* Module registries returning X-Terraform-Get locations with no URL would error with "no getter available for X-Terraform-Get source protocol" ([#31237](https://github.com/hashicorp/terraform/issues/31237))
+* Fix crash from concurrent operation on shared set of resource instance dependencies ([#31246](https://github.com/hashicorp/terraform/issues/31246))
+* backend/cos: `tencentcloud-terraform-lock` tag was not removed in all cases ([#31223](https://github.com/hashicorp/terraform/issues/31223))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.2.2/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.2.3/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
