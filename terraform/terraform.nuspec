@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.2.5</version>
+    <version>1.2.6</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,15 +22,22 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.2.5 (July 13, 2022)
+## 1.2.6 (July 27, 2022)
+
+ENHANCEMENTS:
+
+* Add a warning and guidance when `terraform init` fails to fully populate the `.terraform.lock.hcl` file. ([#31399](https://github.com/hashicorp/terraform/issues/31399))
+* Add a direct link to the relevant documentation when `terraform init` fails on missing checksums. ([#31408](https://github.com/hashicorp/terraform/issues/31408))
 
 BUG FIXES:
 
-* Report correct error message when a prerelease field is included in the `required_version` global constraint. ([#31331](https://github.com/hashicorp/terraform/issues/31331))
-* Fix case when extra blank lines were inserted into the plan for unchanged blocks. ([#31330](https://github.com/hashicorp/terraform/issues/31330))
+* Fix panic on `terraform show` when state file is invalid or unavailable. ([#31444](https://github.com/hashicorp/terraform/issues/31444))
+* Fix `terraform providers lock` command failing on missing checksums. ([#31389](https://github.com/hashicorp/terraform/issues/31389))
+* Some combinations of move block operations would be executed in the wrong order ([#31499](https://github.com/hashicorp/terraform/issues/31499))
+* Don't attribute an error to the provider when a computed attribute is listed in `ignore_changes` ([#31509](https://github.com/hashicorp/terraform/issues/31509))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.2.5/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.2.6/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
