@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.2.7</version>
+    <version>1.2.8</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,20 +22,15 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.2.7 (August 10, 2022)
-
-ENHANCEMENTS:
-
-* config: Check for direct references to deprecated computed attributes. ([#31576](https://github.com/hashicorp/terraform/issues/31576))
+## 1.2.8 (August 24, 2022)
 
 BUG FIXES:
 
-* config: Fix an crash if a submodule contains a resource whose implied provider local name contains invalid characters, by adding additional validation rules to turn it into a real error. ([#31573](https://github.com/hashicorp/terraform/issues/31573))
-* core: Fix some handling of provider schema attributes which use the newer "structural typing" mechanism introduced with protocol version 6, and therefore with the new Terraform Plugin Framework ([#31532](https://github.com/hashicorp/terraform/issues/31532))
-* command: Add missing output text for applyable refresh plans. ([#31469](https://github.com/hashicorp/terraform/issues/31469))
+* config: The `flatten` function will no longer panic if given a null value that has been explicitly converted to or implicitly inferred as having a list, set, or tuple type. Previously Terraform would panic in such a situation because it tried to "flatten" the contents of the null value into the result, which is impossible. ([#31675](https://github.com/hashicorp/terraform/issues/31675))
+* config: The `tolist`, `toset`, and `tomap` functions, and various automatic conversions that include similar logic, will no longer panic when asked to infer an element type that is convertable from both a tuple type and a list type whose element type is not yet known. ([#31675](https://github.com/hashicorp/terraform/issues/31675))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.2.7/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.2.8/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
