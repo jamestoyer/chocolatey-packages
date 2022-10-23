@@ -40,7 +40,7 @@ For more information on previous releases, check out the changelog on [GitHub](h
     <projectSourceUrl>https://github.com/hashicorp/terraform</projectSourceUrl>
     <packageSourceUrl>https://github.com/jamestoyer/chocolatey-packages</packageSourceUrl>
     <tags>terraform hashicorp</tags>
-    <copyright>HashiCorp 2015-2020</copyright>
+    <copyright>HashiCorp 2015-2022</copyright>
     <licenseUrl>https://github.com/hashicorp/terraform/blob/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <!-- Important note about https://cdn.rawgit.com: Files are cached permanently after the first request. Use commit URLs when updating the icon. -->
