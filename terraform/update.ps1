@@ -5,7 +5,15 @@ param (
   [switch]$Force
 )
 
+Set-StrictMode -Version Latest
+$ProgressPreference = 'SilentlyContinue'
 $ErrorActionPreference = 'Stop'
+trap {
+    Write-Host "ERROR: $_"
+    ($_.ScriptStackTrace -split '\r?\n') -replace '^(.*)$','ERROR: $1' | Write-Host
+    ($_.Exception.ToString() -split '\r?\n') -replace '^(.*)$','ERROR EXCEPTION: $1' | Write-Host
+    throw
+}
 
 # See https://checkpoint.hashicorp.com/ and https://www.hashicorp.com/blog/hashicorp-fastly/#json-api
 $checkpointUrl = "https://checkpoint-api.hashicorp.com/v1/check/terraform"
