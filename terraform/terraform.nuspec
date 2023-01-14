@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.3.6</version>
+    <version>1.3.7</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,15 +22,15 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.3.6 (November 30, 2022)
+## 1.3.7 (January 04, 2023)
 
 BUG FIXES:
 
-* Terraform could crash if an orphaned resource instance was deleted externally and had condition checks in the configuration ([#32246](https://github.com/hashicorp/terraform/issues/32246))
-* Module output changes were being removed and re-added to the stored plan, impacting performance with large numbers of outputs ([#32307](https://github.com/hashicorp/terraform/issues/32307))
+* Fix exact version constraint parsing for modules using prerelease versions ([#32377](https://github.com/hashicorp/terraform/issues/32377))
+* Prevent panic when a provider returns a null block value during refresh which is used as configuration via `ignore_changes` ([#32428](https://github.com/hashicorp/terraform/issues/32428))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.3.6/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.3.7/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
