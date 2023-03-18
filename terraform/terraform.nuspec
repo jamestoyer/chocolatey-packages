@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.4.1</version>
+    <version>1.4.2</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,21 +22,15 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.4.1 (March 15, 2023)
+## 1.4.2 (March 16, 2023)
 
 BUG FIXES:
 
-* Enables overriding modules that have the `depends_on` attribute set, while still preventing the `depends_on` attribute itself from being overridden. ([#32796](https://github.com/hashicorp/terraform/issues/32796))
-* `terraform providers mirror`: when a dependency lock file is present, mirror the resolved providers versions, not the latest available based on configuration. ([#32749](https://github.com/hashicorp/terraform/issues/32749))
-* Fixed module downloads from S3 URLs when using AWS IAM roles for service accounts (IRSA). ([#32700](https://github.com/hashicorp/terraform/issues/32700))
-* hcl: Fix a crash in Terraform when attempting to apply defaults into an incompatible type. ([#32775](https://github.com/hashicorp/terraform/issues/32775))
-* Prevent panic when creating a plan which errors before the planning process has begun. ([#32818](https://github.com/hashicorp/terraform/issues/32818))
-* Fix the plan renderer skipping the "no changes" messages when there are no-op outputs within the plan. ([#32820](https://github.com/hashicorp/terraform/issues/32820))
-* Prevent panic when rendering null nested primitive values in a state output. ([#32840](https://github.com/hashicorp/terraform/issues/32840))
-* Warn when an invalid path is specified in `TF_CLI_CONFIG_FILE` ([#32846](https://github.com/hashicorp/terraform/issues/32846))
+* Fix bug in which certain uses of `setproduct` caused Terraform to crash ([#32860](https://github.com/hashicorp/terraform/issues/32860))
+* Fix bug in which some provider plans were not being calculated correctly, leading to an "invalid plan" error ([#32860](https://github.com/hashicorp/terraform/issues/32860))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.4.1/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.4.2/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
