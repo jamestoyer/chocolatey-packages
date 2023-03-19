@@ -37,6 +37,7 @@ BUG FIXES:
 
 ## Previous Releases
 For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.4.1/CHANGELOG.md).</releaseNotes>
+
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
