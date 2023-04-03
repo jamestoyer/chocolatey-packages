@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!-- Do not remove this test for UTF-8: if ??? doesn?t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.4.2</version>
+    <version>1.4.3</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,15 +22,16 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.4.2 (March 16, 2023)
+## 1.4.3 (March 30, 2023)
 
 BUG FIXES:
-
-* Fix bug in which certain uses of `setproduct` caused Terraform to crash ([#32860](https://github.com/hashicorp/terraform/issues/32860))
-* Fix bug in which some provider plans were not being calculated correctly, leading to an "invalid plan" error ([#32860](https://github.com/hashicorp/terraform/issues/32860))
+* Prevent sensitive values in non-root module outputs from marking the entire output as sensitive [GH-32891]
+* Fix the handling of planned data source objects when storing a failed plan [GH-32876]
+* Don't fail during plan generation when targeting prevents resources with schema changes from performing a state upgrade [GH-32900]
+* Skip planned changes in sensitive marks when the changed attribute is discarded by the provider [GH-32892]
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.4.2/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.4.3/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
