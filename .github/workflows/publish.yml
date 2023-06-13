@@ -63,4 +63,4 @@ jobs:
       - name: Publish (noop)
         uses: crazy-max/ghaction-chocolatey@v2.2.0
         with:
-          args: push
+          args: push --source https://push.chocolatey.org/
