@@ -18,12 +18,12 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Choco pack
-        uses: crazy-max/ghaction-chocolatey@v2.1.0
+        uses: crazy-max/ghaction-chocolatey@v2.2.0
         with:
           args: pack .\terraform\terraform.nuspec
 
       - name: Choco install
-        uses: crazy-max/ghaction-chocolatey@v2.1.0
+        uses: crazy-max/ghaction-chocolatey@v2.2.0
         with:
           args: install -source . -force terraform
 
