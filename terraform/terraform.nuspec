@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.5.3</version>
+    <version>1.5.4</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,16 +22,15 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.5.3 (July 12, 2023)
+## 1.5.4 (July 26, 2023)
 
 BUG FIXES:
 
-* core: Terraform could fail to evaluate module outputs when they are used in a provider configuration during a destroy operation ([#33462](https://github.com/hashicorp/terraform/pull/33462))
-* backend/consul: When failing to save state, `consul CAS failed with transaction errors` no longer shows an error instance memory address, but an actual error message. ([#33108](https://github.com/hashicorp/terraform/pull/33108))
-* plan renderer: Fixes crash when rendering the plan if a relevant attribute contains an integer index specified as a string. ([#33475](https://github.com/hashicorp/terraform/issues/33475))
+* `check` blocks: Fixes crash when nested data sources are within configuration targeted by the terraform import command. ([#33578](https://github.com/hashicorp/terraform/issues/33578))
+* `check` blocks: Check blocks now operate in line with other checkable objects by also executing during import operations. ([#33578](https://github.com/hashicorp/terraform/issues/33578))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.5.3/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.5.4/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
