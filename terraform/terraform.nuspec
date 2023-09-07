@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.5.6</version>
+    <version>1.5.7</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,14 +22,15 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.5.6 (Unreleased)
+## 1.5.7 (September 7, 2023)
 
 BUG FIXES:
 
-* terraform_remote_state: Fixed a potential unsafe read panic when reading from multiple terraform_remote_state data sources ([#33333](https://github.com/hashicorp/terraform/issues/33333))
+* `terraform init`: Terraform will no longer allow downloading remote modules to invalid paths. ([#33745](https://github.com/hashicorp/terraform/issues/33745))
+* `terraform_remote_state`: prevent future possible incompatibility with states which include unknown `check` block result kinds. ([#33818](https://github.com/hashicorp/terraform/issues/33818))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.5.6/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.5.7/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
