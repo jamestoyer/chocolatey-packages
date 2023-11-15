@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.6.3</version>
+    <version>1.6.4</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,13 +22,17 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.6.3 (November 1, 2023)
+## 1.6.4 (November 15, 2023)
 
 ENHANCEMENTS:
-* backend/s3: Adds the parameter `skip_s3_checksum` to allow users to disable checksum on S3 uploads for compatibility with "S3-compatible" APIs. ([#34127](https://github.com/hashicorp/terraform/pull/34127))
+* backend/s3: Add the parameter `endpoints.sso` to allow overriding the AWS SSO API endpoint. ([#34195](https://github.com/hashicorp/terraform/pull/34195))
+
+BUG FIXES:
+* `terraform test`: Fix bug preventing passing sensitive output values from previous run blocks as inputs to future run blocks. ([#34190](https://github.com/hashicorp/terraform/pull/34190))
+* backend/s3: Add `https_proxy` and `no_proxy` parameters to allow fully specifying proxy configuration ([#34243](https://github.com/hashicorp/terraform/pull/34243))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.6.3/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.6.4/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
