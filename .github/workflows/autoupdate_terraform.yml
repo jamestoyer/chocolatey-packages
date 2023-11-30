@@ -1,0 +1,29 @@
+name: Automatically update terraform.nuspec
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+permissions:
+  contents: write
+  pull-requests: write
+on: create
+
+jobs:
+    job1:
+      name: "auto-update"
+      runs-on: ubuntu-latest
+      if: ${{ startsWith(github.ref, 'refs/heads/dependabot/') }}
+      steps:
+        - uses: actions/checkout@v4
+        - name: Build Module
+          shell: pwsh
+          run: ./terraform/update.ps1
+
+        - name: Configure git
+          run: |
+            git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+        
+        - name: Commit changes to terraform.nuspec
+          run: |
+              git add terraform.nuspec
+              git commit -m "[dependabot skip] Update terraform.nuspec"

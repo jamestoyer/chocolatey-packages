@@ -9,7 +9,6 @@ on:
   pull_request:
     branches:
       - develop
-  
 
   workflow_dispatch:
 
@@ -32,10 +31,6 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-
-      - name: Build Module
-        shell: pwsh
-        run: ./terraform/update.ps1
 
       - name: Choco pack
         uses: crazy-max/ghaction-chocolatey@v3.0.0
