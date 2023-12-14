@@ -15,5 +15,5 @@ updates:
     directory: "/dummy_terraform/"
     schedule:
       interval: "daily"
-      time: "00:00"
+      time: "08:00"
       timezone: "Europe/London"
