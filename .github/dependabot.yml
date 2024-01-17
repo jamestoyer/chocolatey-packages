@@ -8,3 +8,12 @@ updates:
     schedule:
       # Check for updates to GitHub Actions every weekday
       interval: "daily"
+      time: "00:00"
+      timezone: "Europe/London"
+  
+  - package-ecosystem: "terraform"
+    directory: "/dummy_terraform/"
+    schedule:
+      interval: "daily"
+      time: "23:00"
+      timezone: "Europe/London"
