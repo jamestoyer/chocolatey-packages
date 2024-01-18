@@ -16,7 +16,17 @@ jobs:
       #if: ${{ startsWith(github.ref, 'refs/heads/dependabot/') }}
       steps:
         - uses: actions/checkout@v4
-        - name: Build Module
+        
+        - name: Set up PowerShell
+          uses: microsoft/setup-powershell@v7
+          with:
+            pwsh-version: '7.x'
+
+        - name: Install AU Module
+          run: |
+            Install-Module -Name AU -Force
+
+        - name: build package
           shell: pwsh
           run: ./terraform/update.ps1
 
