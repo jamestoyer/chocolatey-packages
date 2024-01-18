@@ -208,6 +208,7 @@
   "pruneBranchAfterAutomerge": true,
   "rebaseWhen": "auto",
   "recreateWhen": "auto",
+  "repository": "constellationautomotivegroup/Terraform-chocolatey-package",
   "schedule": ["at any time"],
   "semanticCommits": "auto",
   "semanticCommitScope": "deps",
