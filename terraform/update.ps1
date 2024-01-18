@@ -1,7 +1,7 @@
 Install-Module -Name AU -Force
 
 #Requires -Version 5.0
-[cmdletbinding()]
+#[cmdletbinding()]
 param (
   [switch]$Force
 )
