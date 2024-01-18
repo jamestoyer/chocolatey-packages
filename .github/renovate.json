@@ -1,6 +1,5 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "includeForks": true,
   "addLabels": ["renovate"],
   "allowPlugins": true,
   "assignAutomerge": true,
@@ -19,6 +18,7 @@
     "fileMatch": ["\\.ya?ml$"]
   },
   "azureWorkItemId": 0,
+  "baseBranches": ["develop"],
   "bicep": {
     "fileMatch": ["\\.bicep$"]
   },
