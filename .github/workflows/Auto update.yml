@@ -13,7 +13,7 @@ jobs:
     job1:
       name: "auto-update"
       runs-on: ubuntu-latest
-      if: ${{ startsWith(github.ref, 'refs/heads/dependabot/') }}
+      #if: ${{ startsWith(github.ref, 'refs/heads/dependabot/') }}
       steps:
         - uses: actions/checkout@v4
         - name: Build Module
