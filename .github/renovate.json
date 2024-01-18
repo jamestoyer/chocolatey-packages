@@ -26,7 +26,7 @@
   "configWarningReuseIssue": false,
   "dependencyDashboard": true,
   "dependencyDashboardAutoclose": true,
-  "description": "standard CAG config",
+  "description": "standard config",
   "dockerfile": {
     "fileMatch": [
       "(^|/|\\.)([Dd]ocker|[Cc]ontainer)file$",
@@ -42,7 +42,7 @@
     "fileMatch": ["(^|/)\\.gitmodules$"],
     "versioning": "git"
   },
-  "gitAuthor": "CAG Renovate <renovate@ca-grp.com>",
+  "gitAuthor": "Renovate <renovate@renovator.com>",
   "github-actions": {
     "fileMatch": [
       "^(workflow-templates|\\.(?:github|gitea|forgejo)/workflows)/[^/]+\\.ya?ml$",
