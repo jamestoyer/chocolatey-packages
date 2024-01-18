@@ -1,4 +1,6 @@
-﻿#Requires -Version 5.0
+Install-Module -Name AU -Force
+
+#Requires -Version 5.0
 #Requires -Modules AU
 [cmdletbinding()]
 param (
