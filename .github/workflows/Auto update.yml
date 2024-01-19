@@ -12,20 +12,30 @@ on:
 jobs:
     job1:
       name: "auto-update"
-      runs-on: ubuntu-latest
-      if: ${{ startsWith(github.ref, 'refs/heads/dependabot/') }}
+      runs-on: windows-latest
+      #if: ${{ startsWith(github.ref, 'refs/heads/dependabot/') }}
       steps:
         - uses: actions/checkout@v4
-        - name: Build Module
+
+        - name: Install AU Module
+          run: |
+            Set-PSRepository PSGallery -InstallationPolicy Trusted
+            Install-Module AU 
+            Get-Module AU -ListAvailable
+
+        - name: build package
           shell: pwsh
-          run: ./terraform/update.ps1
+          working-directory: ./terraform
+          run: ./update.ps1
 
         - name: Configure git
+          working-directory: ./terraform
           run: |
             git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git config --local user.name "github-actions[bot]"
         
         - name: Commit changes to terraform.nuspec
+          working-directory: ./terraform
           run: |
               git add terraform.nuspec
               git commit -m "[dependabot skip] Update terraform.nuspec"
