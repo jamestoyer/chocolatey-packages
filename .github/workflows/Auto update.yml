@@ -29,11 +29,13 @@ jobs:
           run: ./update.ps1
 
         - name: Configure git
+          working-directory: ./terraform
           run: |
             git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git config --local user.name "github-actions[bot]"
         
         - name: Commit changes to terraform.nuspec
+          working-directory: ./terraform
           run: |
               git add terraform.nuspec
               git commit -m "[dependabot skip] Update terraform.nuspec"
