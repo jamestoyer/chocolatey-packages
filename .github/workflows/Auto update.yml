@@ -16,11 +16,6 @@ jobs:
       #if: ${{ startsWith(github.ref, 'refs/heads/dependabot/') }}
       steps:
         - uses: actions/checkout@v4
-        
-        - name: Set up PowerShell
-          uses: microsoft/setup-powershell@v7
-          with:
-            pwsh-version: '7.x'
 
         - name: Install AU Module
           run: |
