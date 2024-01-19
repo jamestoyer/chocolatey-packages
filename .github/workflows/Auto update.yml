@@ -25,7 +25,8 @@ jobs:
 
         - name: build package
           shell: pwsh
-          run: ./terraform/update.ps1
+          working-directory: ./terraform
+          run: ./update.ps1
 
         - name: Configure git
           run: |
