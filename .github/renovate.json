@@ -38,6 +38,7 @@
   "exposeAllEnv": false,
   "extends": ["config:recommended"],
   "fetchChangeLogs": "pr",
+  "forkPr": true,
   "git-submodules": {
     "enabled": false,
     "fileMatch": ["(^|/)\\.gitmodules$"],
