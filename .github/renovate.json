@@ -89,6 +89,14 @@
     "commitMessageTopic": "Homebrew Formula {{depName}}",
     "fileMatch": ["^Formula/[^/]+[.]rb$"]
   },
+  "hostRules": [
+  {
+    "hostType": "github",
+    "matchHost": "github.com",
+    "matchPaths": ["constellationautomotivegroup/*"],
+    "repository": "https://github.com/${repositorySlug}.git"
+  }
+]
   "html": {
     "digest": {
       "enabled": false
