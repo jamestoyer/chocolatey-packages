@@ -39,7 +39,7 @@
   "extends": ["config:recommended"],
   "fetchChangeLogs": "pr",
   "forkPr": true,
-  "forkProcessing": true,
+  "forkProcessing":  "enabled",
   "git-submodules": {
     "enabled": false,
     "fileMatch": ["(^|/)\\.gitmodules$"],
