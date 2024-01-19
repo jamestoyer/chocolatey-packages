@@ -24,7 +24,9 @@ jobs:
 
         - name: Install AU Module
           run: |
-            Install-Module -Name AU -Force
+            Set-PSRepository PSGallery -InstallationPolicy Trusted
+            Install-Module AU 
+            Get-Module AU -ListAvailable
 
         - name: build package
           shell: pwsh
