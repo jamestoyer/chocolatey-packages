@@ -38,7 +38,7 @@
   "exposeAllEnv": false,
   "extends": ["config:recommended", "github>constellationautomotivegroup/Terraform-chocolatey-packages"]
   "fetchChangeLogs": "pr",
-  "for mode": true,
+  "forkMode": true,
   "forkPr": true,
   "forkProcessing":  "enabled",
   "git-submodules": {
