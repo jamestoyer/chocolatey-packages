@@ -40,7 +40,7 @@
   "fetchChangeLogs": "pr",
   "forkMode": true,
   "forkPr": true,
-  "forkProcessing":  "enabled",
+  "forkProcessing": "enabled",
   "git-submodules": {
     "enabled": false,
     "fileMatch": ["(^|/)\\.gitmodules$"],
