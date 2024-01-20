@@ -7,7 +7,7 @@
   "assigneesFromCodeOwners": true,
   "assigneesSampleSize": 2,
   "autoApprove": true,
-  "autodiscover": true,
+  "autodiscover": false,
   "automerge": true,
   "automergeComment": "automergeComment",
   "automergeSchedule": ["at any time"],
@@ -111,7 +111,6 @@
   "ignoreDeprecated": true,
   "ignoreScripts": false,
   "ignoreUnstable": true,
-  "includeForks": true,
   "kotlin-script": {
     "fileMatch": ["^.+\\.main\\.kts$"]
   },
