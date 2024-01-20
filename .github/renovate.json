@@ -111,6 +111,7 @@
   "ignoreDeprecated": true,
   "ignoreScripts": false,
   "ignoreUnstable": true,
+  "includeForks": true,
   "kotlin-script": {
     "fileMatch": ["^.+\\.main\\.kts$"]
   },
