@@ -225,7 +225,7 @@
         {
           "hostType": "github",
           "hostName": "github.com",
-          "repository": "jamestoyer/chocolatey-packages",
+          "repository": "Terraform-chocolatey-packages",
           "organization": "constellationautomotivegroup"
         }
       ]
