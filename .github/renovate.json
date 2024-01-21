@@ -95,9 +95,9 @@
   "hostRules": [
   {
     "hostType": "github",
-    "matchHost": "github.com",
-    "matchPaths": ["constellationautomotivegroup/*"],
-    "repository": "https://github.com/${repositorySlug}.git"
+    "hostName": "github.com",
+    "repository": "jsmestoyer/chocolatey-packages",
+    "organization": "constellationautomotivegroup"
   }
 ]
   "html": {
@@ -205,6 +205,7 @@
     "groupSlug": "pin-dependencies",
     "rebaseWhen": "behind-base-branch"
   },
+  "platform": "github"
   "prConcurrentLimit": 10,
   "prCreation": "immediate",
   "pre-commit": {
@@ -218,6 +219,18 @@
   "pruneBranchAfterAutomerge": true,
   "rebaseWhen": "auto",
   "recreateWhen": "auto",
+  "repositories": [
+    {
+      "hostRules": [
+        {
+          "hostType": "github",
+          "hostName": "github.com",
+          "repository": "jsmestoyer/chocolatey-packages",
+          "organization": "constellationautomotivegroup"
+        }
+      ]
+    }
+  ]
   "repository": "constellationautomotivegroup/RolfMoleman/Terraform-chocolatey-package",
   "schedule": ["at any time"],
   "semanticCommits": "auto",
