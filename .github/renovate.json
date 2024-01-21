@@ -36,7 +36,7 @@
   },
   "enabled": true,
   "exposeAllEnv": false,
-  "extends": ["config:recommended", "github>constellationautomotivegroup/Terraform-chocolatey-packages"]
+  "extends": ["config:recommended", "github>constellationautomotivegroup/Terraform-chocolatey-packages"],
   "fetchChangeLogs": "pr",
   "forkMode": true,
   "forkPr": true,
@@ -93,13 +93,13 @@
     "fileMatch": ["^Formula/[^/]+[.]rb$"]
   },
   "hostRules": [
-  {
-    "hostType": "github",
-    "hostName": "github.com",
-    "repository": "jsmestoyer/chocolatey-packages",
-    "organization": "constellationautomotivegroup"
-  }
-]
+    {
+      "hostType": "github",
+      "hostName": "github.com",
+      "repository": "jsmestoyer/chocolatey-packages",
+      "organization": "constellationautomotivegroup"
+    }
+  ],
   "html": {
     "digest": {
       "enabled": false
@@ -167,95 +167,4 @@
     },
     "fileMatch": ["(^|/)package\\.json$"],
     "prBodyDefinitions": {
-      "Change": "[{{#if displayFrom}}`{{{displayFrom}}}` -> {{else}}{{#if currentValue}}`{{{currentValue}}}` -> {{/if}}{{/if}}{{#if displayTo}}`{{{displayTo}}}`{{else}}`{{{newValue}}}`{{/if}}]({{#if depName}}https://renovatebot.com/diffs/npm/{{replace '/' '%2f' depName}}/{{{currentVersion}}}/{{{newVersion}}}{{/if}})"
-    },
-    "versioning": "npm"
-  },
-  "npmrcMerge": true,
-  "nuget": {
-    "fileMatch": [
-      "\\.(?:cs|fs|vb)proj$",
-      "\\.(?:props|targets)$",
-      "(^|/)dotnet-tools\\.json$",
-      "(^|/)global\\.json$"
-    ]
-  },
-  "onboarding": true,
-  "onboardingConfig": {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json"
-  },
-  "onboardingConfigFileName": ".github/renovate.json",
-  "patch": {
-    "autoApprove": true,
-    "autodiscover": true,
-    "automerge": true,
-    "automergeComment": "Automatically update patch version",
-    "automergeSchedule": ["at any time"],
-    "automergeStrategy": "merge",
-    "automergeType": "pr",
-    "description": "Automatically update and approve patch versions"
-  },
-  "pin": {
-    "commitMessageAction": "Pin",
-    "group": {
-      "commitMessageExtra": "",
-      "commitMessageTopic": "dependencies"
-    },
-    "groupName": "Pin Dependencies",
-    "groupSlug": "pin-dependencies",
-    "rebaseWhen": "behind-base-branch"
-  },
-  "platform": "github"
-  "prConcurrentLimit": 10,
-  "prCreation": "immediate",
-  "pre-commit": {
-    "commitMessageTopic": "pre-commit hook {{depName}}",
-    "enabled": false,
-    "fileMatch": ["(^|/)\\.pre-commit-config\\.ya?ml$"],
-    "prBodyNotes": [
-      "Note: The `pre-commit` manager in Renovate is not supported by the `pre-commit` maintainers or community. Please do not report any problems there, instead [create a Discussion in the Renovate repository](https://github.com/renovatebot/renovate/discussions/new) if you have any questions."
-    ]
-  },
-  "pruneBranchAfterAutomerge": true,
-  "rebaseWhen": "auto",
-  "recreateWhen": "auto",
-  "repositories": [
-    {
-      "hostRules": [
-        {
-          "hostType": "github",
-          "hostName": "github.com",
-          "repository": "Terraform-chocolatey-packages",
-          "organization": "constellationautomotivegroup"
-        }
-      ]
-    }
-  ]
-  "repository": "constellationautomotivegroup/RolfMoleman/Terraform-chocolatey-package",
-  "schedule": ["at any time"],
-  "semanticCommits": "auto",
-  "semanticCommitScope": "deps",
-  "semanticCommitType": "chore",
-  "separateMajorMinor": true,
-  "separateMinorPatch": false,
-  "separateMultipleMajor": true,
-  "terraform": {
-    "commitMessageTopic": "Terraform {{depName}}",
-    "fileMatch": ["\\.tf$"],
-    "pinDigests": false
-  },
-  "terraform-version": {
-    "extractVersion": "^v(?<version>.*)$",
-    "fileMatch": ["(^|/)\\.terraform-version$"],
-    "versioning": "hashicorp"
-  },
-  "tflint-plugin": {
-    "commitMessageTopic": "TFLint plugin {{depName}}",
-    "extractVersion": "^v(?<version>.*)$",
-    "fileMatch": ["\\.tflint\\.hcl$"]
-  },
-  "timezone": "GB",
-  "unicodeEmoji": true,
-  "updatePinnedDependencies": true,
-  "useBaseBranchConfig": "merge"
-}
+      "Change": "[{{#if displayFrom}}`{{{displayFrom}}}` -> {{else}}{{#if currentValue}}`{{{currentValue}}}` -> {{/if}}{{/if}}{{#if displayTo}}`{{{displayTo}}}`{{else}}
