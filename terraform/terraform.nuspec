@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.6.6</version>
+    <version>1.7.1</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,15 +22,15 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.6.6 (December 13, 2023)
+## 1.7.1 (January 24, 2024)
 
 BUG FIXES:
-* `terraform test`: Stop attempting to destroy run blocks that have no actual infrastructure to destroy. This fixes an issue where attempts to destroy "verification" run blocks that load only data sources would fail if the underlying infrastructure referenced by the run blocks had already been destroyed. ([#34331](https://github.com/hashicorp/terraform/pull/34331))
-* cloud: prevent running saved cloud plans in VCS-connected workspaces. Saved plans might be applied later, and VCS workspaces shouldn't apply configurations that don't come from their designated VCS branch.
-* core: Unmanaged plugins (mainly used by provider acceptance testing) would not have a provider address set, preventing the caching of their schemas ([#34380](https://github.com/hashicorp/terraform/issues/34380))
+
+* `terraform test`: Fix crash when referencing variables or functions within the file level `variables` block. ([#34531](https://github.com/hashicorp/terraform/issues/34531))
+* `terraform test`: Fix crash when `override_module` block was missing the `outputs` attribute. ([#34563](https://github.com/hashicorp/terraform/issues/34563))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.6.6/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.7.1/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
