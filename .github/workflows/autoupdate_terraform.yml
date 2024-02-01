@@ -39,3 +39,4 @@ jobs:
           run: |
               git add terraform.nuspec
               git commit -m "Update terraform.nuspec"
+              git push origin ${{ github.head_ref }}
