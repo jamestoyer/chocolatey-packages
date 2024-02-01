@@ -34,11 +34,12 @@ jobs:
             git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git config --local user.name "github-actions[bot]"
         
-        - name: Commit changes to terraform.nuspec
+        - name: Commit and push changes to terraform.nuspec
           working-directory: ./terraform
           run: |
               git add terraform.nuspec
               git commit -m "[dependabot skip] Update terraform.nuspec"
+              git push origin ${{ github.head_ref }}
 
     job2:
       name: "renovate-auto-update"
@@ -64,8 +65,40 @@ jobs:
             git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git config --local user.name "github-actions[bot]"
         
+        - name: Commit and push changes to terraform.nuspec
+          working-directory: ./terraform
+          run: |
+              git add terraform.nuspec
+              git commit -m "Update terraform.nuspec"
+              git push origin ${{ github.head_ref }}
+
+    job3:
+      name: "user-update"
+      runs-on: windows-latest
+      if: ${{ startsWith(github.ref, 'refs/heads/release/') || startsWith(github.ref, 'refs/heads/Release/') }}
+      steps:
+        - uses: actions/checkout@v4
+
+        - name: Install AU Module
+          run: |
+            Set-PSRepository PSGallery -InstallationPolicy Trusted
+            Install-Module AU 
+            Get-Module AU -ListAvailable
+
+        - name: build package
+          shell: pwsh
+          working-directory: ./terraform
+          run: ./update.ps1
+
+        - name: Configure git
+          working-directory: ./terraform
+          run: |
+            git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+        
         - name: Commit changes to terraform.nuspec
           working-directory: ./terraform
           run: |
               git add terraform.nuspec
               git commit -m "Update terraform.nuspec"
+              git push origin ${{ github.head_ref }}
