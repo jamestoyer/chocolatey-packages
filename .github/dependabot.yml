@@ -12,7 +12,7 @@ updates:
       timezone: "Europe/London"
   
   - package-ecosystem: "terraform"
-    directory: "/dummy_terraform/"
+    directory: "/terraform/"
     schedule:
       interval: "daily"
       time: "23:00"
