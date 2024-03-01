@@ -26,12 +26,14 @@ For more information, see the [introduction section](http://www.terraform.io/int
 
 BUG FIXES: 
 
+
 * `terraform test`: Fix crash when dynamic-typed attributes are not assigned values in mocks. ([#34610](https://github.com/hashicorp/terraform/pull/34511))
 * provisioners/file: Fix panic when source is null. ([#34621](https://github.com/hashicorp/terraform/pull/34621))
 * `import`: Throw helpful error message if an import block is configured with an empty ID ([34625](https://github.com/hashicorp/terraform/pull/34625))
 
 ## Previous Releases
 For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.7.3/CHANGELOG.md).</releaseNotes>
+
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
