@@ -92,7 +92,8 @@ function Get-TerraformBuild($builds, $os, $arch) {
 function global:au_GetLatest {
   $terraformCheckpoint = Invoke-RestMethod -Uri $checkpointUrl
   Write-Verbose (ConvertTo-Json $terraformCheckpoint)
-  $currentDownloadUrl = $terraformCheckpoint.current_download_url
+  # remove trailing slash from current_download_url (if present)
+  $currentDownloadUrl = $terraformCheckpoint.current_download_url.Trim('/')
   $terraformBuilds = Invoke-RestMethod -Uri "$($currentDownloadUrl)/index.json"
   Write-Verbose (ConvertTo-Json $terraformBuilds)
   $shasums = Get-Shasums "$($currentDownloadUrl)/$($terraformBuilds.shasums)"
