@@ -14,6 +14,10 @@ jobs:
   build:
     runs-on: windows-latest
 
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the added or changed files to the repository.
+      contents: write
+
     steps:
       - uses: actions/checkout@v4
 
@@ -56,6 +60,8 @@ jobs:
           COMMIT_AUTHOR: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
           COMMIT_USER_NAME: "github-actions[bot]"
           COMMIT_USER_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
+          # BRANCH_NAME: ${{ github.ref_name }}
+          BRANCH_NAME: "feature/auto-updating"
         run: |
           echo "COMMIT_USER_NAME: $env:COMMIT_USER_NAME";
           echo "COMMIT_USER_EMAIL: $env:COMMIT_USER_EMAIL";
@@ -63,7 +69,5 @@ jobs:
           echo "COMMIT_AUTHOR: $env:COMMIT_AUTHOR";
 
           git add .
-          git -c user.name="$env:COMMIT_USER_NAME" -c user.email="$env:COMMIT_USER_EMAIL" commit -m "$env:COMMIT_MESSAGE" --author="env:$COMMIT_AUTHOR"
-          # git push -u origin ${{ github.ref_name }}
-          echo ${{ github.ref_name }}
-          git push -u origin feature/auto-updating
+          git -c user.name="$env:COMMIT_USER_NAME" -c user.email="$env:COMMIT_USER_EMAIL" commit -m "$env:COMMIT_MESSAGE" --author="$env:COMMIT_AUTHOR"
+          git push -u origin $env:BRANCH_NAME
