@@ -35,7 +35,7 @@ jobs:
           git fetch --depth=1
           git checkout $env:BRANCH_NAME
 
-          $git_dirty=$(git diff --exit-code)
+          $git_dirty=$(git diff)
           if ($git_dirty -eq 0) {
             echo "git_dirty=0" >> "$GITHUB_OUTPUT"
           } else {
