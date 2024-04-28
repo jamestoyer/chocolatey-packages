@@ -17,6 +17,11 @@ trap {
 
 $releases_url = "https://releases.hashicorp.com/terraform"
 $releases_index_url = "$releases_url/index.json"
+$releaseNotesTemplate = @'
+
+{0}## Previous Releases
+For more information on previous releases, check out the changelog on [GitHub]({1}).
+'@
 
 function Get-TerraformBuild($builds, $os, $arch) {
   foreach ($build in $builds) {
@@ -94,7 +99,7 @@ function GetStreams() {
       URL64        = $build64.url
       Checksum32   = $shasums[$build32.filename]
       Checksum64   = $shasums[$build64.filename]
-      ChangelogUrl = "https://github.com/hashicorp/terraform/blob/$latest_version/CHANGELOG.md"
+      ChangelogUrl = "https://github.com/hashicorp/terraform/blob/v$($latest_version)/CHANGELOG.md"
     }
   }
 
@@ -106,6 +111,28 @@ function GetReleasesStreams {
   $terraform_releases = Invoke-RestMethod $releases_index_url
 
   GetStreams $terraform_releases
+}
+
+function Get-ReleaseNotes($version, $changelogUrl) {
+  $rawChangelogUrl = "https://raw.githubusercontent.com/hashicorp/terraform/v$($version)/CHANGELOG.md"
+  $fullChangelog = Invoke-RestMethod -Uri $rawChangelogUrl
+
+  # get everyting from the first "##" up until the second "##"
+  # note: [\s\S]* is used to select all characters including newline characters
+  $changelogMatches = Select-String -InputObject $fullChangelog -Pattern '\A(##[\s\S]*?)##[\s\S]*\z' -AllMatches
+
+  $latestChanges = $changelogMatches.Matches.Groups[1].Value
+  if (-not $latestChanges) {
+    throw "Could not get latest changes from $rawChangelogUrl"
+  }
+
+  return $releaseNotesTemplate -f $latestChanges, $changelogUrl
+}
+
+function Set-ReleaseNotes($nuspec, $releaseNotes) {
+  [xml]$xml = Get-Content $nuspec
+  $xml.package.metadata.releaseNotes = $releaseNotes
+  $xml.Save($nuspec)
 }
 
 function global:au_GetLatest {
@@ -121,6 +148,16 @@ function global:au_SearchReplace {
       "(?i)(^[$]checksum64\s*=\s*)'.*'" = "`${1}'$($Latest.Checksum64)'"
     }
   }
+}
+
+function global:au_AfterUpdate {
+  Write-Verbose (ConvertTo-Json $Latest)
+  # Get the latest changes and set as <releaseNotes /> in our nuspec
+  # Note: Cannot use au_SearchReplace for the releaseNotes because they are multi-lined
+  $releaseNotes = Get-ReleaseNotes $Latest.Version $Latest.ChangelogUrl
+  Write-Verbose $releaseNotes
+  $nuspec = Join-Path $PSScriptRoot "$($Latest.PackageName).nuspec" -Resolve
+  Set-ReleaseNotes $nuspec $releaseNotes
 }
 
 update -ChecksumFor none
