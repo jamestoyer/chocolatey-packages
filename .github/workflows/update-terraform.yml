@@ -1,10 +1,12 @@
 name: Update Terraform
 
 on:
+  pull_request:
+    branches:
+      - develop
   push:
     branches:
       - develop
-      - feature/**
     paths-ignore:
       - .github/**
 
@@ -42,4 +44,5 @@ jobs:
           git -c user.name="$INPUT_COMMIT_USER_NAME" -c user.email="$INPUT_COMMIT_USER_EMAIL" \
             commit -m "$INPUT_COMMIT_MESSAGE" \
             --author="$INPUT_COMMIT_AUTHOR"
-          git push -u origin ${{ github.ref_name }}
+          # git push -u origin ${{ github.ref_name }}
+          git push -u origin feature/auto-updating
