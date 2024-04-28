@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.8.2</version>
+    <version>1.9.0-alpha20240404</version>
     <authors>HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,32 +22,29 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.8.2 (April 24, 2024)
-
-BUG FIXES:
-
-* `terraform apply`: Prevent panic when a provider erroneously provides unknown values. ([#35048](https://github.com/hashicorp/terraform/pull/35048))
-* `terraform plan`: Replace panic with error message when self-referencing resources and data sources from the `count` and `for_each` meta attributes. ([#35047](https://github.com/hashicorp/terraform/pull/35047))
-* `terraform test`: Restore `TF_ENV_*` variables being made available to testing modules. ([#35014](https://github.com/hashicorp/terraform/pull/35014))
-* `terraform test`: Prevent crash when referencing local variables within overridden modules. ([#35030](https://github.com/hashicorp/terraform/pull/35030))
+## 1.9.0-alpha20240404 (April 4, 2024)
 
 ENHANCEMENTS:
 
-* Improved performance by removing unneeded additional computation for a disabled experimental feature. ([#35066](https://github.com/hashicorp/terraform/pull/35066))
+* `terraform console`: Now has basic support for multi-line input in interactive mode. ([#34822](https://github.com/hashicorp/terraform/pull/34822))
 
-OTHER CHANGES:
+    If an entered line contains opening paretheses/etc that are not closed, Terraform will await another line of input to complete the expression. This initial implementation is primarily intended to support pasting in multi-line expressions from elsewhere, rather than for manual multi-line editing, so the interactive editing support is currently limited.
 
-* Update all references to Terraform Cloud to refer to HCP Terraform, the service's new name. This only affects display text; the `cloud` block and environment variables like `TF_CLOUD_ORGANIZATION` remain unchanged. ([#35050](https://github.com/hashicorp/terraform/pull/35050))
+BUG FIXES:
 
-NOTE:
+* `remote-exec`: Each remote connection will be closed immediately after use ([#34137](https://github.com/hashicorp/terraform/issues/34137))
+* `backend/s3`: Fixed the digest value displayed for DynamoDB/S3 state checksum mismatches ([#34387](https://github.com/hashicorp/terraform/issues/34387))
 
-Starting with this release, we are including a copy of our license file in all packaged versions of our releases, such as the release .zip files. If you are consuming these files directly and would prefer to extract the one terraform file instead of extracting everything, you need to add an extra argument specifying the file to extract, like this:
-```
-unzip terraform_1.8.2_linux_amd64.zip terraform
-```
+EXPERIMENTS:
+
+Experiments are only enabled in alpha releases of Terraform CLI. The following features are not yet available in stable releases.
+
+* `terraform test` accepts a new option `-junit-xml=FILENAME`. If specified, and if the test configuration is valid enough to begin executing, then Terraform writes a JUnit XML test result report to the given filename, describing similar information as included in the normal test output. ([#34291](https://github.com/hashicorp/terraform/issues/34291))
+* The new command `terraform rpcapi` exposes some Terraform Core functionality through an RPC interface compatible with [`go-plugin`](https://github.com/hashicorp/go-plugin). The exact RPC API exposed here is currently subject to change at any time, because it's here primarily as a vehicle to support the [Terraform Stacks](https://www.hashicorp.com/blog/terraform-stacks-explained) private preview and so will be broken if necessary to respond to feedback from private preview participants, or possibly for other reasons. Do not use this mechanism yet outside of Terraform Stacks private preview.
+* The experimental "deferred actions" feature, enabled by passing the `-allow-deferral` option to `terraform plan`, permits `count` and `for_each` arguments in `module`, `resource`, and `data` blocks to have unknown values and allows providers to react more flexibly to unknown values. This experiment is under active development, and so it's not yet useful to participate in this experiment. 
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.8.2/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.9.0-alpha20240404/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
@@ -55,7 +52,7 @@ For more information on previous releases, check out the changelog on [GitHub](h
     <packageSourceUrl>https://github.com/jamestoyer/chocolatey-packages</packageSourceUrl>
     <tags>terraform hashicorp</tags>
     <copyright>HashiCorp 2015-2024</copyright>
-    <licenseUrl>https://github.com/hashicorp/terraform/blob/master/LICENSE</licenseUrl>
+    <licenseUrl>https://github.com/hashicorp/terraform/blob/v1.9.0-alpha20240404/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <!-- Important note about https://cdn.rawgit.com: Files are cached permanently after the first request. Use commit URLs when updating the icon. -->
     <iconUrl>https://raw.githubusercontent.com/jamestoyer/chocolatey-packages/58ab86c08224c2ba79af2080346c53c1cc440afc/terraform/icons/terraform.png</iconUrl>
