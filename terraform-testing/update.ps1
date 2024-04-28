@@ -1,5 +1,6 @@
 #Requires -Version 5.0
-#Requires -Modules AU
+#Requires -Modules Chocolatey-AU
+#Requires -Modules wormies-au-helpers
 [cmdletbinding()]
 param (
   [switch]$Force
@@ -100,6 +101,7 @@ function GetStreams() {
       Checksum32   = $shasums[$build32.filename]
       Checksum64   = $shasums[$build64.filename]
       ChangelogUrl = "https://github.com/hashicorp/terraform/blob/v$($latest_version)/CHANGELOG.md"
+      LicenseUrl   = "https://github.com/hashicorp/terraform/blob/v$($latest_version)/LICENSE"
     }
   }
 
@@ -156,8 +158,11 @@ function global:au_AfterUpdate {
   # Note: Cannot use au_SearchReplace for the releaseNotes because they are multi-lined
   $releaseNotes = Get-ReleaseNotes $Latest.Version $Latest.ChangelogUrl
   Write-Verbose $releaseNotes
-  $nuspec = Join-Path $PSScriptRoot "$($Latest.PackageName).nuspec" -Resolve
-  Set-ReleaseNotes $nuspec $releaseNotes
+
+  Update-Metadata -data @{
+    releaseNotes = $releaseNotes
+    licenseUrl   = $Latest.LicenseUrl
+  }
 }
 
 Update-Package -NoReadme -ChecksumFor none -Force:$Force

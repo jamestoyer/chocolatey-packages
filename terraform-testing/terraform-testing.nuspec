@@ -3,7 +3,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
-    <id>terraform</id>
+    <id>terraform-testing</id>
     <title>Terraform</title>
     <version>1.8.2</version>
     <authors>Mitchell Hashimoto, HashiCorp</authors>
