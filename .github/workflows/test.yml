@@ -1,0 +1,26 @@
+name: Test
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install AU dependencies
+        run: choco install Chocolatey-AU wormies-au-helpers -y
+
+      - name: Update Terraform
+        working-directory: ${{ github.workspace }}/terraform
+        run: .\update.ps1
+
+      - name: Save Chocolatey packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: terraform
+          path: "${{ github.workspace }}\\terraform\\*.nupkg"
