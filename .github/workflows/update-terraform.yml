@@ -18,20 +18,21 @@ jobs:
       # Give the default GITHUB_TOKEN write permission to commit and push the added or changed files to the repository.
       contents: write
 
+    outputs:
+      new_packages: ${{ steps.change_check.outputs.new_packages }}
+
     steps:
       - uses: actions/checkout@v4
 
       - name: Install AU dependencies
-        uses: crazy-max/ghaction-chocolatey@v3.0.0
-        with:
-          args: install Chocolatey-AU wormies-au-helpers
+        run: choco install Chocolatey-AU wormies-au-helpers -y
 
       - name: Update Terraform
         working-directory: ${{ github.workspace }}/terraform
         run: .\update.ps1
 
       - name: Check for changes
-        id: changes
+        id: change_check
         env:
           # BRANCH_NAME: ${{ github.ref_name }}
           BRANCH_NAME: "feature/auto-updating"
@@ -41,20 +42,20 @@ jobs:
 
           $git_dirty=$(git diff)
           if ($git_dirty.Count -eq 0) {
-            echo "git_dirty=false" >> $env:GITHUB_OUTPUT
+            echo "new_packages=false" >> $env:GITHUB_OUTPUT
           } else {
-            echo "git_dirty=true" >> $env:GITHUB_OUTPUT
+            echo "new_packages=true" >> $env:GITHUB_OUTPUT
           }
 
       - name: Save Chocolatey packages
-        if: ${{ steps.changes.outputs.git_dirty }}
+        if: ${{ steps.change_check.outputs.new_packages }}
         uses: actions/upload-artifact@v4
         with:
           name: terraform
           path: "${{ github.workspace }}\\terraform\\*.nupkg"
 
       - name: Commit and push changes
-        if: ${{ steps.changes.outputs.git_dirty }}
+        if: ${{ steps.change_check.outputs.new_packages }}
         env:
           COMMIT_MESSAGE: "Update Terraform Chocolatey packages"
           COMMIT_AUTHOR: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
@@ -71,3 +72,23 @@ jobs:
           git add .
           git -c user.name="$env:COMMIT_USER_NAME" -c user.email="$env:COMMIT_USER_EMAIL" commit -m "$env:COMMIT_MESSAGE" --author="$env:COMMIT_AUTHOR"
           git push -u origin $env:BRANCH_NAME
+
+  publish:
+    runs-on: windows-latest
+
+    needs: build
+
+    if: ${{ needs.build.outputs.new_packages }}
+
+    steps:
+      - name: Restore Choco package
+        uses: actions/download-artifact@v4
+        with:
+          name: terraform
+
+      - name: Publish
+        run: |
+          choco apikey --key ${{secrets.CHOCO_API_KEY}} --source https://push.chocolatey.org/
+          foreach($file in (Get-ChildItem "." -Recurse -Include *.nupkg)) {
+            choco push $file --source="'https://push.chocolatey.org/'" --noop
+          }
