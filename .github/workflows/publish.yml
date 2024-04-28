@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.UPDATING_GITHUB_TOKEN }}
 
       - name: Install AU dependencies
         run: choco install Chocolatey-AU wormies-au-helpers -y
