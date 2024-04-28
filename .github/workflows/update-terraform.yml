@@ -1,15 +1,12 @@
 name: Update Terraform
 
 on:
-  pull_request:
-    branches:
-      - develop
   push:
     branches:
       - develop
+      - feature/**
     paths-ignore:
       - .github/**
-  workflow_dispatch:
 
 jobs:
   build:
@@ -33,3 +30,16 @@ jobs:
         with:
           name: terraform
           path: "${{ github.workspace }}\\terraform\\*.nupkg"
+
+      - name: Commit and push changes
+        env:
+          COMMIT_MESSAGE: "Update Terraform Chocolatey packages"
+          COMMIT_AUTHOR: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
+          COMMIT_USER_NAME: "github-actions[bot]"
+          COMMIT_USER_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
+        run: |
+          git add .
+          git -c user.name="$INPUT_COMMIT_USER_NAME" -c user.email="$INPUT_COMMIT_USER_EMAIL" \
+            commit -m "$INPUT_COMMIT_MESSAGE" \
+            --author="$INPUT_COMMIT_AUTHOR"
+          git push -u origin ${{ github.ref_name }}
