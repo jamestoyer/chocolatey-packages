@@ -36,10 +36,10 @@ jobs:
           git checkout $env:BRANCH_NAME
 
           $git_dirty=$(git diff)
-          if ($git_dirty -eq 0) {
-            echo "git_dirty=0" >> "$GITHUB_OUTPUT"
+          if ($git_dirty.Count -eq 0) {
+            echo "git_dirty=false" >> "$GITHUB_OUTPUT"
           } else {
-            echo "git_dirty=1" >> "$GITHUB_OUTPUT"
+            echo "git_dirty=true" >> "$GITHUB_OUTPUT"
           }
 
       - name: Save Chocolatey packages
