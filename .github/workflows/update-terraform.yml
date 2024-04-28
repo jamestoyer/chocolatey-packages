@@ -25,8 +25,9 @@ jobs:
 
       - name: Update Terraform
         shell: pwsh
-        working-directory: ${{ github.workspace }}/terraform
-        run: update.ps1
+        run: |
+          cd terraform
+          update.ps1
 
       - name: Save Chocolatey packages
         uses: actions/upload-artifact@v3
