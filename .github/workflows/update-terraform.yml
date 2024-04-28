@@ -26,22 +26,44 @@ jobs:
         working-directory: ${{ github.workspace }}/terraform
         run: .\update.ps1
 
+      - name: Check for changes
+        id: changes
+        env:
+          # BRANCH_NAME: ${{ github.ref_name }}
+          BRANCH_NAME: "feature/auto-updating"
+        run: |
+          git fetch --depth=1
+          git checkout $env:BRANCH_NAME
+
+          $git_dirty=$(git diff --exit-code)
+          if ($git_dirty -eq 0) {
+            echo "git_dirty=0" >> "$GITHUB_OUTPUT"
+          } else {
+            echo "git_dirty=1" >> "$GITHUB_OUTPUT"
+          }
+
       - name: Save Chocolatey packages
+        if: ${{ steps.changes.outputs.git_dirty }}
         uses: actions/upload-artifact@v4
         with:
           name: terraform
           path: "${{ github.workspace }}\\terraform\\*.nupkg"
 
       - name: Commit and push changes
+        if: ${{ steps.changes.outputs.git_dirty }}
         env:
           COMMIT_MESSAGE: "Update Terraform Chocolatey packages"
           COMMIT_AUTHOR: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
           COMMIT_USER_NAME: "github-actions[bot]"
           COMMIT_USER_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
         run: |
+          echo "COMMIT_USER_NAME: $env:COMMIT_USER_NAME";
+          echo "COMMIT_USER_EMAIL: $env:COMMIT_USER_EMAIL";
+          echo "COMMIT_MESSAGE: $env:COMMIT_MESSAGE";
+          echo "COMMIT_AUTHOR: $env:COMMIT_AUTHOR";
+
           git add .
-          git -c user.name="$COMMIT_USER_NAME" -c user.email="$COMMIT_USER_EMAIL" `
-            commit -m "$COMMIT_MESSAGE" --author="$COMMIT_AUTHOR"
+          git -c user.name="$env:COMMIT_USER_NAME" -c user.email="$env:COMMIT_USER_EMAIL" commit -m "$env:COMMIT_MESSAGE" --author="env:$COMMIT_AUTHOR"
           # git push -u origin ${{ github.ref_name }}
           echo ${{ github.ref_name }}
           git push -u origin feature/auto-updating
