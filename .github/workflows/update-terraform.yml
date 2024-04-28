@@ -23,7 +23,6 @@ jobs:
           args: install Chocolatey-AU wormies-au-helpers
 
       - name: Update Terraform
-        shell: pwsh
         working-directory: ${{ github.workspace }}/terraform
         run: .\update.ps1
 
@@ -41,8 +40,7 @@ jobs:
           COMMIT_USER_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
         run: |
           git add .
-          git -c user.name="$INPUT_COMMIT_USER_NAME" -c user.email="$INPUT_COMMIT_USER_EMAIL" \
-            commit -m "$INPUT_COMMIT_MESSAGE" \
-            --author="$INPUT_COMMIT_AUTHOR"
+          git -c user.name="$COMMIT_USER_NAME" -c user.email="$COMMIT_USER_EMAIL" `
+            commit -m "$COMMIT_MESSAGE" --author="$INPUT_COMMIT_AUTHOR"
           # git push -u origin ${{ github.ref_name }}
           git push -u origin feature/auto-updating
