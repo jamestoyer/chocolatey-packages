@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.UPDATING_GITHUB_TOKEN }}
 
       - name: Install AU dependencies
         run: choco install Chocolatey-AU wormies-au-helpers -y
@@ -20,6 +20,39 @@ jobs:
       - name: Update Terraform
         working-directory: ${{ github.workspace }}/terraform
         run: .\update.ps1
+
+      - name: Check for changes
+        id: change_check
+        env:
+          BRANCH_NAME: fix/git-pushes
+        run: |
+          git fetch --depth=1
+          git checkout $env:BRANCH_NAME
+          git add .
+
+          $git_dirty=$(git diff --staged)
+          if ($git_dirty.Count -eq 0) {
+            echo "new_packages=false" >> $env:GITHUB_OUTPUT
+          } else {
+            echo "new_packages=true" >> $env:GITHUB_OUTPUT
+          }
+
+      - name: Commit and push changes
+        if: ${{ steps.change_check.outputs.new_packages == 'true' }}
+        env:
+          COMMIT_MESSAGE: "Update Terraform Chocolatey packages"
+          COMMIT_AUTHOR: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
+          COMMIT_USER_NAME: "github-actions[bot]"
+          COMMIT_USER_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
+          BRANCH_NAME: fix/git-pushes
+        run: |
+          echo "COMMIT_USER_NAME: $env:COMMIT_USER_NAME";
+          echo "COMMIT_USER_EMAIL: $env:COMMIT_USER_EMAIL";
+          echo "COMMIT_MESSAGE: $env:COMMIT_MESSAGE";
+          echo "COMMIT_AUTHOR: $env:COMMIT_AUTHOR";
+
+          git -c user.name="$env:COMMIT_USER_NAME" -c user.email="$env:COMMIT_USER_EMAIL" commit -m "$env:COMMIT_MESSAGE" --author="$env:COMMIT_AUTHOR"
+          git push -u origin $env:BRANCH_NAME
 
       - name: Save Chocolatey packages
         uses: actions/upload-artifact@v4
