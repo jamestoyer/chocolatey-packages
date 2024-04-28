@@ -1,0 +1,37 @@
+name: Update Terraform
+
+on:
+  pull_request:
+    branches:
+      - develop
+  push:
+    branches:
+      - develop
+    paths-ignore:
+      - .github/**
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: "terraform"
+
+      - name: Install AU dependencies
+        uses: crazy-max/ghaction-chocolatey@v3.0.0
+        with:
+          args: install Chocolatey-AU wormies-au-helpers
+
+      - name: Update Terraform
+        shell: pwsh
+        working-directory: terraform
+        run: .\update.ps1
+
+      - name: Save Chocolatey packages
+        uses: actions/upload-artifact@v3
+        with:
+          name: terraform
+          path: "${{ github.workspace }}/*.nupkg"
