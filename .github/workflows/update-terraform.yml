@@ -41,6 +41,7 @@ jobs:
         run: |
           git add .
           git -c user.name="$COMMIT_USER_NAME" -c user.email="$COMMIT_USER_EMAIL" `
-            commit -m "$COMMIT_MESSAGE" --author="$INPUT_COMMIT_AUTHOR"
+            commit -m "$COMMIT_MESSAGE" --author="$COMMIT_AUTHOR"
           # git push -u origin ${{ github.ref_name }}
+          echo ${{ github.ref_name }}
           git push -u origin feature/auto-updating
