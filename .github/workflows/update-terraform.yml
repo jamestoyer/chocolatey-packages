@@ -37,9 +37,9 @@ jobs:
 
           $git_dirty=$(git diff)
           if ($git_dirty.Count -eq 0) {
-            echo "git_dirty=false" >> "$GITHUB_OUTPUT"
+            echo "git_dirty=false" >> $env:GITHUB_OUTPUT
           } else {
-            echo "git_dirty=true" >> "$GITHUB_OUTPUT"
+            echo "git_dirty=true" >> $env:GITHUB_OUTPUT
           }
 
       - name: Save Chocolatey packages
