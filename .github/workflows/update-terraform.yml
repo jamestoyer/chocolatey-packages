@@ -49,14 +49,13 @@ jobs:
           }
 
       - name: Save Chocolatey packages
-        if: ${{ steps.change_check.outputs.new_packages == 'true' }}
         uses: actions/upload-artifact@v4
         with:
           name: terraform
           path: "${{ github.workspace }}\\terraform\\*.nupkg"
 
       - name: Commit and push changes
-        if: ${{ steps.change_check.outputs.new_packages == 'true' }}
+        if: ${{ steps.change_check.outputs.new_packages == 'true' && github.ref_name == 'develop' }}
         env:
           COMMIT_MESSAGE: "Update Terraform Chocolatey packages"
           COMMIT_AUTHOR: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
@@ -78,7 +77,7 @@ jobs:
 
     needs: build
 
-    if: ${{ needs.build.outputs.new_packages == 'true'}}
+    if: ${{ needs.build.outputs.new_packages == 'true' && github.ref_name == 'develop' }}
 
     steps:
       - name: Restore Choco package
