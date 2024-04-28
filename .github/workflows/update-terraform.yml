@@ -39,8 +39,9 @@ jobs:
         run: |
           git fetch --depth=1
           git checkout $env:BRANCH_NAME
+          git add .
 
-          $git_dirty=$(git diff)
+          $git_dirty=$(git diff --staged)
           if ($git_dirty.Count -eq 0) {
             echo "new_packages=false" >> $env:GITHUB_OUTPUT
           } else {
@@ -48,14 +49,14 @@ jobs:
           }
 
       - name: Save Chocolatey packages
-        if: ${{ steps.change_check.outputs.new_packages }}
+        if: ${{ steps.change_check.outputs.new_packages == 'true' }}
         uses: actions/upload-artifact@v4
         with:
           name: terraform
           path: "${{ github.workspace }}\\terraform\\*.nupkg"
 
       - name: Commit and push changes
-        if: ${{ steps.change_check.outputs.new_packages }}
+        if: ${{ steps.change_check.outputs.new_packages == 'true' }}
         env:
           COMMIT_MESSAGE: "Update Terraform Chocolatey packages"
           COMMIT_AUTHOR: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
@@ -69,7 +70,6 @@ jobs:
           echo "COMMIT_MESSAGE: $env:COMMIT_MESSAGE";
           echo "COMMIT_AUTHOR: $env:COMMIT_AUTHOR";
 
-          git add .
           git -c user.name="$env:COMMIT_USER_NAME" -c user.email="$env:COMMIT_USER_EMAIL" commit -m "$env:COMMIT_MESSAGE" --author="$env:COMMIT_AUTHOR"
           git push -u origin $env:BRANCH_NAME
 
@@ -78,7 +78,7 @@ jobs:
 
     needs: build
 
-    if: ${{ needs.build.outputs.new_packages }}
+    if: ${{ needs.build.outputs.new_packages == 'true'}}
 
     steps:
       - name: Restore Choco package
