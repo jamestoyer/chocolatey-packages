@@ -17,8 +17,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-        with:
-          path: "terraform"
 
       - name: Install AU dependencies
         uses: crazy-max/ghaction-chocolatey@v3.0.0
@@ -27,8 +25,8 @@ jobs:
 
       - name: Update Terraform
         shell: pwsh
-        working-directory: terraform
-        run: .\update.ps1
+        working-directory: ${{ github.workspace }}/terraform
+        run: update.ps1
 
       - name: Save Chocolatey packages
         uses: actions/upload-artifact@v3
