@@ -160,5 +160,4 @@ function global:au_AfterUpdate {
   Set-ReleaseNotes $nuspec $releaseNotes
 }
 
-update -ChecksumFor none
 Update-Package -NoReadme -ChecksumFor none -Force:$Force
