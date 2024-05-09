@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.9.0-alpha20240501</version>
+    <version>1.8.3</version>
     <authors>HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,35 +22,14 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.9.0-alpha20240501 (May 1, 2024)
-
-ENHANCEMENTS:
-
-* `terraform console`: Now has basic support for multi-line input in interactive mode. ([#34822](https://github.com/hashicorp/terraform/pull/34822))
-
-    If an entered line contains opening paretheses/etc that are not closed, Terraform will await another line of input to complete the expression. This initial implementation is primarily intended to support pasting in multi-line expressions from elsewhere, rather than for manual multi-line editing, so the interactive editing support is currently limited.
-* `cli`: Updates the Terraform CLI output to show logical separation between OPA and Sentinel policy evaluations
-* `terraform init` now accepts a `-json` option. If specified, enables the machine readable JSON output. ([#34886](https://github.com/hashicorp/terraform/pull/34886))
-* `terraform test:` The test framework will now maintain sensitive metadata between run blocks. ([#35021](https://github.com/hashicorp/terraform/pull/35021))
-* Core: improved performance of `AttachResourceConfigTransformer` (an implementation detail of plans and applies) when the number of resources is extremely large. ([#35088](https://github.com/hashicorp/terraform/pull/35088))
+## 1.8.3 (May 8, 2024)
 
 BUG FIXES:
-
-* `remote-exec`: Each remote connection will be closed immediately after use ([#34137](https://github.com/hashicorp/terraform/issues/34137))
-* `backend/s3`: Fixed the digest value displayed for DynamoDB/S3 state checksum mismatches ([#34387](https://github.com/hashicorp/terraform/issues/34387))
-
-EXPERIMENTS:
-
-Experiments are only enabled in alpha releases of Terraform CLI. The following features are not yet available in stable releases.
-
-* `variable_validation_crossref`: This [language experiment](https://developer.hashicorp.com/terraform/language/settings#experimental-language-features) allows `validation` blocks inside input variable declarations to refer to other objects inside the module where the variable is declared, including to the values of other input variables in the same module.
-* `template_string_func`: This [language experiment](https://developer.hashicorp.com/terraform/language/settings#experimental-language-features) introduces a new built-in function named `templatestring` which is similar to `templatefile` but designed to render templates obtained dynamically, such as from a data resource result.
-* `terraform test` accepts a new option `-junit-xml=FILENAME`. If specified, and if the test configuration is valid enough to begin executing, then Terraform writes a JUnit XML test result report to the given filename, describing similar information as included in the normal test output. ([#34291](https://github.com/hashicorp/terraform/issues/34291))
-* The new command `terraform rpcapi` exposes some Terraform Core functionality through an RPC interface compatible with [`go-plugin`](https://github.com/hashicorp/go-plugin). The exact RPC API exposed here is currently subject to change at any time, because it's here primarily as a vehicle to support the [Terraform Stacks](https://www.hashicorp.com/blog/terraform-stacks-explained) private preview and so will be broken if necessary to respond to feedback from private preview participants, or possibly for other reasons. Do not use this mechanism yet outside of Terraform Stacks private preview.
-* The experimental "deferred actions" feature, enabled by passing the `-allow-deferral` option to `terraform plan`, permits `count` and `for_each` arguments in `module`, `resource`, and `data` blocks to have unknown values and allows providers to react more flexibly to unknown values. This experiment is under active development, and so it's not yet useful to participate in this experiment.
+* `terraform test`: Providers configured within an overridden module could panic. ([#35110](https://github.com/hashicorp/terraform/issues/35110))
+* `core`: Fix crash when a provider incorrectly plans a nested object when the configuration is `null` ([#35090](https://github.com/hashicorp/terraform/issues/35090))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.9.0-alpha20240501/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.8.3/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
@@ -58,7 +37,7 @@ For more information on previous releases, check out the changelog on [GitHub](h
     <packageSourceUrl>https://github.com/jamestoyer/chocolatey-packages</packageSourceUrl>
     <tags>terraform hashicorp</tags>
     <copyright>HashiCorp 2015-2024</copyright>
-    <licenseUrl>https://github.com/hashicorp/terraform/blob/v1.9.0-alpha20240501/LICENSE</licenseUrl>
+    <licenseUrl>https://github.com/hashicorp/terraform/blob/v1.8.3/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <!-- Important note about https://cdn.rawgit.com: Files are cached permanently after the first request. Use commit URLs when updating the icon. -->
     <iconUrl>https://raw.githubusercontent.com/jamestoyer/chocolatey-packages/58ab86c08224c2ba79af2080346c53c1cc440afc/terraform/icons/terraform.png</iconUrl>
