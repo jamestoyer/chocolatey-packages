@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.9.1</version>
+    <version>1.9.2</version>
     <authors>HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,19 +22,14 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.9.1 (Unreleased)
-
-UPGRADE NOTES:
-
-* Library used by Terraform (hashicorp/go-getter) for installing/updating modules was upgraded from v1.7.5 to v1.7.6. This addresses [CVE-2024-6257](https://nvd.nist.gov/vuln/detail/CVE-2024-6257). This change may have a negative effect on performance of `terraform init` or `terraform get` in case of larger git repositories. Please do file an issue if you find the performance difference noticable. ([#35376](https://github.com/hashicorp/terraform/pull/35376))
+## 1.9.2 (July 10, 2024)
 
 BUG FIXES:
 
-* `terraform test`: Removed additional erroneous error message when referencing attributes that don't exist. ([#35408](https://github.com/hashicorp/terraform/pull/35408))
-* `import` blocks: Fix crash that occurs when incorrectly referencing the `to` resource from the `id` attribute. ([#35420](https://github.com/hashicorp/terraform/pull/35420))
+* core: Fix panic when self-referencing direct instances from `count` and `for_each` meta attributes. ([#35432](https://github.com/hashicorp/terraform/pull/35432))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.9.1/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.9.2/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
@@ -42,7 +37,7 @@ For more information on previous releases, check out the changelog on [GitHub](h
     <packageSourceUrl>https://github.com/jamestoyer/chocolatey-packages</packageSourceUrl>
     <tags>terraform hashicorp</tags>
     <copyright>HashiCorp 2015-2024</copyright>
-    <licenseUrl>https://github.com/hashicorp/terraform/blob/v1.9.1/LICENSE</licenseUrl>
+    <licenseUrl>https://github.com/hashicorp/terraform/blob/v1.9.2/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <!-- Important note about https://cdn.rawgit.com: Files are cached permanently after the first request. Use commit URLs when updating the icon. -->
     <iconUrl>https://raw.githubusercontent.com/jamestoyer/chocolatey-packages/58ab86c08224c2ba79af2080346c53c1cc440afc/terraform/icons/terraform.png</iconUrl>
