@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.10.0-alpha20240717</version>
+    <version>1.9.3</version>
     <authors>HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,19 +22,21 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.10.0-alpha20240717 (July 17, 2024)
+## 1.9.3 (July 24, 2024)
 
-EXPERIMENTS:
+ENHANCEMENTS:
 
-Experiments are only enabled in alpha releases of Terraform CLI. The following features are not yet available in stable releases.
+* Terraform now returns a more specific error message in the awkward situation where an input variable validation rule is known to have failed (`condition` returned `false`) but the error message is derived from an unknown value. ([#35400](https://github.com/hashicorp/terraform/pull/35400))
 
-* `ephemeral_values`: This [language experiment](https://developer.hashicorp.com/terraform/language/settings#experimental-language-features) introduces a new special kind of value which Terraform allows to change between the plan phase and the apply phase, and between plan/apply rounds. Ephemeral values are never persisted in saved plan files or state snapshots, and so can only be used in parts of the language that don't require values to persist in those artifacts. Ephemeral input values are the main initial example of this concept, allowing the use of input variables to provide dynamic credentials that must change between plan and apply.
-* `terraform test` accepts a new option `-junit-xml=FILENAME`. If specified, and if the test configuration is valid enough to begin executing, then Terraform writes a JUnit XML test result report to the given filename, describing similar information as included in the normal test output. ([#34291](https://github.com/hashicorp/terraform/issues/34291))
-* The new command `terraform rpcapi` exposes some Terraform Core functionality through an RPC interface compatible with [`go-plugin`](https://github.com/hashicorp/go-plugin). The exact RPC API exposed here is currently subject to change at any time, because it's here primarily as a vehicle to support the [Terraform Stacks](https://www.hashicorp.com/blog/terraform-stacks-explained) private preview and so will be broken if necessary to respond to feedback from private preview participants, or possibly for other reasons. Do not use this mechanism yet outside of Terraform Stacks private preview.
-* The experimental "deferred actions" feature, enabled by passing the `-allow-deferral` option to `terraform plan`, permits `count` and `for_each` arguments in `module`, `resource`, and `data` blocks to have unknown values and allows providers to react more flexibly to unknown values. This experiment is under active development, and so it's not yet useful to participate in this experiment
+BUG FIXES:
+
+* core: Terraform no longer performs an unnecessary refresh when removing an instance targeted by a `removed` block. ([#35458](https://github.com/hashicorp/terraform/pull/35458))
+* config generation: Fix validation error when using nested computed or deprecated attributes. ([#35484](https://github.com/hashicorp/terraform/pull/35484))
+* Updated to newer github.com/hashicorp/go-retryablehttp version, addressing CVE-2024-6104, and bringing in updates for several indirect dependencies. ([#35473](https://github.com/hashicorp/terraform/pull/35473))
+* Moved to building with Go 1.22.5, which addresses CVE-2024-24791 and several other non-security bugs. ([#35494](https://github.com/hashicorp/terraform/pull/35494))
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.10.0-alpha20240717/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.9.3/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
@@ -42,7 +44,7 @@ For more information on previous releases, check out the changelog on [GitHub](h
     <packageSourceUrl>https://github.com/jamestoyer/chocolatey-packages</packageSourceUrl>
     <tags>terraform hashicorp</tags>
     <copyright>HashiCorp 2015-2024</copyright>
-    <licenseUrl>https://github.com/hashicorp/terraform/blob/v1.10.0-alpha20240717/LICENSE</licenseUrl>
+    <licenseUrl>https://github.com/hashicorp/terraform/blob/v1.9.3/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <!-- Important note about https://cdn.rawgit.com: Files are cached permanently after the first request. Use commit URLs when updating the icon. -->
     <iconUrl>https://raw.githubusercontent.com/jamestoyer/chocolatey-packages/58ab86c08224c2ba79af2080346c53c1cc440afc/terraform/icons/terraform.png</iconUrl>
