@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.9.4</version>
+    <version>1.10.0-alpha20240814</version>
     <authors>HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,15 +22,32 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.9.4 (August 7, 2024)
+## 1.10.0-alpha20240814 (August 14, 2024)
 
 BUG FIXES:
 
-* core: Unneeded variable validations were being executed during a destroy plan, which could cause plans starting with incomplete state to fail. ([#35511](https://github.com/hashicorp/terraform/issues/35511))
-* init: Don't crash when discovering invalid syntax in duplicate required_providers blocks. ([#35533](https://github.com/hashicorp/terraform/issues/35533))
+- The error message for an invalid default value for an input variable now indicates when the problem is with a nested value in a complex data type. ([#35465](https://github.com/hashicorp/terraform/issues/35465))
+- Sensitive marks could be incorrectly transferred to nested resource values, causing erroneous changes during a plan ([#35501](https://github.com/hashicorp/terraform/issues/35501))
+- Allow unknown `error_message` values to pass the core validate step, so variable validation can be completed later during plan
+  ([#35537](https://github.com/hashicorp/terraform/issues/35537))
+- Unencoded slashes within GitHub module source refs were being truncated and incorrectly used as subdirectories in the request path ([#35552](https://github.com/hashicorp/terraform/issues/35552))
+
+ENHANCEMENTS:
+
+- The `element` function now accepts negative indices ([#35501](https://github.com/hashicorp/terraform/issues/35501))
+- Import block validation has been improved to provide more useful errors and catch more invalid cases during `terraform validate` ([#35543](https://github.com/hashicorp/terraform/issues/35543))
+
+EXPERIMENTS:
+
+Experiments are only enabled in alpha releases of Terraform CLI. The following features are not yet available in stable releases.
+
+- `ephemeral_values`: This [language experiment](https://developer.hashicorp.com/terraform/language/settings#experimental-language-features) introduces a new special kind of value which Terraform allows to change between the plan phase and the apply phase, and between plan/apply rounds. Ephemeral values are never persisted in saved plan files or state snapshots, and so can only be used in parts of the language that don't require values to persist in those artifacts. Ephemeral input values are the main initial example of this concept, allowing the use of input variables to provide dynamic credentials that must change between plan and apply.
+- `terraform test` accepts a new option `-junit-xml=FILENAME`. If specified, and if the test configuration is valid enough to begin executing, then Terraform writes a JUnit XML test result report to the given filename, describing similar information as included in the normal test output. ([#34291](https://github.com/hashicorp/terraform/issues/34291))
+- The new command `terraform rpcapi` exposes some Terraform Core functionality through an RPC interface compatible with [`go-plugin`](https://github.com/hashicorp/go-plugin). The exact RPC API exposed here is currently subject to change at any time, because it's here primarily as a vehicle to support the [Terraform Stacks](https://www.hashicorp.com/blog/terraform-stacks-explained) private preview and so will be broken if necessary to respond to feedback from private preview participants, or possibly for other reasons. Do not use this mechanism yet outside of Terraform Stacks private preview.
+- The experimental "deferred actions" feature, enabled by passing the `-allow-deferral` option to `terraform plan`, permits `count` and `for_each` arguments in `module`, `resource`, and `data` blocks to have unknown values and allows providers to react more flexibly to unknown values. This experiment is under active development, and so it's not yet useful to participate in this experiment
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.9.4/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.10.0-alpha20240814/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
@@ -38,7 +55,7 @@ For more information on previous releases, check out the changelog on [GitHub](h
     <packageSourceUrl>https://github.com/jamestoyer/chocolatey-packages</packageSourceUrl>
     <tags>terraform hashicorp</tags>
     <copyright>HashiCorp 2015-2024</copyright>
-    <licenseUrl>https://github.com/hashicorp/terraform/blob/v1.9.4/LICENSE</licenseUrl>
+    <licenseUrl>https://github.com/hashicorp/terraform/blob/v1.10.0-alpha20240814/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <!-- Important note about https://cdn.rawgit.com: Files are cached permanently after the first request. Use commit URLs when updating the icon. -->
     <iconUrl>https://raw.githubusercontent.com/jamestoyer/chocolatey-packages/58ab86c08224c2ba79af2080346c53c1cc440afc/terraform/icons/terraform.png</iconUrl>
