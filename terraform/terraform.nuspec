@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.11.3</version>
+    <version>1.12.0-beta1</version>
     <authors>HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,18 +22,48 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.11.3 (March 26, 2025)
+## 1.12.0-beta1 (April 02, 2025)
+
+
+ENHANCEMENTS:
+
+* Terraform Test command now accepts a -parallelism=n option, which sets the number of parallel operations in a test run's plan/apply operation. ([#34237](https://github.com/hashicorp/terraform/issues/34237))
+
+* Logical binary operators can now short-circuit ([#36224](https://github.com/hashicorp/terraform/issues/36224))
+
+* Terraform Test: Runs can now be annotated for possible parallel execution. ([#34180](https://github.com/hashicorp/terraform/issues/34180))
+
+* Allow terraform init when tests are present but no configuration files are directly inside the current directory ([#35040](https://github.com/hashicorp/terraform/issues/35040))
+
+* Terraform Test: Continue subsequent test execution when an expected failure is not encountered. ([#34969](https://github.com/hashicorp/terraform/issues/34969))
+
+* Produce detailed diagnostic objects when test run assertions fail ([#34428](https://github.com/hashicorp/terraform/issues/34428))
+
+* Improved elapsed time display in UI Hook to show minutes and seconds in `mm:ss` format. ([#36368](https://github.com/hashicorp/terraform/issues/36368))
+
+* Update legacy term used in error messages. (Terraform Cloud agent =&gt; HCP Terraform Agent) ([#36706](https://github.com/hashicorp/terraform/issues/36706))
 
 
 BUG FIXES:
 
-* Fixes unintended exit of CLI when using the remote backend and applying with post-plan tasks configured in HCP Terraform ([#36686](https://github.com/hashicorp/terraform/issues/36686))
+* Refreshed state was not used in the plan for orphaned resource instances ([#36394](https://github.com/hashicorp/terraform/issues/36394))
 
-* Modules with zero instances that contain ephemeral resources could produce an error during apply ([#36719](https://github.com/hashicorp/terraform/issues/36719))
+* Fixes malformed Terraform version error when the remote backend reads a remote workspace that specifies a Terraform version constraint. ([#36356](https://github.com/hashicorp/terraform/issues/36356))
+
+* Changes to the order of sensitive attributes in the state format would erroneously indicate a plan contained changes when there were none. ([#36465](https://github.com/hashicorp/terraform/issues/36465))
+
+* Avoid reporting duplicate attribute-associated diagnostics, such as "Available Write-only Attribute Alternative" ([#36579](https://github.com/hashicorp/terraform/issues/36579))
+
+* for_each expressions in import blocks should not be able to reference the import target ([#36801](https://github.com/hashicorp/terraform/issues/36801))
+
+
+UPGRADE NOTES:
+
+* On Linux, Terraform now requires Linux kernel version 3.2 or later; support for previous versions has been discontinued. ([#36478](https://github.com/hashicorp/terraform/issues/36478))
 
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.11.3/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.12.0-beta1/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
@@ -41,7 +71,7 @@ For more information on previous releases, check out the changelog on [GitHub](h
     <packageSourceUrl>https://github.com/jamestoyer/chocolatey-packages</packageSourceUrl>
     <tags>terraform hashicorp</tags>
     <copyright>HashiCorp 2015-2024</copyright>
-    <licenseUrl>https://github.com/hashicorp/terraform/blob/v1.11.3/LICENSE</licenseUrl>
+    <licenseUrl>https://github.com/hashicorp/terraform/blob/v1.12.0-beta1/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <!-- Important note about https://cdn.rawgit.com: Files are cached permanently after the first request. Use commit URLs when updating the icon. -->
     <iconUrl>https://raw.githubusercontent.com/jamestoyer/chocolatey-packages/58ab86c08224c2ba79af2080346c53c1cc440afc/terraform/icons/terraform.png</iconUrl>
