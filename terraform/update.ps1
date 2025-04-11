@@ -1,6 +1,5 @@
 ﻿#Requires -Version 5.0
 #Requires -Modules Chocolatey-AU
-#Requires -Modules wormies-au-helpers
 [cmdletbinding()]
 param (
   [switch]$Force
@@ -135,6 +134,99 @@ function Set-ReleaseNotes($nuspec, $releaseNotes) {
   [xml]$xml = Get-Content $nuspec
   $xml.package.metadata.releaseNotes = $releaseNotes
   $xml.Save($nuspec)
+}
+
+# Inlined from https://github.com/WormieCorp/Wormies-AU-Helpers/blob/93f137a3c22ccd7797ab06c29744afd04b2f7321/Wormies-AU-Helpers/public/Update-Metadata.ps1
+function Update-Metadata {
+    param(
+        [Parameter(Mandatory = $true, ParameterSetName = "Single")]
+        [string]$key,
+        [Parameter(Mandatory = $true, ParameterSetName = "Single")]
+        [string]$value,
+        [Parameter(Mandatory = $true, ParameterSetName = "Multiple", ValueFromPipeline = $true)]
+        [hashtable]$data = @{$key = $value},
+        [ValidateScript( { Test-Path $_ })]
+        [SupportsWildcards()]
+        [string]$NuspecFile = ".\*.nuspec"
+
+    )
+
+    $NuspecFile = Resolve-Path $NuspecFile
+
+    $nu = New-Object xml
+    $nu.PSBase.PreserveWhitespace = $true
+    $nu.Load($NuspecFile)
+    $omitted = $true
+    $data.Keys | ForEach-Object {
+        switch -Regex ($_) {
+            '^(file)$' {
+                $metaData = "files"
+                $NodeGroup = $nu.package.$metaData
+                $NodeData,[int]$change = $data[$_] -split (",")
+                $NodeCount = $nu.package.$metaData.ChildNodes.Count
+                $src,$target,$exclude = $NodeData -split ("\|")
+                $NodeAttributes = [ordered] @{
+                                              "src"     = $src
+                                              "target"  = $target
+                                              "exclude" = $exclude
+                                            }
+                $change = @{$true="0";$false=($change - 1)}[ ([string]::IsNullOrEmpty($change)) ]
+                if ($NodeCount -eq 3) {
+                    $NodeGroup = $NodeGroup."$_"
+                } else {
+                    $NodeGroup = $NodeGroup.$_[$change]
+                }
+            }
+            '^(dependency)$' {
+                $MetaNode = $_ -replace("y","ies")
+                $metaData = "metadata"
+                $NodeData,[int]$change = $data[$_] -split (",")
+                $NodeGroup = $nu.package.$metaData.$MetaNode
+                $NodeCount = $nu.package.$metaData.$MetaNode.ChildNodes.Count
+                $id,$version,$include,$exclude = $NodeData -split ("\|")
+                $NodeAttributes = [ordered] @{
+                                             "id"      = $id
+                                             "version" = $version
+                                             "include" = $include
+                                             "exclude" = $exclude
+                                            }
+                $change = @{$true="0";$false=($change - 1)}[ ([string]::IsNullOrEmpty($change)) ]
+                if ($NodeCount -eq 3) {
+                    $NodeGroup = $NodeGroup."$_"
+                } else {
+                    $NodeGroup = $NodeGroup.$_[$change]
+                }
+            }
+            default {
+                if ( $nu.package.metadata."$_" ) {
+                    $nu.package.metadata."$_" = $data[$_]
+                }
+                else {
+                    Write-Warning "$_ does not exist on the metadata element in the nuspec file"
+                }
+            }
+        }
+        if ($_ -match '^(dependency)$|^(file)$') {
+            if (($change -gt $NodeCount)) {
+                Write-Warning "$change is greater than $NodeCount of $_ Nodes"
+            }
+            if ($omitted) {
+                Write-Warning "Change has been omitted due to $_ not having that number of Nodes"
+            }
+            foreach ( $attrib in $NodeAttributes.keys ) {
+                if (!([string]::IsNullOrEmpty($NodeAttributes[$attrib])) ) {
+                    if (![string]::IsNullOrEmpty( $NodeGroup.Attributes ) ) {
+                        $NodeGroup.SetAttribute($attrib, $NodeAttributes[$attrib] )
+                    } else { 
+                        Write-Warning "Attribute $attrib not defined for $_ in the nuspec file"
+                    }
+                }
+            }
+        } 
+    }
+
+    $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+    [System.IO.File]::WriteAllText($NuspecFile, $nu.InnerXml, $utf8NoBom)
 }
 
 function global:au_GetLatest {
