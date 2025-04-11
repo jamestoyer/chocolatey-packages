@@ -25,7 +25,7 @@ jobs:
           token: ${{ secrets.UPDATING_GITHUB_TOKEN }}
 
       - name: Install AU dependencies
-        run: choco install Chocolatey-AU wormies-au-helpers -y
+        run: choco install Chocolatey-AU -y
 
       - name: Update Terraform
         working-directory: ${{ github.workspace }}/terraform
