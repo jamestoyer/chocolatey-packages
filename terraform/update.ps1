@@ -1,6 +1,5 @@
 ﻿#Requires -Version 5.0
 #Requires -Modules Chocolatey-AU
-#Requires -Modules wormies-au-helpers
 [cmdletbinding()]
 param (
   [switch]$Force
