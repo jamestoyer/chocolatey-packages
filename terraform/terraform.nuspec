@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.15.0-alpha20251119</version>
+    <version>1.15.0-alpha20251203</version>
     <authors>HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,7 +22,7 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.15.0-alpha20251119 (November 19, 2025)
+## 1.15.0-alpha20251203 (December 03, 2025)
 
 
 NEW FEATURES:
@@ -34,6 +34,8 @@ ENHANCEMENTS:
 
 * ssh-based provisioner (file + remote-exec): Re-enable support for PowerShell ([#37794](https://github.com/hashicorp/terraform/issues/37794))
 
+* terraform init log timestamps include millisecond precision ([#37818](https://github.com/hashicorp/terraform/issues/37818))
+
 * init: skip dependencies declared in development override. This allows you to use `terraform init` with developer overrides and install dependencies that are not declared in the override file. ([#37884](https://github.com/hashicorp/terraform/issues/37884))
 
 
@@ -44,6 +46,10 @@ BUG FIXES:
 * A refresh-only plan could result in a non-zero exit code with no changes ([#37406](https://github.com/hashicorp/terraform/issues/37406))
 
 * cli: Fixed crash in `terraform show -json` when plan contains ephemeral resources with preconditions or postconditions ([#37834](https://github.com/hashicorp/terraform/issues/37834))
+
+* cli: Fixed `terraform init -json` to properly format all backend configuration messages as JSON instead of plain text ([#37911](https://github.com/hashicorp/terraform/issues/37911))
+
+* `state show`: The `state show` command will now explicitly fail and return code 1 when it fails to render the named resources state ([#37933](https://github.com/hashicorp/terraform/issues/37933))
 
 
 EXPERIMENTS:
@@ -57,7 +63,7 @@ Experiments are only enabled in alpha releases of Terraform CLI. The following f
   - Test authors can now specify `skip_cleanup` attributes within test files and within run blocks. The `skip_cleanup` attribute tells `terraform test` not to clean up state files produced by run blocks with this attribute set to true. The state files for affected run blocks will be written to disk within the `.terraform` directory, where they can then be cleaned up manually using the also experimental `terraform test cleanup` command.
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.15.0-alpha20251119/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.15.0-alpha20251203/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
@@ -65,7 +71,7 @@ For more information on previous releases, check out the changelog on [GitHub](h
     <packageSourceUrl>https://github.com/jamestoyer/chocolatey-packages</packageSourceUrl>
     <tags>terraform hashicorp</tags>
     <copyright>HashiCorp 2015-2024</copyright>
-    <licenseUrl>https://github.com/hashicorp/terraform/blob/v1.15.0-alpha20251119/LICENSE</licenseUrl>
+    <licenseUrl>https://github.com/hashicorp/terraform/blob/v1.15.0-alpha20251203/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <!-- Important note about https://cdn.rawgit.com: Files are cached permanently after the first request. Use commit URLs when updating the icon. -->
     <iconUrl>https://raw.githubusercontent.com/jamestoyer/chocolatey-packages/58ab86c08224c2ba79af2080346c53c1cc440afc/terraform/icons/terraform.png</iconUrl>
