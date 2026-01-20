@@ -22,7 +22,7 @@ jobs:
         run: .\update.ps1
 
       - name: Save Chocolatey packages
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: terraform
           path: "${{ github.workspace }}\\terraform\\*.nupkg"
