@@ -20,7 +20,7 @@ jobs:
       new_packages: ${{ steps.change_check.outputs.new_packages }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           token: ${{ secrets.UPDATING_GITHUB_TOKEN }}
 
@@ -65,7 +65,7 @@ jobs:
           git push -u origin $env:BRANCH_NAME
 
       - name: Save Chocolatey packages
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: terraform
           path: "${{ github.workspace }}\\terraform\\*.nupkg"
