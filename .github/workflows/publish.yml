@@ -20,7 +20,7 @@ jobs:
       new_packages: ${{ steps.change_check.outputs.new_packages }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           token: ${{ secrets.UPDATING_GITHUB_TOKEN }}
 
