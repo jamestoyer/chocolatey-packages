@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.15.1</version>
+    <version>1.15.2</version>
     <authors>HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,30 +22,21 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.15.1 (May 1, 2026)
+## 1.15.2 (May 6, 2026)
+
+
+ENHANCEMENTS:
+
+* stacks: add ouput values to plan component instance change description ([#38360](https://github.com/hashicorp/terraform/issues/38360))
 
 
 BUG FIXES:
 
-* Fixed crash when configuration has an invalid `action_trigger` nested block in `data` or `ephemeral` lifecycle blocks ([#38402](https://github.com/hashicorp/terraform/issues/38402))
-
-* validate: Removed validation of attributes inside `backend` blocks due to incompatibility with workflows using the `-backend-config` flag. ([#38466](https://github.com/hashicorp/terraform/issues/38466))
-
-* Fix non-const variable checks on `init` ([#38470](https://github.com/hashicorp/terraform/issues/38470))
-
-* Avoid warnings in 'terraform output -raw' ([#38487](https://github.com/hashicorp/terraform/issues/38487))
-
-* Ignore undeclared variable values from the cloud backend ([#38490](https://github.com/hashicorp/terraform/issues/38490))
-
-* Fix panic for types modules with no expanded instances ([#38491](https://github.com/hashicorp/terraform/issues/38491))
-
-* Fixed "unknown provider function" errors occurring during init ([#38472](https://github.com/hashicorp/terraform/issues/38472))
-
-* init: Fixed a bug that impacted use of provider pre-releases during init ([#38496](https://github.com/hashicorp/terraform/issues/38496))
+* Avoid printing warnings from 'terraform output -json' ([#38530](https://github.com/hashicorp/terraform/issues/38530))
 
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.15.1/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.15.2/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
@@ -53,7 +44,7 @@ For more information on previous releases, check out the changelog on [GitHub](h
     <packageSourceUrl>https://github.com/jamestoyer/chocolatey-packages</packageSourceUrl>
     <tags>terraform hashicorp</tags>
     <copyright>HashiCorp 2015-2024</copyright>
-    <licenseUrl>https://github.com/hashicorp/terraform/blob/v1.15.1/LICENSE</licenseUrl>
+    <licenseUrl>https://github.com/hashicorp/terraform/blob/v1.15.2/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <!-- Important note about https://cdn.rawgit.com: Files are cached permanently after the first request. Use commit URLs when updating the icon. -->
     <iconUrl>https://raw.githubusercontent.com/jamestoyer/chocolatey-packages/58ab86c08224c2ba79af2080346c53c1cc440afc/terraform/icons/terraform.png</iconUrl>
