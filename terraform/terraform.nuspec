@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>terraform</id>
     <title>Terraform</title>
-    <version>1.16.1</version>
+    <version>1.17.0-beta1</version>
     <authors>HashiCorp</authors>
     <owners>James Toyer</owners>
     <summary>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.</summary>
@@ -22,28 +22,45 @@ The key features of Terraform are:
 For more information, see the [introduction section](http://www.terraform.io/intro) of the Terraform website.
     </description>
     <releaseNotes>
-## 1.16.1 (September 2, 2026)
+## 1.17.0-beta1 (September 09, 2026)
+
+
+NEW FEATURES:
+
+* Terraform now supports variables and locals in provider requirements ([#39153](https://github.com/hashicorp/terraform/issues/39153))
+
+* A new `-minimal-refresh` planning option has been added, which will only refresh resources that have proposed changes. ([#35290](https://github.com/hashicorp/terraform/issues/35290))
+
+* policy: Terraform Policy is now generally available. The `-policies` flag for `plan`, `apply`, and `init` no longer requires the `-allow-experimental-features` flag. See https://developer.hashicorp.com/terraform/policy for more information. ([#38970](https://github.com/hashicorp/terraform/issues/38970))
+
+
+ENHANCEMENTS:
+
+* command/init: Enrich log messages with provider versions ([#38918](https://github.com/hashicorp/terraform/issues/38918))
+
+* test: Add mock_provider support for ephemeral resources ([#38928](https://github.com/hashicorp/terraform/issues/38928))
+
+* command/login: display warning after successful login if user is subject to an organization's TTL policy
 
 
 BUG FIXES:
 
-* cloud: Fixed a bug causing the CLI to pause indefinitely after a run task failure with pending policy evaluations ([#38751](https://github.com/hashicorp/terraform/issues/38751))
+* funcs: pow and log no longer panic when result is not a number ([#38912](https://github.com/hashicorp/terraform/issues/38912))
 
-* Support referencing modules containing dynamic sources in Terraform Test ([#38950](https://github.com/hashicorp/terraform/issues/38950))
+* ephemeral: Terraform will now use and display diagnostics raised when _renewing_ an ephemeral resource. This may cause warnings to appear that previously were lost. We expect that any error diagnostics that were previously lost would have caused confusing downstream errors, so we do not anticipate this change to be breaking. ([#38989](https://github.com/hashicorp/terraform/issues/38989))
 
-* stacks: Fixed validation to ensure the provider versions in the lock file and configuration are compatible. ([#38829](https://github.com/hashicorp/terraform/issues/38829))
+* test: Deterministic dependency ordering in cleanup graph ([#38247](https://github.com/hashicorp/terraform/issues/38247))
 
-* Fix panic when import identity references sensitive value ([#39013](https://github.com/hashicorp/terraform/issues/39013))
+* query: report Unknown and N/A results for policy evaluations of discovered resources ([#39058](https://github.com/hashicorp/terraform/issues/39058))
 
-* import: Fixed a bug where import blocks would be ignored when multiple imports targeted different instances of a resource config using `for_each` or `count`. ([#39068](https://github.com/hashicorp/terraform/issues/39068))
 
-* state show: Fix a panic when given an attribute path instead of a resource instance address ([#39087](https://github.com/hashicorp/terraform/issues/39087))
+NOTES:
 
-* Fix create_before_destroy ordering in some combinations of changes ([#39091](https://github.com/hashicorp/terraform/issues/39091))
+* version: JSON output now includes a new `format_version` field, which will enable safer future changes of the command's JSON output format. It is assumed existing tooling ignores unknown fields and therefore this change should not be breaking in itself but we advice consumers to pay attention to `format_version` in future releases and/or use latest version of hashicorp/terraform-json &amp; hashicorp/terraform-exec which does. ([#38930](https://github.com/hashicorp/terraform/issues/38930))
 
 
 ## Previous Releases
-For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.16.1/CHANGELOG.md).</releaseNotes>
+For more information on previous releases, check out the changelog on [GitHub](https://github.com/hashicorp/terraform/blob/v1.17.0-beta1/CHANGELOG.md).</releaseNotes>
     <projectUrl>http://www.terraform.io</projectUrl>
     <docsUrl>https://www.terraform.io/docs/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/hashicorp/terraform/issues</bugTrackerUrl>
@@ -51,7 +68,7 @@ For more information on previous releases, check out the changelog on [GitHub](h
     <packageSourceUrl>https://github.com/jamestoyer/chocolatey-packages</packageSourceUrl>
     <tags>terraform hashicorp</tags>
     <copyright>HashiCorp 2015-2024</copyright>
-    <licenseUrl>https://github.com/hashicorp/terraform/blob/v1.16.1/LICENSE</licenseUrl>
+    <licenseUrl>https://github.com/hashicorp/terraform/blob/v1.17.0-beta1/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <!-- Important note about https://cdn.rawgit.com: Files are cached permanently after the first request. Use commit URLs when updating the icon. -->
     <iconUrl>https://raw.githubusercontent.com/jamestoyer/chocolatey-packages/58ab86c08224c2ba79af2080346c53c1cc440afc/terraform/icons/terraform.png</iconUrl>
