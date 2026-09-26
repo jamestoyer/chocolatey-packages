@@ -79,7 +79,7 @@ jobs:
 
     steps:
       - name: Restore Choco package
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: terraform
 
